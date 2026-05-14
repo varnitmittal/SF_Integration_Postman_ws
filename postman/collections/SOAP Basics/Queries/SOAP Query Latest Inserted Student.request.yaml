@@ -1,0 +1,124 @@
+$kind: http-request
+url: https://vm-ai-dev-ed.develop.my.salesforce.com/services/Soap/c/64.0/
+method: POST
+headers:
+  Content-Type: text/xml
+  SOAPAction: POST
+body:
+  type: xml
+  content: "<?xml version=\"1.0\" encoding=\"utf-8\" ?>\r
+
+    <env:Envelope xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"\r
+
+    \              xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\r
+
+    \              xmlns:env=\"http://schemas.xmlsoap.org/soap/envelope/\">\r
+
+    \    <env:Header>\r
+
+    \        <urn:SessionHeader xmlns:urn=\"urn:enterprise.soap.sforce.com\">\r
+
+    \            <urn:sessionId>{{SessionIdLatest}}</urn:sessionId>\r
+
+    \        </urn:SessionHeader>\r
+
+    \    </env:Header>\r
+
+    \r
+
+    \    <env:Body>\r
+
+    \        <urn:query xmlns:urn=\"urn:enterprise.soap.sforce.com\">\r
+
+    \            <urn:queryString>\r
+
+    \                SELECT Id, Name, School__r.Name FROM Student__c WHERE Id ='{{latestInsertedStudentId}}'\r
+
+    \            </urn:queryString>\r
+
+    \        </urn:query>\r
+
+    \    </env:Body>\r
+
+    </env:Envelope>"
+auth:
+  type: noauth
+scripts:
+  - type: afterResponse
+    code: "try {\r
+
+      \r
+
+      \    const xml = pm.response.text();\r
+
+      \r
+
+      \    // Extract Student Id\r
+
+      \    const studentIdMatch =\r
+
+      \        xml.match(/<sf:Id>(.*?)<\\/sf:Id>/);\r
+
+      \r
+
+      \    // Extract Student Name\r
+
+      \    const studentNameMatch =\r
+
+      \        xml.match(/<sf:Name>(.*?)<\\/sf:Name>/);\r
+
+      \r
+
+      \    // Extract School Name\r
+
+      \    const schoolNameMatch =\r
+
+      \        xml.match(/<sf:School__r[\\s\\S]*?<sf:Name>(.*?)<\\/sf:Name>/);\r
+
+      \r
+
+      \    const studentId =\r
+
+      \        studentIdMatch ? studentIdMatch[1] : \"N/A\";\r
+
+      \r
+
+      \    const studentName =\r
+
+      \        studentNameMatch ? studentNameMatch[1] : \"N/A\";\r
+
+      \r
+
+      \    const schoolName =\r
+
+      \        schoolNameMatch ? schoolNameMatch[1] : \"N/A\";\r
+
+      \r
+
+      \    console.log(\"Student Data\");\r
+
+      \    console.log(\"-------------------\");\r
+
+      \    console.log(\"Student Id:\", studentId);\r
+
+      \    console.log(\"Student Name:\", studentName);\r
+
+      \    console.log(\"School Name:\", schoolName);\r
+
+      \r
+
+      }\r
+
+      catch (error) {\r
+
+      \r
+
+      \    console.error(\"Parsing Error:\");\r
+
+      \    console.error(error.message);\r
+
+      \r
+
+      }"
+    language: text/javascript
+order: 3000

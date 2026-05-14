@@ -1,0 +1,7 @@
+$kind: collection
+name: SOAP Basics
+variables:
+  SessionIdLatest: ""
+  ServerURL: ""
+  LatestStudentId: ""
+  latestInsertedStudentId: ""

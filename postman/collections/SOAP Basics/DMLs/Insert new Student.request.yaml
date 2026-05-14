@@ -1,0 +1,210 @@
+$kind: http-request
+description: |-
+  Inserts a new `Student__c` record into Salesforce via the SOAP Enterprise API.
+
+  **Endpoint:** `https://vm-ai-dev-ed.develop.my.salesforce.com/services/Soap/c/64.0/`
+
+  **Protocol:** SOAP over HTTP POST
+
+  ---
+
+  ### Headers
+
+  | Key | Value |
+  |---|---|
+  | `Content-Type` | `text/xml` |
+  | `SOAPAction` | `POST` |
+
+  ---
+
+  ### Authentication
+
+  Uses a Salesforce session ID passed in the SOAP `SessionHeader`. The session ID is read from the collection variable `{{SessionIdLatest}}`.
+
+  ---
+
+  ### Request Body
+
+  A SOAP envelope targeting the Salesforce Enterprise API `create` operation. The body creates a single `Student__c` custom object with the following fields:
+
+  | Field | Example Value |
+  |---|---|
+  | `Student_Name__c` | John Carter |
+  | `Class_Enrolled__c` | 8 |
+  | `Email__c` | st0051@yopmail.com |
+  | `Phone_Number__c` | 9000000051 |
+  | `Address__c` | New York, USA |
+  | `School__c` | `a1ggK000001WTuLQAW` (lookup to `School__c`) |
+
+  The `MruHeader` is included to update the Most Recently Used list in Salesforce.
+
+  ---
+
+  ### Response
+
+  On success, the API returns a `createResponse` containing the new record's Salesforce ID and a `success: true` flag.
+
+  **Example response:**
+  ```xml
+  <createResponse>
+    <result>
+      <id>a1hgK000002LHzBQAW</id>
+      <success>true</success>
+    </result>
+  </createResponse>
+  ```
+
+  ---
+
+  ### Post-response Script
+
+  After a successful response, the test script:
+  1. Extracts the newly created student's Salesforce ID from the response XML.
+  2. Saves it to the collection variable `latestInsertedStudentId` for use in subsequent requests.
+  3. Triggers the next request in the collection run.
+
+  If the ID is not found or an error occurs, collection execution is halted gracefully.
+url: https://vm-ai-dev-ed.develop.my.salesforce.com/services/Soap/c/64.0/?SOAPAction=POST&Content-Type=text/xml
+method: POST
+headers:
+  Content-Type: text/xml
+  SOAPAction: POST
+queryParams:
+  SOAPAction: POST
+  Content-Type: text/xml
+body:
+  type: xml
+  content: "<?xml version=\"1.0\" encoding=\"utf-8\" ?>\r
+
+    <env:Envelope xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"\r
+
+    \              xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\r
+
+    \              xmlns:env=\"http://schemas.xmlsoap.org/soap/envelope/\">\r
+
+    \r
+
+    \    <env:Header>\r
+
+    \        <urn:SessionHeader xmlns:urn=\"urn:enterprise.soap.sforce.com\">\r
+
+    \            <urn:sessionId>{{SessionIdLatest}}</urn:sessionId>\r
+
+    \        </urn:SessionHeader>\r
+
+    \r
+
+    \        <urn:MruHeader xmlns:urn=\"urn:enterprise.soap.sforce.com\">\r
+
+    \            <urn:updateMru>true</urn:updateMru>\r
+
+    \        </urn:MruHeader>\r
+
+    \    </env:Header>\r
+
+    \r
+
+    \    <env:Body>\r
+
+    \        <urn:create xmlns:urn=\"urn:enterprise.soap.sforce.com\">\r
+
+    \            <urn:sObjects xsi:type=\"urn1:Student__c\"\r
+
+    \                xmlns:urn1=\"urn:sobject.enterprise.soap.sforce.com\">\r
+
+    \r
+
+    \                <urn1:Student_Name__c>John Carter</urn1:Student_Name__c>\r
+
+    \                <urn1:Class_Enrolled__c>8</urn1:Class_Enrolled__c>\r
+
+    \                <urn1:Email__c>st0051@yopmail.com</urn1:Email__c>\r
+
+    \                <urn1:Phone_Number__c>9000000051</urn1:Phone_Number__c>\r
+
+    \                <urn1:Address__c>New York, USA</urn1:Address__c>\r
+
+    \r
+
+    \                <!-- Lookup to School__c -->\r
+
+    \                <urn1:School__c>a1ggK000001WTuLQAW</urn1:School__c>\r
+
+    \r
+
+    \            </urn:sObjects>\r
+
+    \        </urn:create>\r
+
+    \    </env:Body>\r
+
+    </env:Envelope>"
+scripts:
+  - type: afterResponse
+    code: "try {\r
+
+      \r
+
+      \    const xml = pm.response.text();\r
+
+      \r
+
+      \    // Extract Salesforce created record ID\r
+
+      \    const match = xml.match(/<id>(.*?)<\\/id>/);\r
+
+      \r
+
+      \    if (!match || !match[1]) {\r
+
+      \        throw new Error(\"Student ID not found in SOAP response\");\r
+
+      \    }\r
+
+      \r
+
+      \    const latestInsertedStudentId = match[1];\r
+
+      \r
+
+      \    // Save collection variable\r
+
+      \    pm.collectionVariables.set(\r
+
+      \        \"latestInsertedStudentId\",\r
+
+      \        latestInsertedStudentId\r
+
+      \    );\r
+
+      \r
+
+      \    console.log(\"Student created:\");\r
+
+      \    console.log(latestInsertedStudentId);\r
+
+      \r
+
+      \    // Trigger next request\r
+
+      \    pm.execution.setNextRequest()\r
+
+      }\r
+
+      catch (error) {\r
+
+      \r
+
+      \    console.error(\"Automation error:\");\r
+
+      \    console.error(error.message);\r
+
+      \r
+
+      \    // Stop collection execution safely\r
+
+      \    pm.setNextRequest(null);\r
+
+      }"
+    language: text/javascript
+order: 1000

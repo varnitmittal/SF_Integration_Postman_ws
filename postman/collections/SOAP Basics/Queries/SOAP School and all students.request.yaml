@@ -1,0 +1,46 @@
+$kind: http-request
+url: https://vm-ai-dev-ed.develop.my.salesforce.com/services/Soap/c/64.0/
+method: POST
+headers:
+  Content-Type: text/xml
+  SOAPAction: POST
+body:
+  type: xml
+  content: "<?xml version=\"1.0\" encoding=\"utf-8\" ?>\r
+
+    <env:Envelope xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"\r
+
+    \              xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\r
+
+    \              xmlns:env=\"http://schemas.xmlsoap.org/soap/envelope/\">\r
+
+    \    <env:Header>\r
+
+    \        <urn:SessionHeader xmlns:urn=\"urn:enterprise.soap.sforce.com\">\r
+
+    \            <urn:sessionId>{{SessionIdLatest}}</urn:sessionId>\r
+
+    \        </urn:SessionHeader>\r
+
+    \    </env:Header>\r
+
+    \r
+
+    \    <env:Body>\r
+
+    \        <urn:query xmlns:urn=\"urn:enterprise.soap.sforce.com\">\r
+
+    \            <urn:queryString>\r
+
+    \                SELECT Id, Name, (Select id, name, Email__c from Students__r) FROM School__c\r
+
+    \            </urn:queryString>\r
+
+    \        </urn:query>\r
+
+    \    </env:Body>\r
+
+    </env:Envelope>"
+auth:
+  type: noauth
+order: 2000

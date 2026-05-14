@@ -1,0 +1,30 @@
+$kind: http-request
+url: https://login.salesforce.com/services/Soap/u/64.0
+method: POST
+headers:
+  SOAPAction: "''"
+  Content-Type: text/xml
+body:
+  type: xml
+  content: "<?xml version=\"1.0\" encoding=\"utf-8\" ?>\r
+
+    <env:Envelope xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"\r
+
+    \              xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\r
+
+    \              xmlns:env=\"http://schemas.xmlsoap.org/soap/envelope/\">\r
+
+    \    <env:Body>\r
+
+    \        <n1:login xmlns:n1=\"urn:partner.soap.sforce.com\">\r
+
+    \            <n1:username>vmxagforce@agentforce.com</n1:username>\r
+
+    \            <n1:password>r:>q3606*W%4A8.ePEz5+P6PMj4Q74zlX5i81qBKm090Qy</n1:password>\r
+
+    \        </n1:login>\r
+
+    \    </env:Body>\r
+
+    </env:Envelope>"
+order: 3000
