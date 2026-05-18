@@ -1,0 +1,9 @@
+$kind: http-request
+name: StudentRESTService:GET
+url: https://vm-ai-dev-ed.develop.my.salesforce.com/services/apexrest/students
+method: GET
+auth:
+  type: bearer
+  credentials:
+    token: "{{MyBearerToken}}"
+order: 1779098797311

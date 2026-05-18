@@ -1,0 +1,9 @@
+$kind: http-request
+name: Rest Auth
+url: https://vm-ai-dev-ed.develop.my.salesforce.com/services/oauth2/token?client_id={{client_id}}&client_secret={{client_secret}}&grant_type={{grant_type}}
+method: POST
+queryParams:
+  client_id: "{{client_id}}"
+  client_secret: "{{client_secret}}"
+  grant_type: "{{grant_type}}"
+order: 4472321982630044

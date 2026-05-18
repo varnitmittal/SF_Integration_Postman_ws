@@ -1,8 +1,9 @@
 $kind: http-request
-url: https://login.salesforce.com/services/Soap/u/64.0
+name: Soap Auth
+url: https://vm-ai-dev-ed.develop.my.salesforce.com/services/Soap/u/64.0
 method: POST
 headers:
-  SOAPAction: "''"
+  SOAPAction: POST
   Content-Type: text/xml
 body:
   type: xml
@@ -20,11 +21,11 @@ body:
 
     \            <n1:username>vmxagforce@agentforce.com</n1:username>\r
 
-    \            <n1:password>r:>q3606*W%4A8.ePEz5+P6PMj4Q74zlX5i81qBKm090Qy</n1:password>\r
+    \            <n1:password>yR-LoD$q6n'u}q6FurqeLYYPFdCpJwXNvEfyJZ</n1:password>\r
 
     \        </n1:login>\r
 
     \    </env:Body>\r
 
     </env:Envelope>"
-order: 3000
+order: 4472245547420691

@@ -1,7 +1,12 @@
 $kind: collection
-name: SOAP Basics
+name: INTR BASICS
 variables:
   SessionIdLatest: ""
   ServerURL: ""
   LatestStudentId: ""
   latestInsertedStudentId: ""
+  client_id: ""
+  client_secret: ""
+  grant_type: ""
+  RESTPARAM: ""
+  MyBearerToken: ""

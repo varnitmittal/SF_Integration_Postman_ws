@@ -1,8 +1,10 @@
 workspace:
   id: 3e92c0f0-d7f9-4989-bc69-465937b6e8fc
+
 localResources:
-  collections:
-    - ../postman/collections/Base1
+  collections: []
+
+# Each entry here maps a local resource to one or more corresponding objects in Postman Cloud
+
 cloudResources:
-  collections:
-    ../postman/collections/Base1: 41677856-cdafa049-48d8-4930-a051-c79e20ad9d82
+  collections: {}
