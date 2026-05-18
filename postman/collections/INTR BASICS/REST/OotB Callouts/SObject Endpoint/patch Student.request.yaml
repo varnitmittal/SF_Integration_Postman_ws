@@ -1,0 +1,18 @@
+$kind: http-request
+url: "{{RootUrl}}/services/data/v64.0/sobjects/Student__c/a1hgK000002Lq7JQAS"
+method: PATCH
+body:
+  type: json
+  content: "{\r
+
+    \  \"Email__c\": \"updatedstudent@yopmail.com\",\r
+
+    \  \"Phone_Number__c\": \"9999999999\"\r
+
+    }"
+auth:
+  type: bearer
+  credentials:
+    token: "{{MyBearerToken}}"
+examples: .resources/patch Student.resources/examples
+order: 11000

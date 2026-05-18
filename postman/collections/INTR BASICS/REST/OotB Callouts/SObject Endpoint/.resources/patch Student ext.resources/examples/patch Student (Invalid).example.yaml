@@ -1,0 +1,42 @@
+$kind: http-example
+request:
+  url: "{{RootUrl}}/services/data/v64.0/sobjects/Student__c/External_Iden__c/54956808111111"
+  method: PATCH
+  body:
+    type: json
+    content: "{\r
+
+      \  \"Email__c\": \"updatedstudent123@yopmail.com\",\r
+
+      \  \"Phone_Number__c\": \"9999999999\"\r
+
+      }"
+response:
+  statusCode: 400
+  statusText: Bad Request
+  headers:
+    date: Mon, 18 May 2026 15:02:22 GMT
+    content-type: application/json;charset=UTF-8
+    transfer-encoding: chunked
+    connection: keep-alive
+    x-robots-tag: none
+    x-content-type-options: nosniff
+    strict-transport-security: max-age=63072000; includeSubDomains
+    cache-control: no-cache,must-revalidate,max-age=0,no-store,private
+    sforce-limit-info: api-usage=890/15000
+    server: sfdcedge
+    x-sfdc-request-id: 7444bb8458359f2b8f7c0c45ae78fad2
+    x-request-id: 7444bb8458359f2b8f7c0c45ae78fad2
+  body:
+    type: json
+    content: |-
+      [
+        {
+          "message": "External_Iden: value outside of valid range on numeric field: 54956808111111",
+          "errorCode": "NUMBER_OUTSIDE_VALID_RANGE",
+          "fields": [
+            "External_Iden__c"
+          ]
+        }
+      ]
+order: 2098477816230977

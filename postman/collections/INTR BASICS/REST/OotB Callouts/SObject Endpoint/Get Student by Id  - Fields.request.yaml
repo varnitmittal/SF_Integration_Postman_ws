@@ -1,0 +1,69 @@
+$kind: http-request
+description: |-
+  StartFragment
+
+  ## Describe Object Metadata
+
+  ```
+  GET {{RootUrl}}/services/data/v64.0/sobjects/Student__c/describe
+
+   ```
+
+  Returns complete metadata for the `Student__c` object and its fields.
+
+  ### Learn
+
+  - Field metadata  
+      
+  - `createable` / `updateable` permissions  
+      
+  - Field data types  
+      
+  - Field lengths  
+      
+  - Required fields (`nillable = false`)  
+      
+  - Picklist values  
+      
+  - Lookup relationships (`referenceTo`)  
+      
+
+  ### Commonly Used Properties
+
+  ```
+  nametypelengthcreateableupdateablenillablepicklistValuesreferenceTo
+
+   ```
+
+  ### Why Important
+
+  Used for:
+
+  - Dynamic integrations  
+      
+  - Schema discovery  
+      
+  - Auto-validation  
+      
+  - Dynamic form generation  
+      
+  - Metadata-driven systems  
+      
+
+  ### Best Practice
+
+  Cache the `/describe` response instead of calling it repeatedly.
+
+  ## Docs
+
+  [Salesforce Describe SObject API](https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_sobject_describe.htm?utm_source=chatgpt.com)
+url: "{{RootUrl}}/services/data/v64.0/sobjects/Student__c/a1hgK000002LFSpQAO?fields=Email__c,Student_Name__c"
+method: GET
+queryParams:
+  fields: Email__c,Student_Name__c
+auth:
+  type: bearer
+  credentials:
+    token: "{{MyBearerToken}}"
+examples: .resources/Get Student by Id  - Fields.resources/examples
+order: 5000

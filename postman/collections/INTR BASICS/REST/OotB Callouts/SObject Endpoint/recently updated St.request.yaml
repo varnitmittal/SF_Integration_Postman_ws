@@ -1,0 +1,90 @@
+$kind: http-request
+description: |-
+  StartFragment
+
+  ## Get Updated Records
+
+  ```
+  GET {{RootUrl}}/services/data/v64.0/sobjects/Student__c/updated/?start=2026-05-17T00:00:00Z&end=2026-05-18T23:59:59Z
+
+   ```
+
+  Returns IDs of records updated within the specified time range.
+
+  ### Response Contains
+
+  - `ids` → Updated record IDs  
+      
+  - `latestDateCovered` → Latest timestamp included in response  
+      
+
+  ### Example Response
+
+  ```
+  {  "ids": [    "a1hgK000002Lq5hQAC",    "a1hgK000002LI0nQAG"  ],  "latestDateCovered": "2026-05-18T08:15:00.000+0000"}
+
+   ```
+
+  ### Important
+
+  This endpoint returns only record IDs, not full field data.
+
+  To fetch actual record details, run a SOQL query using the returned IDs.
+
+  Example:
+
+  ```
+  SELECT Id, Name, Email__cFROM Student__cWHERE Id IN (...)
+
+   ```
+
+  ### Common Use Cases
+
+  -   
+      Incremental syncs  
+      
+  -   
+      ETL pipelines  
+      
+  -   
+      Delta processing  
+      
+  -   
+      External DB synchronization  
+      
+  -   
+      Change tracking integrations  
+      
+
+  ### Typical Integration Flow
+
+  ```
+  1. Call /updated2. Get updated record IDs3. Query full records using SOQL4. Sync changed data
+
+   ```
+
+  ### Related Endpoint
+
+  ```
+  GET /services/data/v64.0/sobjects/Student__c/deleted
+
+   ```
+
+  Returns deleted record IDs within a time range.
+
+  ## Docs
+
+  [Salesforce Get Updated Records API](https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_getupdated.htm?utm_source=chatgpt.com)
+
+  EndFragment
+url: "{{RootUrl}}/services/data/v64.0/sobjects/Student__c/updated/?start=2022-05-17T00:00:00Z&end=2022-05-18T23:59:59Z"
+method: GET
+queryParams:
+  start: 2022-05-17T00:00:00Z
+  end: 2022-05-18T23:59:59Z
+auth:
+  type: bearer
+  credentials:
+    token: "{{MyBearerToken}}"
+examples: .resources/recently updated St.resources/examples
+order: 8000

@@ -1,0 +1,41 @@
+$kind: http-example
+request:
+  url: "{{RootUrl}}/services/data/v64.0/sobjects/Student__c/External_Iden__c/54956808"
+  method: PATCH
+  body:
+    type: json
+    content: "{\r
+
+      \  \"Email__c\": \"updatedstudent123@yopmail.com\",\r
+
+      \  \"Phone_Number__c\": \"9999999999\"\r
+
+      }"
+response:
+  statusCode: 200
+  statusText: OK
+  headers:
+    date: Mon, 18 May 2026 15:02:01 GMT
+    content-type: application/json;charset=UTF-8
+    transfer-encoding: chunked
+    connection: keep-alive
+    strict-transport-security: max-age=63072000; includeSubDomains
+    location: /services/data/v64.0/sobjects/Student__c/a1hgK000002LFSkQAO
+    cache-control: no-cache,must-revalidate,max-age=0,no-store,private
+    x-content-type-options: nosniff
+    x-robots-tag: none
+    sforce-limit-info: api-usage=890/15000
+    server: sfdcedge
+    x-sfdc-request-id: d579f3bd467da786dbece99bbdf0dfea
+    x-request-id: d579f3bd467da786dbece99bbdf0dfea
+    x-sfdc-edge-cache: none
+  body:
+    type: json
+    content: |-
+      {
+        "id": "a1hgK000002LFSkQAO",
+        "success": true,
+        "errors": [],
+        "created": false
+      }
+order: 1779116525837

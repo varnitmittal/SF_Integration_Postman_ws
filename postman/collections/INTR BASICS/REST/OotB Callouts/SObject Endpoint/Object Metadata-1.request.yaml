@@ -1,0 +1,10 @@
+$kind: http-request
+name: Object Metadata
+url: "{{RootUrl}}/services/data/v64.0/sobjects/Student__c"
+method: GET
+auth:
+  type: bearer
+  credentials:
+    token: "{{MyBearerToken}}"
+examples: .resources/Object Metadata-1.resources/examples
+order: 1000

@@ -1,0 +1,37 @@
+$kind: http-example
+request:
+  url: "{{RootUrl}}/services/data/v64.0/sobjects/Student__c/deleted/?start=2026-04-17T00:00:00+0000&end=2026-05-18T23:59:59+0000"
+  method: GET
+  queryParams:
+    start: 2026-04-17T00:00:00+0000
+    end: 2026-05-18T23:59:59+0000
+  body:
+    type: json
+    content: ""
+response:
+  statusCode: 400
+  statusText: Bad Request
+  headers:
+    date: Mon, 18 May 2026 14:48:21 GMT
+    content-type: application/json;charset=UTF-8
+    transfer-encoding: chunked
+    connection: keep-alive
+    x-robots-tag: none
+    cache-control: no-cache,must-revalidate,max-age=0,no-store,private
+    sforce-limit-info: api-usage=665/15000
+    x-content-type-options: nosniff
+    vary: Accept-Encoding
+    strict-transport-security: max-age=63072000; includeSubDomains
+    server: sfdcedge
+    x-sfdc-request-id: 97f999336ec78d189d20b5ee283ebfef
+    x-request-id: 97f999336ec78d189d20b5ee283ebfef
+  body:
+    type: json
+    content: |-
+      [
+        {
+          "message": "Error parsing the 'start' date string. This operation requires properly formatted 'start' and 'end' date/time parameters to be specified. Please consult the documentation for the format of these date/time fields.",
+          "errorCode": "INVALID_DATE_FORMAT"
+        }
+      ]
+order: 3141097076424965

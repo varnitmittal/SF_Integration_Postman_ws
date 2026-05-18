@@ -1,0 +1,74 @@
+$kind: http-request
+name: fetch ContentVersion By Id
+description: |-
+  # Salesforce File Download via REST
+
+  ## Get File Metadata
+
+  ``` http
+  GET /services/data/v64.0/sobjects/ContentVersion/{ContentVersionId}
+
+   ```
+
+  Example:
+
+  ``` http
+  GET /services/data/v64.0/sobjects/ContentVersion/068gK00000045HRQAY
+
+   ```
+
+  Returns metadata including:
+
+  ``` json
+  "VersionData": "/services/data/v64.0/sobjects/ContentVersion/068gK00000045HRQAY/VersionData"
+
+   ```
+
+  ---
+
+  ## Download Actual File (Blob/Binary)
+
+  ``` http
+  GET /services/data/v64.0/sobjects/ContentVersion/{ContentVersionId}/VersionData
+
+   ```
+
+  Example:
+
+  ``` http
+  GET /services/data/v64.0/sobjects/ContentVersion/068gK00000045HRQAY/VersionData
+
+   ```
+
+  Headers:
+
+  ``` http
+  Authorization: Bearer ACCESS_TOKEN
+
+   ```
+
+  Response:
+
+  - Raw binary stream
+      
+  - Image/PDF/file content
+      
+  - Not JSON
+      
+
+  ---
+
+  ## Key Concept
+
+  | Endpoint | Purpose |
+  | --- | --- |
+  | `/ContentVersion/{Id}` | Metadata |
+  | `/ContentVersion/{Id}/VersionData` | Actual file bytes |
+url: "{{RootUrl}}/services/data/v64.0/sobjects/ContentVersion/068gK00000045HRQAY"
+method: GET
+auth:
+  type: bearer
+  credentials:
+    token: "{{MyBearerToken}}"
+examples: .resources/fetch ContentVersion By Id-1.resources/examples
+order: 2507

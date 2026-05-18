@@ -1,0 +1,187 @@
+$kind: http-example
+description: |-
+  # Salesforce ContentVersion REST API Quick Reference
+
+  # Base Endpoint
+
+  ``` text
+  {{RootUrl}}/services/data/v64.0/sobjects/ContentVersion
+
+   ```
+
+  ---
+
+  # Common Headers
+
+  ``` http
+  Authorization: Bearer ACCESS_TOKEN
+  Content-Type: application/json
+
+   ```
+
+  ---
+
+  # 1\. Upload File
+
+  ## Endpoint
+
+  ``` http
+  POST /services/data/v64.0/sobjects/ContentVersion
+
+   ```
+
+  ## Example
+
+  ``` http
+  POST {{RootUrl}}/services/data/v64.0/sobjects/ContentVersion
+
+   ```
+
+  ## Body
+
+  ``` json
+  {
+    "Title": "student-notes",
+    "PathOnClient": "student-notes.txt",
+    "VersionData": "SGVsbG8gU2FsZXNmb3JjZQ=="
+  }
+
+   ```
+
+  ## Notes
+
+  - `VersionData` must be Base64 encoded
+      
+  - Any file can be converted to Base64
+      
+  - Response returns created `ContentVersion` Id
+      
+
+  ---
+
+  # 2\. Get File Metadata
+
+  ## Endpoint
+
+  ``` http
+  GET /services/data/v64.0/sobjects/ContentVersion/{ContentVersionId}
+
+   ```
+
+  ## Example
+
+  ``` http
+  GET {{RootUrl}}/services/data/v64.0/sobjects/ContentVersion/068gK00000045HRQAY
+
+   ```
+
+  ## Returns
+
+  - Title
+      
+  - FileType
+      
+  - ContentSize
+      
+  - VersionData endpoint
+      
+  - ContentDocumentId
+      
+  - metadata
+      
+
+  ---
+
+  # 3\. Download Actual File
+
+  ## Endpoint
+
+  ``` http
+  GET /services/data/v64.0/sobjects/ContentVersion/{ContentVersionId}/VersionData
+
+   ```
+
+  ## Example
+
+  ``` http
+  GET {{RootUrl}}/services/data/v64.0/sobjects/ContentVersion/068gK00000045HRQAY/VersionData
+
+   ```
+
+  ## Returns
+
+  - raw binary stream
+      
+  - image/pdf/file bytes
+      
+  - Postman may show Base64-like output
+      
+
+  ---
+
+  # Important Fields
+
+  | Field | Purpose |
+  | --- | --- |
+  | Title | File title |
+  | PathOnClient | Original filename |
+  | VersionData | Base64 file content |
+  | ContentDocumentId | Parent Salesforce File Id |
+  | FileType | PNG/PDF/TXT etc |
+  | ContentSize | File size in bytes |
+
+  ---
+
+  # Key Concept
+
+  ``` text
+  Any file
+  → Binary
+  → Base64 encoding
+  → JSON transport
+  → Salesforce storage
+
+   ```
+request:
+  url: "{{RootUrl}}/services/data/v64.0/sobjects/ContentVersion/068gK00000045HRQAY"
+  method: GET
+response:
+  statusCode: 200
+  statusText: OK
+  headers:
+    date: Mon, 18 May 2026 15:18:34 GMT
+    content-type: application/octetstream
+    transfer-encoding: chunked
+    connection: keep-alive
+    vary: Accept-Encoding
+    x-robots-tag: none
+    cache-control: no-cache,must-revalidate,max-age=0,no-store,private
+    sforce-limit-info: api-usage=921/15000
+    x-content-type-options: nosniff
+    strict-transport-security: max-age=63072000; includeSubDomains
+    server: sfdcedge
+    x-sfdc-request-id: ad006eba658a50db9572a749d9109f26
+    x-request-id: ad006eba658a50db9572a749d9109f26
+    x-sfdc-edge-cache: none
+  body:
+    type: text
+    content: "�PNG\r
+
+      \x1a
+
+      \0\0\0\rIHDR\0\0\0�\0\0\0�\b\x06\0\0\0�>a�\0\0\tyIDATx\x01�MlTU\x14�ϛ��
+
+      *m#R��)��B\"m�D��a�`b\"D\x17��M\\�N\x16.L\\��ĝ\x11�H\\X�\e#�\x1a%�\x12b%)\v�*&�$\x16x\x14�F�\x0e�h?`�s߀)c�=��ͻ羹��ͼ\a\ty�s���s/���p8\x1c\x0e���p8\x1c�z�\x03����<4\x04�\0\x04]�y�`\x1f�0���a�\a\"Xc\0��_:m�_H�l\x04�T� \x03��P�M��g4W�\x18\r�1\0�\x17!-x�\x05D��\0�K�\x17R���a�\a�\x06dVL,\x040\x02D��\0J)r�!^\x1f\x10��. \x0f�f�5NAz����\x0e �\x12�Β�.�3����!x��\x0f�\x02�'��������O�\x10�C�\x17��=^ٱ\x01�p��A��\f�\x01!,�\x01�gxO�7l\x06
+
+      ��?]�������Q\x01\x19�\r T�<��\x03h[K�\x03�;�#�R��\vĠ�\x01\x1an\x17x��::!״\fL3=u\x05&/�a�}Mm�3��\0��{ڲ�Q��P�/y�\x03Ah�\x02<�\x1f�;��=��\x15Yؾu)�=\\�o�\x1d���c�@�F\t₭��SG��|���\x10\x10��\x01�\e�e�?�{�\x17���߽k�=�uml���\x06���FlFp\x0e���<��\x05��\r\x01�L����\x1e��x`�ߛ\x1f��S�� .X�����\x03���\v�k\0���fC��g\x1f���b��\x1cā�֏��g\x10N\x02�\x05 �\a`n�G��m�\x03��/\v\x02�Cs�4\0��������ȿ�~\x1d�\0Ύσ.��G�\x14~���\x01\x10�������?�7\0�7}\x03\x18;6��DP���j\b��{ؾ1:���,����\"g�z\t&��\v\x01l�71z\x02{���g�3����A��N\e�\0���\x17\x14~�f�\v��\x01��\x02�q��r\x0e�\"�9�\0���\f@H�\t`���S\r=\x03�\0?���G>kj��\x10�ÿt\vt�<�j�ehʾ�A�\00��S��V?���
+
+      ���'-�TC�\0����m�t�\x1a��jhy\0��/�\x01X1H��c�a��ԅ�jh\x19��q�ߕ�Տɿ\f��τ�k\\�^\e�a�\x10Z\x06\x10`�?u�W7�\x17��Y �TC�\00�7״T+��ȿ�5+��j�x\0d�g%R���\0$$�\x04�}`!t\f\0)����~?l�\x1f�c��a2�^2�0\0\x11���S\0���g\x1f\x1f���\x19����\a\b���ʿ�L\0�&�TC�\04�j)��Q���HS(�����mkշ:�а�\x17��s��@\x0fcg\a\x19�\0B�?\x1d�˿L�\x11\x18���\x1d�\vNߑ�\x13�|\b@�_���;6�ʾqc�� \x029\0�ǔ�;1z\x12\x12���A�\r@s�����[\x0f\x185\0��V��\x1fK�ff�\x0f�\x18�e\x16Ta��\0��0f=���\x0f6��?8���L�������;��c�D1)\v\x06iά{�\x1c��Q�;�<\x0f+�\x1f��\x13p�Z)���\x1f�B��L�\x11N�<\v\a\x0eM��l\0���[\x06\x1d�?\r7�������攼���@�r��C��\r�M�*��^{��\x01\x10*|��[\"=\x04e����\v\x060&\x04Uʿ�r��:�\x0f}&��\x03�W��{�\x10�r\0T��)��\a�b:??�\x06\x18�d\x12�<�C\x19614\"�?PI�v�a�\x18���\x0fUX�������AP,��\x14:��x\0d���y�/E��\x1f��\x1d������A\x0f��13\x06�L�P:�Q�\x1f>Od\\\x1c*\x19���\v>Q��\x05hL�PĖ�1\x12�\x01g.�\05��s3<�®D�\b��������~q�\b�H>\x04 ��8�\x18;\x19�0,.�\x126,\"��o���\x19�\e\02�\x13\x17s3�3r��nu�3~FP�Iuf�@\x12�%V�\x16�a�a�>����>\x0f�Pn\x19O�\0�������/���\x0e�>+��\aHl5�BNfI��\x18z>\x10��T�G��\r ���JX\x02�]Lb}�\x12\x19\x0fX@�\x06\x10&C�L7$��Һ*��į]�\b?���\x02���\x17È\x10t'#�*���\tqy\0��3�O���Sv�>X�M7��K��|��\fR\x19?K�,9\x1d�.�o\r�\"��e\x12�\x19?A�W\x04{=\0v�T�~?�D�o��C\x15+\r��O�\x17�Z5=�T�O��C\x15;=\02N�z�uZ�Y�7r�+�EB�\x1d��i\0�R���w�(���\x1d��i\0\x01���7N�!��\x13j�P��$��Tk�Z�g�\x1d�\x19�\x052�\b�\x19@8O�q�H\x14\x12��>,�텔`�\a��\x16��/��m��+�}B\x10�P\"+��7v\x1c�!EX�\x01���D\x01H2�'�ء�U\x06�\x1d'/;O(��M��C\x15�<\0R\0�Y�­ܖ4v�b�\x01d��\x13Z�T�oIc�*��\0܁R�\x12p\x1aZ��Ě]��y�H\x01H*㷬�C\x15{<�f\x01�nƟ��\x0eU�1\0�\x02��o�O�\x15�\x1e\x03\b�\aJ롱C\x15��@�\0\x14�\x01ꥱC\x15+\f@�\0��$�p+w
+
+      \x1a;T��\x03H\x17��Z�S�ء�%\x06�\x17���_�V�\x144v�b�\x0e %\0���;N�{\0�B\tV\0Z�\0\"�񧪱C\x15�!@�\0$��^�\x15�~\b\x10,\0��Opx3��\x1d�ؐ\x04�����+DJ\e;T�o\0H\x01����2��6v�b��\0�ʉ��j�sV\0���\x01��z\x06\x04���\x06_\a�=��\0ȅ��S��\x0eMh\e@��\0\x16j�t\x19?\x17ڻ�\0
+
+      �g��Ic�*d=\0V\0\x12�~\x1a;T��\x01�\x0e�t2�\x10�s\0�\0�Pw�\x1d�PN\x027�\x1au�ء��k�\b;�s�S \vk��f�뵶�\x02M\x0f�\\)\x13I\x1d7v�B�\02*�\e;T��\v���.�W��\a@
+
+      @U��\x0e\r�\x19@X\0\x12�ɼ��\v\x01�\0$z�k�І^\b@
+
+      @��\x1a;b�`\x0e r��k�\v�\x1e\0+\0��Ď���\x01xn�5v�\f=\x03��S�e�5��\x01��N!f\f\x01\f�����p8\x1c\x0e���p8\x1c\x0eG\\�\v�\r$�\x06\x15\x14�\0\0\0\0IEND�B`�"
+order: 1779117807433

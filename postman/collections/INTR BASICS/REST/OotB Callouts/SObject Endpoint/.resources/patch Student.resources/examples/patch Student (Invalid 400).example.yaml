@@ -1,0 +1,33 @@
+$kind: http-example
+request:
+  url: "{{RootUrl}}/services/data/v64.0/sobjects/Student__c/a1hgK000002Lq7JQAS"
+  method: PATCH
+  body:
+    type: json
+    content: ""
+response:
+  statusCode: 400
+  statusText: Bad Request
+  headers:
+    date: Mon, 18 May 2026 14:33:13 GMT
+    content-type: application/json;charset=UTF-8
+    transfer-encoding: chunked
+    connection: keep-alive
+    strict-transport-security: max-age=63072000; includeSubDomains
+    sforce-limit-info: api-usage=651/15000
+    cache-control: no-cache,must-revalidate,max-age=0,no-store,private
+    x-content-type-options: nosniff
+    x-robots-tag: none
+    server: sfdcedge
+    x-sfdc-request-id: 58c44adb96d4c00bd01c9a62a9c6e303
+    x-request-id: 58c44adb96d4c00bd01c9a62a9c6e303
+  body:
+    type: json
+    content: |-
+      [
+        {
+          "message": "The HTTP entity body is required, but this request has no entity body.",
+          "errorCode": "JSON_PARSER_ERROR"
+        }
+      ]
+order: 1614659238411312

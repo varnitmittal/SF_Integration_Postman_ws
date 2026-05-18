@@ -1,0 +1,152 @@
+$kind: http-request
+description: |-
+  # Salesforce ContentVersion REST API Quick Reference
+
+  # Base Endpoint
+
+  ``` text
+  {{RootUrl}}/services/data/v64.0/sobjects/ContentVersion
+
+   ```
+
+  ---
+
+  # Common Headers
+
+  ``` http
+  Authorization: Bearer ACCESS_TOKEN
+  Content-Type: application/json
+
+   ```
+
+  ---
+
+  # 1\. Upload File
+
+  ## Endpoint
+
+  ``` http
+  POST /services/data/v64.0/sobjects/ContentVersion
+
+   ```
+
+  ## Example
+
+  ``` http
+  POST {{RootUrl}}/services/data/v64.0/sobjects/ContentVersion
+
+   ```
+
+  ## Body
+
+  ``` json
+  {
+    "Title": "student-notes",
+    "PathOnClient": "student-notes.txt",
+    "VersionData": "SGVsbG8gU2FsZXNmb3JjZQ=="
+  }
+
+   ```
+
+  ## Notes
+
+  - `VersionData` must be Base64 encoded
+      
+  - Any file can be converted to Base64
+      
+  - Response returns created `ContentVersion` Id
+      
+
+  ---
+
+  # 2\. Get File Metadata
+
+  ## Endpoint
+
+  ``` http
+  GET /services/data/v64.0/sobjects/ContentVersion/{ContentVersionId}
+
+   ```
+
+  ## Example
+
+  ``` http
+  GET {{RootUrl}}/services/data/v64.0/sobjects/ContentVersion/068gK00000045HRQAY
+
+   ```
+
+  ## Returns
+
+  - Title
+      
+  - FileType
+      
+  - ContentSize
+      
+  - VersionData endpoint
+      
+  - ContentDocumentId
+      
+  - metadata
+      
+
+  ---
+
+  # 3\. Download Actual File
+
+  ## Endpoint
+
+  ``` http
+  GET /services/data/v64.0/sobjects/ContentVersion/{ContentVersionId}/VersionData
+
+   ```
+
+  ## Example
+
+  ``` http
+  GET {{RootUrl}}/services/data/v64.0/sobjects/ContentVersion/068gK00000045HRQAY/VersionData
+
+   ```
+
+  ## Returns
+
+  - raw binary stream
+      
+  - image/pdf/file bytes
+      
+  - Postman may show Base64-like output
+      
+
+  ---
+
+  # Important Fields
+
+  | Field | Purpose |
+  | --- | --- |
+  | Title | File title |
+  | PathOnClient | Original filename |
+  | VersionData | Base64 file content |
+  | ContentDocumentId | Parent Salesforce File Id |
+  | FileType | PNG/PDF/TXT etc |
+  | ContentSize | File size in bytes |
+
+  ---
+
+  # Key Concept
+
+  ``` text
+  Any file
+  → Binary
+  → Base64 encoding
+  → JSON transport
+  → Salesforce storage
+
+   ```
+url: "{{RootUrl}}/services/data/v64.0/sobjects/ContentVersion/068gK00000045HRQAY"
+method: GET
+auth:
+  type: bearer
+  credentials:
+    token: "{{MyBearerToken}}"
+examples: .resources/fetch ContentVersion By Id.resources/examples
+order: 3000

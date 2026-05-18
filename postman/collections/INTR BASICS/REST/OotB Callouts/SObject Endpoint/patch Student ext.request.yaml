@@ -1,0 +1,313 @@
+$kind: http-request
+description: |-
+  ## External ID Upsert (PATCH) ⭐
+
+  First create an **External ID** field on the object.
+
+  Example:
+
+  ```
+  Student_Code__c
+
+   ```
+
+  Then perform upsert using the External ID value.
+
+  ---
+
+  ## Endpoint
+
+  ```
+  PATCH {{RootUrl}}/services/data/v64.0/sobjects/Student__c/Student_Code__c/STU-1001
+
+   ```
+
+  ### Request Body
+
+  ```
+  {  "Student_Name__c": "Alex Updated"}
+
+   ```
+
+  ---
+
+  # How It Works
+
+  Salesforce checks whether the External ID value exists.
+
+  | Scenario | Result |
+  | --- | --- |
+  | External ID exists | Updates matching record |
+  | External ID does not exist | Creates new record |
+  | Multiple matches found | Error |
+
+  This is why it is called **upsert**:
+
+  ```
+  UPDATE if foundINSERT if not found
+
+   ```
+
+  ---
+
+  # Example Behaviors
+
+  ## 1\. Existing External ID → Update
+
+  Request:
+
+  ```
+  PATCH /sobjects/Student__c/Student_Code__c/STU-1001
+
+   ```
+
+  If record exists:
+
+  ```
+  Student_Code__c = STU-1001
+
+   ```
+
+  Salesforce updates that record.
+
+  ---
+
+  ## 2\. Non-Existing External ID → Create
+
+  If `STU-1001` does not exist:
+
+  ```
+  PATCH /sobjects/Student__c/Student_Code__c/STU-1001
+
+   ```
+
+  Salesforce automatically creates a new record.
+
+  No Salesforce Record ID required.
+
+  This is a very common enterprise integration pattern.
+
+  ---
+
+  ## 3\. Multiple Matching External IDs → Error ⚠️
+
+  If External ID field is not unique and duplicates exist:
+
+  ```
+  Student_Code__c = STU-1001
+
+   ```
+
+  on multiple records, Salesforce returns an error because it cannot determine which record to update.
+
+  Typical error:
+
+  ```
+  {  "errorCode": "MULTIPLE_CHOICES",  "message": "Multiple records found"}
+
+   ```
+
+  ### Best Practice
+
+  Always configure External ID fields as:
+
+  ```
+  External ID + Unique
+
+   ```
+
+  ---
+
+  # Why External ID Upsert Is Important
+
+  External systems usually do not know Salesforce Record IDs.
+
+  They use business identifiers like:
+
+  -   
+      ERP IDs  
+      
+  -   
+      Employee Codes  
+      
+  -   
+      Student Numbers  
+      
+  -   
+      Customer IDs  
+      
+  -   
+      Order Numbers  
+      
+
+  External ID upsert allows Salesforce to match records using those identifiers.
+
+  ---
+
+  # Major Benefits
+
+  -   
+      No pre-query needed  
+      
+  -   
+      Reduces API calls  
+      
+  -   
+      Prevents duplicate creation  
+      
+  -   
+      Simplifies integrations  
+      
+  -   
+      Supports idempotent APIs  
+      
+  -   
+      Easier cross-system synchronization  
+      
+
+  ---
+
+  # Typical Integration Flow
+
+  ```
+  External System ID        ↓External ID Field        ↓PATCH Upsert        ↓Update or Create Automatically
+
+   ```
+
+  ---
+
+  # Common Enterprise Use Cases
+
+  -   
+      ERP ↔ Salesforce sync  
+      
+  -   
+      Middleware integrations  
+      
+  -   
+      ETL pipelines  
+      
+  -   
+      Master Data Management (MDM)  
+      
+  -   
+      Data migration  
+      
+  -   
+      CDC integrations  
+      
+
+  ---
+
+  # Important Notes
+
+  ## PATCH Is Required
+
+  Upsert via External ID uses:
+
+  ```
+  PATCH
+
+   ```
+
+  not `POST` or `PUT`.
+
+  ---
+
+  ## Salesforce ID Not Needed
+
+  Normal update:
+
+  ```
+  PATCH /sobjects/Student__c/a1hgK000002Lq5hQAC
+
+   ```
+
+  External ID upsert:
+
+  ```
+  PATCH /sobjects/Student__c/Student_Code__c/STU-1001
+
+   ```
+
+  ---
+
+  ## Empty Request Body
+
+  If body is empty and record exists:
+
+  -   
+      request succeeds  
+      
+  -   
+      nothing changes  
+      
+
+  If record does not exist:
+
+  -   
+      creation may fail if required fields are missing  
+      
+
+  ---
+
+  ## Required Fields During Create
+
+  If External ID does not exist, Salesforce performs an INSERT internally.
+
+  Therefore all required fields must still be satisfied.
+
+  Possible error:
+
+  ```
+  {  "errorCode": "REQUIRED_FIELD_MISSING"}
+
+   ```
+
+  ---
+
+  ## External ID Field Types
+
+  Common External ID field types:
+
+  -   
+      Text  
+      
+  -   
+      Number  
+      
+  -   
+      Email  
+      
+
+  Usually:
+
+  -   
+      indexed automatically  
+      
+  -   
+      optimized for lookup performance  
+      
+
+  ---
+
+  ## Docs
+
+  [Salesforce Upsert via External ID](https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/dome_upsert.htm?utm_source=chatgpt.com)
+url: "{{RootUrl}}/services/data/v64.0/sobjects/Student__c/External_Iden__c/1"
+method: PATCH
+body:
+  type: json
+  content: "{\r
+
+    \  \"Email__c\": \"updatedstudent123@yopmail.com\",\r
+
+    \  \"Phone_Number__c\": \"9999999999\"\r
+
+    }"
+auth:
+  type: bearer
+  credentials:
+    token: "{{MyBearerToken}}"
+examples: .resources/patch Student ext.resources/examples
+order: 10000

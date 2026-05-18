@@ -1,0 +1,33 @@
+$kind: http-example
+request:
+  url: "{{RootUrl}}/services/data/v64.0/sobjects/Student__c/a1hgK000002Lq7JQAS"
+  method: PATCH
+  body:
+    type: json
+    content: "{\r
+
+      \  \"Email__c\": \"updatedstudent@yopmail.com\",\r
+
+      \  \"Phone_Number__c\": \"9999999999\"\r
+
+      }"
+response:
+  statusCode: 204
+  statusText: No Content
+  headers:
+    date: Mon, 18 May 2026 14:32:26 GMT
+    connection: keep-alive
+    x-content-type-options: nosniff
+    sforce-limit-info: api-usage=645/15000
+    strict-transport-security: max-age=63072000; includeSubDomains
+    content-security-policy: upgrade-insecure-requests
+    x-robots-tag: none
+    cache-control: no-cache,must-revalidate,max-age=0,no-store,private
+    server: sfdcedge
+    x-sfdc-request-id: bb894671e8e9b09835b91e8dee3df177
+    x-request-id: bb894671e8e9b09835b91e8dee3df177
+    x-sfdc-edge-cache: none
+  body:
+    type: text
+    content: ""
+order: 371043971295

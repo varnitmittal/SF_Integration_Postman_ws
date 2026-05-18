@@ -1,0 +1,79 @@
+$kind: http-request
+name: Object Describe
+description: |-
+  ## Describe Object Metadata
+
+  ```
+  GET {{RootUrl}}/services/data/v64.0/sobjects/Student__c/describe
+
+   ```
+
+  Returns complete metadata for the `Student__c` object and its fields.
+
+  ### Learn
+
+  - Field metadata
+      
+  - `createable` / `updateable` permissions
+      
+  - Field data types
+      
+  - Field lengths
+      
+  - Required fields (`nillable = false`)
+      
+  - Picklist values
+      
+  - Lookup relationships (`referenceTo`)
+      
+
+  ### Commonly Used Properties
+
+  ```
+  nametypelengthcreateableupdateablenillablepicklistValuesreferenceTo
+
+   ```
+
+  ### Why Important
+
+  Used for:
+
+  - Dynamic integrations
+      
+  - Schema discovery
+      
+  - Auto-validation
+      
+  - Dynamic form generation
+      
+  - Metadata-driven systems
+      
+
+  ### Best Practice
+
+  Cache the `/describe` response instead of calling it repeatedly.
+
+  ## Docs
+
+  [Salesforce Describe SObject API<br><br><br><br><br>](https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_sobject_describe.htm?utm_source=chatgpt.com)
+
+  | URL Key | Purpose |
+  | --- | --- |
+  | `compactLayouts` | Returns compact layout metadata (highlights panel fields) |
+  | `rowTemplate` | Template URL for accessing a specific record by ID |
+  | `approvalLayouts` | Returns approval page layout metadata |
+  | `uiDetailTemplate` | Salesforce UI URL for viewing a record |
+  | `uiEditTemplate` | Salesforce UI URL for editing a record |
+  | `describe` | Full object + field metadata |
+  | `uiNewRecord` | Salesforce UI URL for creating new record |
+  | `quickActions` | Returns available quick actions for object |
+  | `layouts` | Returns full page layout metadata |
+  | `sobject` | Base endpoint for object operations |
+url: "{{RootUrl}}/services/data/v64.0/sobjects/Student__c/describe"
+method: GET
+auth:
+  type: bearer
+  credentials:
+    token: "{{MyBearerToken}}"
+examples: .resources/Object Describe.resources/examples
+order: 4000

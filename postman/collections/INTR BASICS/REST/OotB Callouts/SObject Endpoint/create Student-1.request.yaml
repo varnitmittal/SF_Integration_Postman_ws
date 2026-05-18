@@ -18,4 +18,4 @@ auth:
   credentials:
     token: "{{MyBearerToken}}"
 examples: .resources/create Student-1.resources/examples
-order: 3526
+order: 9000

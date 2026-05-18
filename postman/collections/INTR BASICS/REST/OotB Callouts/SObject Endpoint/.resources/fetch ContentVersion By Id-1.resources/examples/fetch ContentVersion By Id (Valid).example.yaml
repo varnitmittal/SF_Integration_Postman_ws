@@ -1,0 +1,78 @@
+$kind: http-example
+request:
+  url: "{{RootUrl}}/services/data/v64.0/sobjects/ContentVersion/068gK00000045HRQAY"
+  method: GET
+response:
+  statusCode: 200
+  statusText: OK
+  headers:
+    date: Mon, 18 May 2026 15:15:50 GMT
+    content-type: application/json;charset=UTF-8
+    transfer-encoding: chunked
+    connection: keep-alive
+    last-modified: Mon, 18 May 2026 15:15:37 GMT
+    strict-transport-security: max-age=63072000; includeSubDomains
+    content-encoding: gzip
+    sforce-limit-info: api-usage=909/15000
+    cache-control: no-cache,must-revalidate,max-age=0,no-store,private
+    x-robots-tag: none
+    vary: Accept-Encoding
+    x-content-type-options: nosniff
+    server: sfdcedge
+    x-sfdc-request-id: bae38bccfa512cf2aced8ac09cca56c3
+    x-request-id: bae38bccfa512cf2aced8ac09cca56c3
+    x-sfdc-edge-cache: none
+  body:
+    type: json
+    content: |-
+      {
+        "attributes": {
+          "type": "ContentVersion",
+          "url": "/services/data/v64.0/sobjects/ContentVersion/068gK00000045HRQAY"
+        },
+        "Id": "068gK00000045HRQAY",
+        "ContentDocumentId": "069gK00000045HRQAY",
+        "IsLatest": true,
+        "ContentUrl": null,
+        "ContentBodyId": "05TgK00000046yHUAQ",
+        "VersionNumber": "1",
+        "Title": "Platform Design",
+        "Description": null,
+        "ReasonForChange": null,
+        "SharingOption": "A",
+        "SharingPrivacy": "N",
+        "PathOnClient": "Platform Design.png",
+        "RatingCount": 0,
+        "IsDeleted": false,
+        "ContentModifiedDate": "2025-02-25T07:35:20.000+0000",
+        "ContentModifiedById": "005gK0000005ZV1QAM",
+        "PositiveRatingCount": 0,
+        "NegativeRatingCount": 0,
+        "FeaturedContentBoost": null,
+        "FeaturedContentDate": null,
+        "OwnerId": "005gK0000005ZV1QAM",
+        "CreatedById": "005gK0000005ZV1QAM",
+        "CreatedDate": "2025-02-25T07:35:20.000+0000",
+        "LastModifiedById": "005gK0000005ZV1QAM",
+        "LastModifiedDate": "2025-02-25T07:35:20.000+0000",
+        "SystemModstamp": "2026-05-18T15:15:37.000+0000",
+        "TagCsv": null,
+        "FileType": "PNG",
+        "PublishStatus": "P",
+        "VersionData": "/services/data/v64.0/sobjects/ContentVersion/068gK00000045HRQAY/VersionData",
+        "ContentSize": 2482,
+        "FileExtension": "png",
+        "FirstPublishLocationId": "005gK0000005ZV1QAM",
+        "Origin": "H",
+        "NetworkId": null,
+        "ContentLocation": "S",
+        "TextPreview": null,
+        "ExternalDocumentInfo1": null,
+        "ExternalDocumentInfo2": null,
+        "ExternalDataSourceId": null,
+        "Checksum": "9fd95a519303be2046f58da1c9e1c00e",
+        "IsMajorVersion": true,
+        "IsAssetEnabled": true,
+        "VersionDataUrl": "https://vm-ai-dev-ed.develop.file.force.com/sfc/servlet.shepherd/version/download/068gK00000045HR"
+      }
+order: 1779117356794

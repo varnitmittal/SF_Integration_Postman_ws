@@ -1,0 +1,12 @@
+$kind: http-request
+url: "{{RootUrl}}/services/data/v64.0/sobjects/Student__c/a1hgK000002LI0nQAG11111"
+method: DELETE
+body:
+  type: json
+  content: ""
+auth:
+  type: bearer
+  credentials:
+    token: "{{MyBearerToken}}"
+examples: .resources/delete Student.resources/examples
+order: 12000

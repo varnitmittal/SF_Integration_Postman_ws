@@ -1,0 +1,27 @@
+$kind: http-example
+request:
+  url: "{{RootUrl}}/services/data/v64.0/sobjects/Student__c/a1hgK000002LI0nQAG"
+  method: DELETE
+  body:
+    type: json
+    content: ""
+response:
+  statusCode: 204
+  statusText: No Content
+  headers:
+    date: Mon, 18 May 2026 14:35:24 GMT
+    connection: keep-alive
+    sforce-limit-info: api-usage=653/15000
+    cache-control: no-cache,must-revalidate,max-age=0,no-store,private
+    strict-transport-security: max-age=63072000; includeSubDomains
+    content-security-policy: upgrade-insecure-requests
+    x-robots-tag: none
+    x-content-type-options: nosniff
+    server: sfdcedge
+    x-sfdc-request-id: 8c0da718c4ba17fc013efd4b1e07a88d
+    x-request-id: 8c0da718c4ba17fc013efd4b1e07a88d
+    x-sfdc-edge-cache: none
+  body:
+    type: text
+    content: ""
+order: 1779114932788

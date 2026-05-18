@@ -1,0 +1,96 @@
+$kind: http-example
+description: |-
+  StartFragment
+
+  ## Describe Object Metadata
+
+  ```
+  GET {{RootUrl}}/services/data/v64.0/sobjects/Student__c/describe
+
+   ```
+
+  Returns complete metadata for the `Student__c` object and its fields.
+
+  ### Learn
+
+  - Field metadata  
+      
+  - `createable` / `updateable` permissions  
+      
+  - Field data types  
+      
+  - Field lengths  
+      
+  - Required fields (`nillable = false`)  
+      
+  - Picklist values  
+      
+  - Lookup relationships (`referenceTo`)  
+      
+
+  ### Commonly Used Properties
+
+  ```
+  nametypelengthcreateableupdateablenillablepicklistValuesreferenceTo
+
+   ```
+
+  ### Why Important
+
+  Used for:
+
+  - Dynamic integrations  
+      
+  - Schema discovery  
+      
+  - Auto-validation  
+      
+  - Dynamic form generation  
+      
+  - Metadata-driven systems  
+      
+
+  ### Best Practice
+
+  Cache the `/describe` response instead of calling it repeatedly.
+
+  ## Docs
+
+  [Salesforce Describe SObject API](https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_sobject_describe.htm?utm_source=chatgpt.com)
+request:
+  url: "{{RootUrl}}/services/data/v64.0/sobjects/Student__c/a1hgK000002LFSpQAO?fields=Email__c,Student_Name__c"
+  method: GET
+  queryParams:
+    fields: Email__c,Student_Name__c
+response:
+  statusCode: 200
+  statusText: OK
+  headers:
+    date: Mon, 18 May 2026 14:46:14 GMT
+    content-type: application/json;charset=UTF-8
+    transfer-encoding: chunked
+    connection: keep-alive
+    strict-transport-security: max-age=63072000; includeSubDomains
+    x-content-type-options: nosniff
+    cache-control: no-cache,must-revalidate,max-age=0,no-store,private
+    vary: Accept-Encoding
+    sforce-limit-info: api-usage=663/15000
+    content-encoding: gzip
+    x-robots-tag: none
+    server: sfdcedge
+    x-sfdc-request-id: 0b3df4a665a508b26a8ef10e823e7340
+    x-request-id: 0b3df4a665a508b26a8ef10e823e7340
+    x-sfdc-edge-cache: none
+  body:
+    type: json
+    content: |-
+      {
+        "attributes": {
+          "type": "Student__c",
+          "url": "/services/data/v64.0/sobjects/Student__c/a1hgK000002LFSpQAO"
+        },
+        "Email__c": "st0008@yopmail.com",
+        "Student_Name__c": "Isabella Martinez",
+        "Id": "a1hgK000002LFSpQAO"
+      }
+order: 1779115582162

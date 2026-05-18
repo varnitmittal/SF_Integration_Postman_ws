@@ -1,0 +1,112 @@
+$kind: http-example
+description: |-
+  StartFragment
+
+  ## Get Deleted Records
+
+  ```
+  GET {{RootUrl}}/services/data/v64.0/sobjects/Student__c/deleted/?start=2026-05-17T00:00:00Z&end=2026-05-18T23:59:59Z
+
+   ```
+
+  Returns records deleted within the specified time range.
+
+  ### Response Contains
+
+  - `id` → Deleted record ID  
+      
+  - `deletedDate` → When record was deleted  
+      
+  - `earliestDateAvailable` → Oldest available deletion tracking date  
+      
+  - `latestDateCovered` → Latest timestamp included in response  
+      
+
+  ### Example Response
+
+  ```
+  {  "deletedRecords": [    {      "id": "a1hgK000002Lq5hQAC",      "deletedDate": "2026-05-18T13:01:31.000+0000"    }  ]}
+
+   ```
+
+  ### Important
+
+  This endpoint does **NOT** return full record data or field values.
+
+  It only provides deletion metadata because the record is already deleted.
+
+  ### Common Use Cases
+
+  -   
+      Incremental syncs  
+      
+  -   
+      ETL pipelines  
+      
+  -   
+      Cache cleanup  
+      
+  -   
+      External DB synchronization  
+      
+  -   
+      CDC-style integrations  
+      
+
+  ### Typical Integration Flow
+
+  ```
+  1. Call /deleted2. Get deleted record IDs3. Remove matching records from external system
+
+   ```
+
+  ### Related Endpoint
+
+  ```
+  GET /services/data/v64.0/sobjects/Student__c/updated
+
+   ```
+
+  Returns IDs of records updated within a time range.
+
+  ## Docs
+
+  [Salesforce Get Deleted Records API](https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_getdeleted.htm?utm_source=chatgpt.com)
+
+  EndFragment
+request:
+  url: "{{RootUrl}}/services/data/v64.0/sobjects/Student__c/updated/?start=2027-05-17T00:00:00Z&end=2026-05-18T23:59:59Z"
+  method: GET
+  queryParams:
+    start: 2027-05-17T00:00:00Z
+    end: 2026-05-18T23:59:59Z
+  body:
+    type: json
+    content: ""
+response:
+  statusCode: 200
+  statusText: OK
+  headers:
+    date: Mon, 18 May 2026 14:58:35 GMT
+    content-type: application/json;charset=UTF-8
+    transfer-encoding: chunked
+    connection: keep-alive
+    x-content-type-options: nosniff
+    sforce-limit-info: api-usage=888/15000
+    strict-transport-security: max-age=63072000; includeSubDomains
+    x-robots-tag: none
+    content-encoding: gzip
+    vary: Accept-Encoding
+    cache-control: no-cache,must-revalidate,max-age=0,no-store,private
+    server: sfdcedge
+    x-sfdc-request-id: 953127eb414156aff03a27739ad4c174
+    x-request-id: 953127eb414156aff03a27739ad4c174
+    x-sfdc-edge-cache: none
+  body:
+    type: json
+    content: |-
+      {
+        "ids": [],
+        "latestDateCovered": "2026-05-18T08:15:00.000+0000"
+      }
+order: 3724258465280072

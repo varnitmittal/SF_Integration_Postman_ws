@@ -1,0 +1,58 @@
+$kind: http-example
+request:
+  url: "{{RootUrl}}/services/data/v64.0/sobjects/Student__c/a1hgK000002Lq5hQAC"
+  method: PATCH
+  body:
+    type: json
+    content: "{\r
+
+      \  \"Email__c\": \"updatedstudent@yopmail.com\",\r
+
+      \  \"Phone_Number__c\": \"9999999999\"\r
+
+      }"
+response:
+  statusCode: 404
+  statusText: Not Found
+  headers:
+    - key: date
+      value: Mon, 18 May 2026 14:31:40 GMT
+    - key: content-type
+      value: application/json;charset=UTF-8
+    - key: transfer-encoding
+      value: chunked
+    - key: connection
+      value: keep-alive
+    - key: sforce-limit-info
+      value: api-usage=645/15000
+    - key: cache-control
+      value: no-cache,must-revalidate,max-age=0,no-store,private
+    - key: strict-transport-security
+      value: max-age=63072000; includeSubDomains
+    - key: x-robots-tag
+      value: none
+    - key: x-content-type-options
+      value: nosniff
+    - key: set-cookie
+      value: CookieConsentPolicy=0:1; path=/; expires=Tue, 18-May-2027 14:31:40 GMT; Max-Age=31536000; secure
+    - key: set-cookie
+      value: LSKey-c$CookieConsentPolicy=0:1; path=/; expires=Tue, 18-May-2027 14:31:40 GMT; Max-Age=31536000; secure
+    - key: set-cookie
+      value: BrowserId=SKeTvlLGEfGgrfnJhRFLNA; domain=.salesforce.com; path=/; expires=Tue, 18-May-2027 14:31:40 GMT; Max-Age=31536000; secure; SameSite=None
+    - key: server
+      value: sfdcedge
+    - key: x-sfdc-request-id
+      value: 3e4650da44bead07272730ae9d52b788
+    - key: x-request-id
+      value: 3e4650da44bead07272730ae9d52b788
+  body:
+    type: json
+    content: |-
+      [
+        {
+          "message": "entity is deleted",
+          "errorCode": "ENTITY_IS_DELETED",
+          "fields": []
+        }
+      ]
+order: 1779114714797
