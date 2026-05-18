@@ -1,0 +1,44 @@
+$kind: http-example
+request:
+  url: "{{RootUrl}}/services/data/v64.0/sobjects/Student__c"
+  method: POST
+  body:
+    type: json
+    content: "{\r
+
+      \  \"Student_Name__c\": \"Ethan Clark\",\r
+
+      \  \"Email__c\": \"ethan.clark@yopmail.com\",\r
+
+      \  \"Phone_Number__c\": \"9876543210\"\r
+
+      }"
+response:
+  statusCode: 201
+  statusText: Created
+  headers:
+    date: Mon, 18 May 2026 13:01:35 GMT
+    content-type: application/json;charset=UTF-8
+    transfer-encoding: chunked
+    connection: keep-alive
+    vary: Accept-Encoding
+    x-content-type-options: nosniff
+    location: /services/data/v64.0/sobjects/Student__c/a1hgK000002Lq7JQAS
+    cache-control: no-cache,must-revalidate,max-age=0,no-store,private
+    strict-transport-security: max-age=63072000; includeSubDomains
+    content-encoding: gzip
+    sforce-limit-info: api-usage=803/15000
+    x-robots-tag: none
+    server: sfdcedge
+    x-sfdc-request-id: b9e80b0d9dfdd93a3731e5eed1dcc638
+    x-request-id: b9e80b0d9dfdd93a3731e5eed1dcc638
+    x-sfdc-edge-cache: none
+  body:
+    type: json
+    content: |-
+      {
+        "id": "a1hgK000002Lq7JQAS",
+        "success": true,
+        "errors": []
+      }
+order: 1779109297430

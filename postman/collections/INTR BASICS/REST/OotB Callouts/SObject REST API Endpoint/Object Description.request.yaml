@@ -1,0 +1,9 @@
+$kind: http-request
+url: "{{RootUrl}}/services/data/v64.0/sobjects/Student_doesnotexist__c"
+method: GET
+auth:
+  type: bearer
+  credentials:
+    token: "{{MyBearerToken}}"
+examples: .resources/Object Description.resources/examples
+order: 1000

@@ -1,0 +1,31 @@
+$kind: http-example
+request:
+  url: "{{RootUrl}}/services/data/v64.0/sobjects/Student_doesnotexist__c"
+  method: GET
+response:
+  statusCode: 404
+  statusText: Not Found
+  headers:
+    date: Mon, 18 May 2026 13:12:15 GMT
+    content-type: application/json;charset=UTF-8
+    transfer-encoding: chunked
+    connection: keep-alive
+    vary: Accept-Encoding
+    x-content-type-options: nosniff
+    cache-control: no-cache,must-revalidate,max-age=0,no-store,private
+    x-robots-tag: none
+    strict-transport-security: max-age=63072000; includeSubDomains
+    sforce-limit-info: api-usage=827/15000
+    server: sfdcedge
+    x-sfdc-request-id: 5faf359ee9188047681cb2bf2b3430bd
+    x-request-id: 5faf359ee9188047681cb2bf2b3430bd
+  body:
+    type: json
+    content: |-
+      [
+        {
+          "errorCode": "NOT_FOUND",
+          "message": "The requested resource does not exist"
+        }
+      ]
+order: 2465010804457492

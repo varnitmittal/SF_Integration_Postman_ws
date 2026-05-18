@@ -1,0 +1,21 @@
+$kind: http-request
+name: create Student
+url: "{{RootUrl}}/services/data/v64.0/sobjects/Student__c"
+method: POST
+body:
+  type: json
+  content: "{\r
+
+    \  \"Student_Name__c\": \"Ethan Clark\",\r
+
+    \  \"Email__c\": \"ethan.clark@yopmail.com\",\r
+
+    \  \"Phone_Number__c\": \"9876543210\"\r
+
+    }"
+auth:
+  type: bearer
+  credentials:
+    token: "{{MyBearerToken}}"
+examples: .resources/create Student-1.resources/examples
+order: 3526

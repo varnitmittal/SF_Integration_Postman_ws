@@ -1,0 +1,10 @@
+$kind: http-request
+name: Get Student By Id
+url: "{{RootUrl}}/services/data/v64.0/sobjects/Student__c/a1hgK000002LFR7QAO22222"
+method: GET
+auth:
+  type: bearer
+  credentials:
+    token: "{{MyBearerToken}}"
+examples: .resources/Get Student By Id-1.resources/examples
+order: 2000

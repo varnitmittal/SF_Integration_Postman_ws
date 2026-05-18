@@ -1,0 +1,109 @@
+$kind: http-example
+request:
+  url: "{{RootUrl}}/services/data/v64.0/sobjects/Student__c"
+  method: GET
+response:
+  statusCode: 200
+  statusText: OK
+  headers:
+    date: Mon, 18 May 2026 13:11:51 GMT
+    content-type: application/json;charset=UTF-8
+    transfer-encoding: chunked
+    connection: keep-alive
+    x-content-type-options: nosniff
+    x-robots-tag: none
+    cache-control: no-cache,must-revalidate,max-age=0,no-store,private
+    vary: Accept-Encoding
+    content-encoding: gzip
+    sforce-limit-info: api-usage=825/15000
+    strict-transport-security: max-age=63072000; includeSubDomains
+    server: sfdcedge
+    x-sfdc-request-id: cdfaddf2cdac249928994d759774555b
+    x-request-id: cdfaddf2cdac249928994d759774555b
+    x-sfdc-edge-cache: none
+  body:
+    type: json
+    content: |-
+      {
+        "objectDescribe": {
+          "activateable": false,
+          "associateEntityType": null,
+          "associateParentEntity": null,
+          "createable": true,
+          "custom": true,
+          "customSetting": false,
+          "deepCloneable": false,
+          "deletable": true,
+          "deprecatedAndHidden": false,
+          "feedEnabled": false,
+          "hasSubtypes": false,
+          "isInterface": false,
+          "isSubtype": false,
+          "keyPrefix": "a1h",
+          "label": "Student",
+          "labelPlural": "Students",
+          "layoutable": true,
+          "mergeable": false,
+          "mruEnabled": true,
+          "name": "Student__c",
+          "queryable": true,
+          "replicateable": true,
+          "retrieveable": true,
+          "searchable": true,
+          "triggerable": true,
+          "undeletable": true,
+          "updateable": true,
+          "urls": {
+            "compactLayouts": "/services/data/v64.0/sobjects/Student__c/describe/compactLayouts",
+            "rowTemplate": "/services/data/v64.0/sobjects/Student__c/{ID}",
+            "approvalLayouts": "/services/data/v64.0/sobjects/Student__c/describe/approvalLayouts",
+            "describe": "/services/data/v64.0/sobjects/Student__c/describe",
+            "quickActions": "/services/data/v64.0/sobjects/Student__c/quickActions",
+            "layouts": "/services/data/v64.0/sobjects/Student__c/describe/layouts",
+            "sobject": "/services/data/v64.0/sobjects/Student__c"
+          }
+        },
+        "recentItems": [
+          {
+            "attributes": {
+              "type": "Student__c",
+              "url": "/services/data/v64.0/sobjects/Student__c/a1hgK000002LFR7QAO"
+            },
+            "Id": "a1hgK000002LFR7QAO",
+            "Name": "St-0001"
+          },
+          {
+            "attributes": {
+              "type": "Student__c",
+              "url": "/services/data/v64.0/sobjects/Student__c/a1hgK000002Lq7JQAS"
+            },
+            "Id": "a1hgK000002Lq7JQAS",
+            "Name": "St-0074"
+          },
+          {
+            "attributes": {
+              "type": "Student__c",
+              "url": "/services/data/v64.0/sobjects/Student__c/a1hgK000002LI2PQAW"
+            },
+            "Id": "a1hgK000002LI2PQAW",
+            "Name": "St-0072"
+          },
+          {
+            "attributes": {
+              "type": "Student__c",
+              "url": "/services/data/v64.0/sobjects/Student__c/a1hgK000002LI0nQAG"
+            },
+            "Id": "a1hgK000002LI0nQAG",
+            "Name": "St-0071"
+          },
+          {
+            "attributes": {
+              "type": "Student__c",
+              "url": "/services/data/v64.0/sobjects/Student__c/a1hgK000002LHzBQAW"
+            },
+            "Id": "a1hgK000002LHzBQAW",
+            "Name": "St-0070"
+          }
+        ]
+      }
+order: 1779109912640

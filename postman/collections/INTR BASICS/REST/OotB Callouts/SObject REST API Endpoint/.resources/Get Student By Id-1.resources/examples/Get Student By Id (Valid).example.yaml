@@ -1,0 +1,52 @@
+$kind: http-example
+request:
+  url: "{{RootUrl}}/services/data/v64.0/sobjects/Student__c/a1hgK000002LFR7QAO"
+  method: GET
+response:
+  statusCode: 200
+  statusText: OK
+  headers:
+    date: Mon, 18 May 2026 13:11:15 GMT
+    content-type: application/json;charset=UTF-8
+    transfer-encoding: chunked
+    connection: keep-alive
+    x-robots-tag: none
+    vary: Accept-Encoding
+    strict-transport-security: max-age=63072000; includeSubDomains
+    content-encoding: gzip
+    last-modified: Thu, 14 May 2026 08:13:21 GMT
+    cache-control: no-cache,must-revalidate,max-age=0,no-store,private
+    x-content-type-options: nosniff
+    sforce-limit-info: api-usage=825/15000
+    server: sfdcedge
+    x-sfdc-request-id: 560d9b1db986fd6b64326a616342c9d9
+    x-request-id: 560d9b1db986fd6b64326a616342c9d9
+    x-sfdc-edge-cache: none
+  body:
+    type: json
+    content: |-
+      {
+        "attributes": {
+          "type": "Student__c",
+          "url": "/services/data/v64.0/sobjects/Student__c/a1hgK000002LFR7QAO"
+        },
+        "Id": "a1hgK000002LFR7QAO",
+        "OwnerId": "005gK000000P8s3QAC",
+        "IsDeleted": false,
+        "Name": "St-0001",
+        "CreatedDate": "2026-05-14T08:13:21.000+0000",
+        "CreatedById": "005gK000000P8s3QAC",
+        "LastModifiedDate": "2026-05-14T08:13:21.000+0000",
+        "LastModifiedById": "005gK000000P8s3QAC",
+        "SystemModstamp": "2026-05-14T08:13:21.000+0000",
+        "LastActivityDate": null,
+        "LastViewedDate": "2026-05-18T12:56:30.000+0000",
+        "LastReferencedDate": "2026-05-18T12:56:30.000+0000",
+        "Class_Enrolled__c": 5,
+        "Student_Name__c": "Alex Smith",
+        "School__c": "a1ggK000001WTuLQAW",
+        "Email__c": "st84165@yopmail.com",
+        "Phone_Number__c": "1234567899",
+        "Address__c": "Vanc, Canada"
+      }
+order: 1779109879890

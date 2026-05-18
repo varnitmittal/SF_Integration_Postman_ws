@@ -1,0 +1,31 @@
+$kind: http-example
+request:
+  url: "{{RootUrl}}/services/data/v64.0/sobjects/Student__c/a1hgK000002LFR7QAO22222"
+  method: GET
+response:
+  statusCode: 404
+  statusText: Not Found
+  headers:
+    date: Mon, 18 May 2026 13:11:35 GMT
+    content-type: application/json;charset=UTF-8
+    transfer-encoding: chunked
+    connection: keep-alive
+    sforce-limit-info: api-usage=826/15000
+    x-robots-tag: none
+    vary: Accept-Encoding
+    x-content-type-options: nosniff
+    strict-transport-security: max-age=63072000; includeSubDomains
+    cache-control: no-cache,must-revalidate,max-age=0,no-store,private
+    server: sfdcedge
+    x-sfdc-request-id: 7bf7980d3701cc059019bf99b9e11793
+    x-request-id: 7bf7980d3701cc059019bf99b9e11793
+  body:
+    type: json
+    content: |-
+      [
+        {
+          "errorCode": "NOT_FOUND",
+          "message": "Provided external ID field does not exist or is not accessible: a1hgK000002LFR7QAO22222"
+        }
+      ]
+order: 2619609526188986

@@ -10,3 +10,4 @@ variables:
   grant_type: ""
   RESTPARAM: ""
   MyBearerToken: ""
+  RootUrl: ""

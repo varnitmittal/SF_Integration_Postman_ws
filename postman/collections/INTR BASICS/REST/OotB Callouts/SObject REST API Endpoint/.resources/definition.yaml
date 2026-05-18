@@ -1,0 +1,291 @@
+$kind: collection
+name: SObject REST API Endpoint
+description: |-
+  StartFragment
+
+  # Salesforce REST API — `/services/data/v64.0/sobjects/`
+
+  This endpoint is used to work with Salesforce objects (`sObjects`) through REST API.
+
+  Base format:
+
+  ``` text
+  https://YOUR_DOMAIN.my.salesforce.com/services/data/v64.0/sobjects/
+
+   ```
+
+  ---
+
+  # Purpose
+
+  Used for:
+
+  - listing objects
+      
+  - fetching records
+      
+  - creating records
+      
+  - updating records
+      
+  - deleting records
+      
+  - describing metadata
+      
+
+  Works with:
+
+  - Standard Objects (`Account`, `Contact`, `Lead`)
+      
+  - Custom Objects (`Student__c`)
+      
+
+  ---
+
+  # Authentication
+
+  All requests require:
+
+  ``` http
+  Authorization: Bearer ACCESS_TOKEN
+  Content-Type: application/json
+
+   ```
+
+  ---
+
+  # 1\. Get All Available Objects
+
+  ## Request
+
+  ``` http
+  GET /services/data/v64.0/sobjects/
+
+   ```
+
+  ## Example
+
+  ``` text
+  GET https://yourdomain.my.salesforce.com/services/data/v64.0/sobjects/
+
+   ```
+
+  ## Response
+
+  ``` json
+  {
+    "sobjects": [
+      {
+        "name": "Account",
+        "label": "Account"
+      },
+      {
+        "name": "Student__c",
+        "label": "Student"
+      }
+    ]
+  }
+
+   ```
+
+  ---
+
+  # 2\. Describe Object Metadata
+
+  ## Request
+
+  ``` http
+  GET /services/data/v64.0/sobjects/Student__c/describe
+
+   ```
+
+  ## Purpose
+
+  Returns:
+
+  - fields
+      
+  - labels
+      
+  - picklists
+      
+  - relationships
+      
+  - permissions
+      
+
+  ## Example Response
+
+  ``` json
+  {
+    "name": "Student__c",
+    "fields": [
+      {
+        "name": "Student_Name__c",
+        "type": "string"
+      }
+    ]
+  }
+
+   ```
+
+  ---
+
+  # 3\. Get Record by Id
+
+  ## Request
+
+  ``` http
+  GET /services/data/v64.0/sobjects/Student__c/{recordId}
+
+   ```
+
+  ## Example
+
+  ``` text
+  GET /services/data/v64.0/sobjects/Student__c/a1hgK000002LFR7QAO
+
+   ```
+
+  ## Response
+
+  ``` json
+  {
+    "Id": "a1hgK000002LFR7QAO",
+    "Name": "St-0001",
+    "Student_Name__c": "Alex Smith"
+  }
+
+   ```
+
+  ---
+
+  # 4\. Create Record
+
+  ## Request
+
+  ``` http
+  POST /services/data/v64.0/sobjects/Student__c/
+
+   ```
+
+  ## Body
+
+  ``` json
+  {
+    "Student_Name__c": "Rahul",
+    "Class_Enrolled__c": 10
+  }
+
+   ```
+
+  ## Response
+
+  ``` json
+  {
+    "id": "a1hXXXXXXXXXXXX",
+    "success": true,
+    "errors": []
+  }
+
+   ```
+
+  ---
+
+  # 5\. Update Record
+
+  ## Request
+
+  ``` http
+  PATCH /services/data/v64.0/sobjects/Student__c/{recordId}
+
+   ```
+
+  ## Body
+
+  ``` json
+  {
+    "Student_Name__c": "Updated Name"
+  }
+
+   ```
+
+  ## Response
+
+  ``` http
+  204 No Content
+
+   ```
+
+  ---
+
+  # 6\. Delete Record
+
+  ## Request
+
+  ``` http
+  DELETE /services/data/v64.0/sobjects/Student__c/{recordId}
+
+   ```
+
+  ## Response
+
+  ``` http
+  204 No Content
+
+   ```
+
+  ---
+
+  # Difference Between `/sobjects/` and Apex REST
+
+  | API Type | Endpoint | Use Case |
+  | --- | --- | --- |
+  | Standard REST API | `/services/data/v64.0/sobjects/` | CRUD operations |
+  | Custom Apex REST | `/services/apexrest/students` | Custom business logic |
+
+  ---
+
+  # When to use `/sobjects/`
+
+  Use when:
+
+  - simple CRUD
+      
+  - generic integrations
+      
+  - no custom logic needed
+      
+
+  ---
+
+  # When to use Apex REST
+
+  Use when:
+
+  - validation logic
+      
+  - orchestration
+      
+  - multiple objects
+      
+  - transformations
+      
+  - wrappers/custom responses
+      
+  - transactional behavior
+      
+
+  ---
+
+  # Example Full Endpoint
+
+  ``` text
+  https://yourdomain.my.salesforce.com/services/data/v64.0/sobjects/Student__c/
+
+   ```
+
+  That is the standard Salesforce REST CRUD endpoint for your custom object.
+
+  EndFragment
+order: 2382534874759167
