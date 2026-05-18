@@ -1,4 +1,5 @@
 $kind: http-request
+name: SOAP Query Latest Inserted Student
 url: https://vm-ai-dev-ed.develop.my.salesforce.com/services/Soap/c/64.0/
 method: POST
 headers:

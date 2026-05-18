@@ -1,4 +1,5 @@
 $kind: http-request
+name: Insert new Student
 description: |-
   Inserts a new `Student__c` record into Salesforce via the SOAP Enterprise API.
 
@@ -207,4 +208,4 @@ scripts:
 
       }"
     language: text/javascript
-order: 2000
+order: 1651

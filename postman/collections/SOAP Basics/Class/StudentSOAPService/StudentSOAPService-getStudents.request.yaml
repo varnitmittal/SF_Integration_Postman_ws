@@ -1,0 +1,51 @@
+$kind: http-request
+name: StudentSOAPService:getStudents
+url: https://vm-ai-dev-ed.develop.my.salesforce.com/services/Soap/class/StudentSOAPService
+method: POST
+headers:
+  SOAPaction: POST
+  content-type: text/xml
+body:
+  type: xml
+  content: "<soapenv:Envelope
+    xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\"\r
+
+    \                  xmlns:stu=\"http://soap.sforce.com/schemas/class/Student\
+    SOAPService\">\r
+
+    \   <soapenv:Header>\r
+
+    \r
+
+    \        <urn:SessionHeader xmlns:urn=\"urn:enterprise.soap.sforce.com\">\r
+
+    \            <urn:sessionId>{{SessionIdLatest}}</urn:sessionId>\r
+
+    \        </urn:SessionHeader>\r
+
+    \r
+
+    \    </soapenv:Header>\r
+
+    \r
+
+    \   <soapenv:Body>\r
+
+    \r
+
+    \      <stu:getStudents>\r
+
+    \r
+
+    \         <classEnrolled>5</classEnrolled>\r
+
+    \r
+
+    \      </stu:getStudents>\r
+
+    \r
+
+    \   </soapenv:Body>\r
+
+    </soapenv:Envelope>"
+order: 1779097512766
