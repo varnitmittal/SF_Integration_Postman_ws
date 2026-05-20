@@ -1,0 +1,414 @@
+$kind: collection
+name: TraceFlag ep
+description: |-
+  # Salesforce Tooling API — TraceFlag
+
+  TraceFlag controls:
+
+  ``` text
+  Salesforce debug logging configuration
+
+   ```
+
+  Used to:
+
+  - enable logs
+      
+  - set log levels
+      
+  - control logging duration
+      
+  - debug Apex/triggers/flows
+      
+
+  ---
+
+  # Important Concept
+
+  Without TraceFlag:
+
+  ``` text
+  ApexLog may not generate
+
+   ```
+
+  TraceFlag tells Salesforce:
+
+  ``` text
+  what to log and for whom
+
+   ```
+
+  ---
+
+  # Endpoint
+
+  ``` http
+  /services/data/v64.0/tooling/sobjects/TraceFlag
+
+   ```
+
+  ---
+
+  # Common Real-Life Uses
+
+  | Use Case | Purpose |
+  | --- | --- |
+  | Apex debugging | generate logs |
+  | Trigger debugging | inspect trigger execution |
+  | Flow debugging | inspect flow behavior |
+  | Production troubleshooting | temporary logging |
+  | Performance analysis | analyze transactions |
+
+  ---
+
+  # Postman Implementation
+
+  ## Method
+
+  ``` http
+  POST
+
+   ```
+
+  ---
+
+  # Endpoint
+
+  ``` http
+  {{RootUrl}}/services/data/v64.0/tooling/sobjects/TraceFlag
+
+   ```
+
+  ---
+
+  # Headers
+
+  ``` http
+  Authorization: Bearer ACCESS_TOKEN
+  Content-Type: application/json
+
+   ```
+
+  ---
+
+  # Body
+
+  ``` json
+  {
+    "TracedEntityId": "005XXXXXXXXXXXX",
+    "LogType": "USER_DEBUG",
+    "DebugLevelId": "7dlXXXXXXXXXXXX",
+    "StartDate": "2026-05-20T10:00:00.000+0000",
+    "ExpirationDate": "2026-05-20T11:00:00.000+0000"
+  }
+
+   ```
+
+  ---
+
+  # Important Fields
+
+  | Field | Meaning |
+  | --- | --- |
+  | TracedEntityId | user/class being logged |
+  | DebugLevelId | logging level configuration |
+  | LogType | type of logging |
+  | StartDate | logging start |
+  | ExpirationDate | logging end |
+
+  ---
+
+  # Important Dependency
+
+  TraceFlag depends on:
+
+  ``` text
+  DebugLevel
+
+   ```
+
+  DebugLevel defines:
+
+  - Apex logging level
+      
+  - SOQL logging
+      
+  - DML logging
+      
+  - Workflow logging
+      
+
+  ---
+
+  # Common Flow
+
+  ``` text
+  Create DebugLevel
+  ↓
+  Create TraceFlag
+  ↓
+  Execute transaction
+  ↓
+  ApexLog generated
+  ↓
+  Retrieve ApexLog
+
+   ```
+
+  ---
+
+  # Real Importance
+
+  TraceFlag is one of the most important Tooling API objects for:
+
+  - debugging
+      
+  - issue investigation
+      
+  - production troubleshooting
+      
+  - developer tooling
+      
+
+  Very heavily used in real Salesforce development.
+
+  ---
+
+  ---
+
+  ---
+
+  ---
+
+  ---
+
+  ---
+
+  ---
+
+  ---
+
+  ---
+
+  ---
+
+  ---
+
+  ---
+
+  ---
+
+  ---
+
+  ---
+
+  ---
+
+  ---
+
+  ---
+
+  ---
+
+  ---
+
+  StartFragment
+
+  # Step 1 — Get Your User Id
+
+  TraceFlag needs:
+
+  ``` text
+  TracedEntityId
+
+   ```
+
+  usually:
+
+  ``` text
+  current User Id
+
+   ```
+
+  Run:
+
+  ``` http
+  GET {{RootUrl}}/services/data/v64.0/
+
+   ```
+
+  or easier:
+
+  ``` http
+  GET {{RootUrl}}/services/oauth2/userinfo
+
+   ```
+
+  Copy:
+
+  ``` text
+  user_id
+
+   ```
+
+  Example:
+
+  ``` text
+  005gK000000P8s3QAC
+
+   ```
+
+  ---
+
+  # Step 2 — Create DebugLevel
+
+  TraceFlag requires:
+
+  ``` text
+  DebugLevelId
+
+   ```
+
+  ---
+
+  ## Method
+
+  ``` http
+  POST
+
+   ```
+
+  ---
+
+  ## Endpoint
+
+  ``` http
+  {{RootUrl}}/services/data/v64.0/tooling/sobjects/DebugLevel
+
+   ```
+
+  ---
+
+  ## Headers
+
+  ``` http
+  Authorization: Bearer ACCESS_TOKEN
+  Content-Type: application/json
+
+   ```
+
+  ---
+
+  ## Body
+
+  ``` json
+  {
+    "DeveloperName": "MyDebugLevel",
+    "MasterLabel": "MyDebugLevel",
+    "ApexCode": "DEBUG",
+    "ApexProfiling": "INFO",
+    "Callout": "INFO",
+    "Database": "INFO",
+    "System": "DEBUG",
+    "Validation": "INFO",
+    "Workflow": "INFO"
+  }
+
+   ```
+
+  ---
+
+  # Step 3 — Copy DebugLevel Id
+
+  Response gives:
+
+  ``` json
+  {
+    "id": "7dlXXXXXXXXXXXX",
+    "success": true
+  }
+
+   ```
+
+  Copy:
+
+  ``` text
+  DebugLevel Id
+
+   ```
+
+  ---
+
+  # Step 4 — Create TraceFlag
+
+  ## Method
+
+  ``` http
+  POST
+
+   ```
+
+  ---
+
+  ## Endpoint
+
+  ``` http
+  {{RootUrl}}/services/data/v64.0/tooling/sobjects/TraceFlag
+
+   ```
+
+  ---
+
+  ## Headers
+
+  ``` http
+  Authorization: Bearer ACCESS_TOKEN
+  Content-Type: application/json
+
+   ```
+
+  ---
+
+  ## Body
+
+  Replace:
+
+  - `TracedEntityId`
+      
+  - `DebugLevelId`
+      
+
+  ``` json
+  {
+    "TracedEntityId": "005gK000000P8s3QAC",
+    "LogType": "USER_DEBUG",
+    "DebugLevelId": "7dlXXXXXXXXXXXX",
+    "StartDate": "2026-05-20T10:00:00.000+0000",
+    "ExpirationDate": "2026-05-20T11:00:00.000+0000"
+  }
+
+   ```
+
+  ---
+
+  # Step 5 — Execute Anonymous
+
+  ``` http
+  GET {{RootUrl}}/services/data/v64.0/tooling/executeAnonymous/?anonymousBody=System.debug('TraceFlag Working');
+
+   ```
+
+  ---
+
+  # Step 6 — Query ApexLog
+
+  ``` http
+  GET {{RootUrl}}/services/data/v64.0/tooling/query?q=SELECT+Id,Operation,Status,StartTime+FROM+ApexLog+ORDER+BY+StartTime+DESC+LIMIT+1
+
+   ```
+
+  Now logs should appear successfully.
+
+  EndFragment
+order: 4390452042860986

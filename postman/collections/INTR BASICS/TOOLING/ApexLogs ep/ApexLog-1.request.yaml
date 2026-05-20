@@ -1,6 +1,8 @@
 $kind: http-request
 name: ApexLog
-url: ""
+url: "{{RootUrl}}/services/data/v64.0/tooling/query?q=SELECT+Id,Operation,Status,StartTime+FROM+ApexLog"
 method: GET
+queryParams:
+  q: SELECT+Id,Operation,Status,StartTime+FROM+ApexLog
 examples: .resources/ApexLog-1.resources/examples
 order: 1945

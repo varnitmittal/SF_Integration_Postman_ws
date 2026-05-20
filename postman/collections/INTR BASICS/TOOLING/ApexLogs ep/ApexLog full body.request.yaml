@@ -1,6 +1,6 @@
 $kind: http-request
 name: ApexLog full body
-url: "{{RootUrl}}/services/data/v64.0/tooling/sobjects/ApexLog/07LgK00000LcylWUAR/Body"
+url: "{{RootUrl}}/services/data/v64.0/tooling/sobjects/ApexLog/07LgK00000LeKyPUAV/Body"
 method: GET
 examples: .resources/ApexLog full body.resources/examples
 order: 2000

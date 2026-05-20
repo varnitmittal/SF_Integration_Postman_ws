@@ -1,0 +1,50 @@
+$kind: http-example
+request:
+  url: "{{RootUrl}}/services/data/v64.0/tooling/sobjects/TraceFlag"
+  method: POST
+  body:
+    type: json
+    content: "{\r
+
+      \  \"TracedEntityId\": \"005gK000000P8s3QAC\",\r
+
+      \  \"LogType\": \"USER_DEBUG\",\r
+
+      \  \"DebugLevelId\": \"7dlgK00000019AvQAI\",\r
+
+      \  \"StartDate\": \"2026-05-20T21:30:57.802+05:30\",\r
+
+      \  \"ExpirationDate\": \"2026-05-20T22:30:57.802+05:30\"\r
+
+      }"
+response:
+  statusCode: 201
+  statusText: Created
+  headers:
+    date: Wed, 20 May 2026 16:01:43 GMT
+    content-type: application/json;charset=UTF-8
+    transfer-encoding: chunked
+    connection: keep-alive
+    strict-transport-security: max-age=63072000; includeSubDomains
+    vary: Accept-Encoding
+    cache-control: no-cache,must-revalidate,max-age=0,no-store,private
+    x-robots-tag: none
+    sforce-limit-info: api-usage=891/15000
+    location: /services/data/v64.0/tooling/sobjects/TraceFlag/7tfgK000007I6hFQAS
+    x-content-type-options: nosniff
+    content-encoding: gzip
+    server: sfdcedge
+    x-sfdc-request-id: ce3bdb1e89499361b9efbb93a1cc6eaa
+    x-request-id: ce3bdb1e89499361b9efbb93a1cc6eaa
+    x-sfdc-edge-cache: none
+  body:
+    type: json
+    content: |-
+      {
+        "id": "7tfgK000007I6hFQAS",
+        "success": true,
+        "errors": [],
+        "warnings": [],
+        "infos": []
+      }
+order: 1779292916349

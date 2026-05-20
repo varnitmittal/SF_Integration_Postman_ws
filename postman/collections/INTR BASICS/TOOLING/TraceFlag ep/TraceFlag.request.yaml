@@ -1,0 +1,20 @@
+$kind: http-request
+url: "{{RootUrl}}/services/data/v64.0/tooling/sobjects/TraceFlag"
+method: POST
+body:
+  type: json
+  content: "{\r
+
+    \  \"TracedEntityId\": \"005gK000000P8s3QAC\",\r
+
+    \  \"LogType\": \"USER_DEBUG\",\r
+
+    \  \"DebugLevelId\": \"7dlgK00000019AvQAI\",\r
+
+    \  \"StartDate\": \"2026-05-20T21:30:57.802+05:30\",\r
+
+    \  \"ExpirationDate\": \"2026-05-20T22:30:57.802+05:30\"\r
+
+    }"
+examples: .resources/TraceFlag.resources/examples
+order: 1779292508093
