@@ -1,0 +1,61 @@
+$kind: http-example
+request:
+  url: "{{RootUrl}}/services/data/v64.0/actions/custom/flow/StudentWelcomeService"
+  method: POST
+  body:
+    type: json
+    content: "{\r
+
+      \  \"inputs\": [\r
+
+      \    {\r
+
+      \      \"studentNameVar\": \"\"\r
+
+      \    }\r
+
+      \  ]\r
+
+      }"
+response:
+  statusCode: 400
+  statusText: Bad Request
+  headers:
+    date: Wed, 20 May 2026 10:10:34 GMT
+    content-type: application/json;charset=UTF-8
+    transfer-encoding: chunked
+    connection: keep-alive
+    vary: Accept-Encoding
+    x-robots-tag: none
+    strict-transport-security: max-age=63072000; includeSubDomains
+    x-content-type-options: nosniff
+    sforce-limit-info: api-usage=470/15000
+    cache-control: no-cache,must-revalidate,max-age=0,no-store,private
+    server: sfdcedge
+    x-sfdc-request-id: fee2812b84b16663b32c65ec930d955e
+    x-request-id: fee2812b84b16663b32c65ec930d955e
+  body:
+    type: json
+    content: |-
+      [
+        {
+          "actionName": "StudentWelcomeService",
+          "errors": [
+            {
+              "statusCode": "UNKNOWN_EXCEPTION",
+              "message": "An error occurred when executing a flow interview.",
+              "fields": []
+            }
+          ],
+          "invocationId": null,
+          "isSuccess": false,
+          "outcome": null,
+          "outputValues": {
+            "Flow__InterviewGuid": "7785d503e27dc43b5c52446a852819e431bc04-8b44",
+            "Flow__InterviewStatus": "Error"
+          },
+          "sortOrder": -1,
+          "version": 1
+        }
+      ]
+order: 4196594739709354

@@ -1,0 +1,58 @@
+$kind: http-example
+request:
+  url: "{{RootUrl}}/services/data/v64.0/actions/custom/flow/StudentWelcomeService"
+  method: POST
+  body:
+    type: json
+    content: "{\r
+
+      \  \"inputs\": [\r
+
+      \    {\r
+
+      \      \"studentNameVar\": \"\"\r
+
+      \    }\r
+
+      \  ]\r
+
+      }"
+response:
+  statusCode: 200
+  statusText: OK
+  headers:
+    date: Wed, 20 May 2026 10:11:57 GMT
+    content-type: application/json;charset=UTF-8
+    transfer-encoding: chunked
+    connection: keep-alive
+    cache-control: no-cache,must-revalidate,max-age=0,no-store,private
+    strict-transport-security: max-age=63072000; includeSubDomains
+    x-robots-tag: none
+    x-content-type-options: nosniff
+    content-encoding: gzip
+    sforce-limit-info: api-usage=473/15000
+    vary: Accept-Encoding
+    server: sfdcedge
+    x-sfdc-request-id: 638a85cc2a9ca5b762c1bdccfa02f5dd
+    x-request-id: 638a85cc2a9ca5b762c1bdccfa02f5dd
+    x-sfdc-edge-cache: none
+  body:
+    type: json
+    content: |-
+      [
+        {
+          "actionName": "StudentWelcomeService",
+          "errors": null,
+          "invocationId": null,
+          "isSuccess": true,
+          "outcome": null,
+          "outputValues": {
+            "resultText": "check studentName",
+            "Flow__InterviewGuid": "23211e98f329511774972bce680c19e42766b3c-26c8",
+            "Flow__InterviewStatus": "Finished"
+          },
+          "sortOrder": -1,
+          "version": 1
+        }
+      ]
+order: 2926094458837964

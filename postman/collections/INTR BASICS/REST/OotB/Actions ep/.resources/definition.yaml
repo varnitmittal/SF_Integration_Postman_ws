@@ -1,0 +1,264 @@
+$kind: collection
+name: Actions ep
+description: |-
+  # Salesforce REST API — Actions API + Flow + Invocable Apex
+
+  This implementation demonstrates:
+
+  - Actions API
+      
+  - Flow execution through REST
+      
+  - Invocable Apex
+      
+  - Flow input/output variables
+      
+  - Low-code + pro-code orchestration
+      
+
+  ---
+
+  # Apex Class
+
+  ``` apex
+  public with sharing class StudentWelcomeService {
+      public class Request {
+          @InvocableVariable(required=true)
+          public String studentName;
+      }
+      @InvocableMethod(label='Generate Welcome Message')
+      public static List<String> generateMessage(
+          List<Request> requests
+      ) {
+          List<String> responses =
+              new List<String>();
+          for(Request req : requests) {
+              responses.add(
+                  'Welcome ' +
+                  req.studentName +
+                  ' to Salesforce REST APIs!'
+              );
+          }
+          return responses;
+      }
+  }
+
+   ```
+
+  ---
+
+  # Important Concepts
+
+  ## @InvocableMethod
+
+  Makes Apex executable from:
+
+  - Flow
+      
+  - Actions API
+      
+  - Process Builder
+      
+  - Orchestration tools
+      
+
+  ---
+
+  ## @InvocableVariable
+
+  Exposes variables to Flow.
+
+  ``` apex
+  @InvocableVariable(required=true)
+  public String studentName;
+
+   ```
+
+  Allows Flow to pass values into Apex.
+
+  ---
+
+  # Flow Configuration
+
+  Flow Type:
+
+  ``` text
+  Autolaunched Flow
+
+   ```
+
+  Flow API Name:
+
+  ``` text
+  StudentWelcomeService
+
+   ```
+
+  ---
+
+  # Flow Input Variable
+
+  Variable:
+
+  ``` text
+  studentNameVar
+
+   ```
+
+  Configuration:
+
+  - Data Type = Text
+      
+  - Available for input = true
+      
+
+  Purpose:  
+  Receives value from REST API request body.
+
+  ---
+
+  # Apex Action Mapping
+
+  Flow Variable:
+
+  ``` text
+  {!studentNameVar}
+
+   ```
+
+  mapped into:
+
+  ``` text
+  studentName
+
+   ```
+
+  inside Invocable Apex.
+
+  ---
+
+  # Flow Output Variable
+
+  Variable:
+
+  ``` text
+  resultText
+
+   ```
+
+  Configuration:
+
+  - Data Type = Text
+      
+  - Available for output = true
+      
+
+  Purpose:  
+  Stores Apex response and exposes it back to REST caller.
+
+  ---
+
+  # REST Endpoint
+
+  ``` http
+  POST
+  {{RootUrl}}/services/data/v64.0/actions/custom/flow/StudentWelcomeService
+
+   ```
+
+  ---
+
+  # Headers
+
+  ``` http
+  Authorization: Bearer ACCESS_TOKEN
+  Content-Type: application/json
+
+   ```
+
+  ---
+
+  # Request Body
+
+  ``` json
+  {
+    "inputs": [
+      {
+        "studentNameVar": "Alex Smith"
+      }
+    ]
+  }
+
+   ```
+
+  ---
+
+  # Response
+
+  ``` json
+  [
+    {
+      "actionName": "StudentWelcomeService",
+      "errors": null,
+      "isSuccess": true,
+      "outputValues": {
+        "resultText": "Welcome Alex Smith to Salesforce REST APIs!",
+        "Flow__InterviewGuid": "327153554fb60c33fb6d3a952e2719e41821a96-792f",
+        "Flow__InterviewStatus": "Finished"
+      },
+      "version": 1
+    }
+  ]
+
+   ```
+
+  ---
+
+  # Architecture Flow
+
+  ``` text
+  Postman
+  ↓
+  Actions API
+  ↓
+  Autolaunched Flow
+  ↓
+  Invocable Apex
+  ↓
+  Response returned to caller
+
+   ```
+
+  ---
+
+  # Key Learning Points
+
+  - REST can execute Flow
+      
+  - Flow can execute Apex
+      
+  - Invocable Apex exposes reusable business logic
+      
+  - Flow acts as orchestration layer
+      
+  - Actions API exposes declarative automation over REST
+      
+
+  ---
+
+  # Enterprise Relevance
+
+  Very common in:
+
+  - low-code integrations
+      
+  - orchestration platforms
+      
+  - middleware
+      
+  - reusable business services
+      
+  - enterprise automation APIs
+      
+  - external workflow execution systems
+order: 3865715101663231

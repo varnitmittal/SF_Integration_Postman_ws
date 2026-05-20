@@ -1,0 +1,68 @@
+$kind: http-request
+url: "{{RootUrl}}/services/data/v64.0/actions/custom/flow/StudentWelcomeService"
+method: POST
+body:
+  type: json
+  content: "{\r
+
+    \  \"inputs\": [\r
+
+    \    {\r
+
+    \      \"studentNameVar\": \"\"\r
+
+    \    }\r
+
+    \  ]\r
+
+    }"
+scripts:
+  - type: beforeRequest
+    code: "/*\r
+
+      public with sharing class StudentWelcomeService {\r
+
+      \r
+
+      \    public class Request {\r
+
+      \        @InvocableVariable(required=true) //exposed to flow, and can be assigned from flow\r
+
+      \        public String studentName;\r
+
+      \    }\r
+
+      \r
+
+      \    @InvocableMethod(label='Generate Welcome Message')\r
+
+      \    public static List<String> generateMessage(List<Request> requests) {\r
+
+      \r
+
+      \        List<String> responses =\r
+
+      \            new List<String>();\r
+
+      \r
+
+      \        for(Request req : requests) {\r
+
+      \r
+
+      \            responses.add('Welcome ' + req.studentName + ' to Salesforce REST APIs!');\r
+
+      \        }\r
+
+      \r
+
+      \        return responses;\r
+
+      \    }\r
+
+      }\r
+
+      */"
+    language: text/javascript
+examples: .resources/Flow Execution.resources/examples
+order: 1779271514686

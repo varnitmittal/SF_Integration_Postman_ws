@@ -1,0 +1,5 @@
+$kind: http-request
+url: "{{RootUrl}}/services/data/v64.0/limits/"
+method: GET
+examples: .resources/All Limits.resources/examples
+order: 1779270193411

@@ -1,0 +1,58 @@
+$kind: http-example
+request:
+  url: "{{RootUrl}}/services/data/v64.0/actions/custom/flow/StudentWelcomeService"
+  method: POST
+  body:
+    type: json
+    content: "{\r
+
+      \  \"inputs\": [\r
+
+      \    {\r
+
+      \      \"studentNameVar\": \"Alex Smith\"\r
+
+      \    }\r
+
+      \  ]\r
+
+      }"
+response:
+  statusCode: 200
+  statusText: OK
+  headers:
+    date: Wed, 20 May 2026 10:08:08 GMT
+    content-type: application/json;charset=UTF-8
+    transfer-encoding: chunked
+    connection: keep-alive
+    content-encoding: gzip
+    vary: Accept-Encoding
+    strict-transport-security: max-age=63072000; includeSubDomains
+    x-robots-tag: none
+    sforce-limit-info: api-usage=463/15000
+    cache-control: no-cache,must-revalidate,max-age=0,no-store,private
+    x-content-type-options: nosniff
+    server: sfdcedge
+    x-sfdc-request-id: e498c70644aae781837b63461c5867c0
+    x-request-id: e498c70644aae781837b63461c5867c0
+    x-sfdc-edge-cache: none
+  body:
+    type: json
+    content: |-
+      [
+        {
+          "actionName": "StudentWelcomeService",
+          "errors": null,
+          "invocationId": null,
+          "isSuccess": true,
+          "outcome": null,
+          "outputValues": {
+            "resultText": "Welcome Alex Smith to Salesforce REST APIs!",
+            "Flow__InterviewGuid": "327153554fb60c33fb6d3a952e2719e41821a96-792f",
+            "Flow__InterviewStatus": "Finished"
+          },
+          "sortOrder": -1,
+          "version": 1
+        }
+      ]
+order: 1779271821692
