@@ -1,0 +1,232 @@
+$kind: collection
+name: Composite ep
+description: |-
+  # Salesforce REST API — Composite API
+
+  Composite API allows multiple Salesforce REST operations in a single HTTP request.
+
+  Purpose:
+
+  - reduce API calls
+      
+  - improve performance
+      
+  - orchestrate operations
+      
+  - support dependent requests
+      
+
+  ---
+
+  # Base Endpoint
+
+  ``` http
+  POST /services/data/v64.0/composite/
+
+   ```
+
+  ---
+
+  # Composite API Types
+
+  | Endpoint | Purpose |
+  | --- | --- |
+  | `/composite/batch/` | independent requests |
+  | `/composite/` | dependent/chained requests |
+  | `/composite/tree/` | parent-child inserts |
+
+  ---
+
+  # 1\. Composite Batch API
+
+  Endpoint:
+
+  ``` http
+  POST /services/data/v64.0/composite/batch
+
+   ```
+
+  Purpose:  
+  Execute multiple unrelated requests together.
+
+  Characteristics:
+
+  - requests are independent
+      
+  - cannot share data
+      
+  - good for parallel retrieval
+      
+
+  Example:
+
+  ``` json
+  {
+    "batchRequests": [
+      {
+        "method": "GET",
+        "url": "v64.0/limits"
+      },
+      {
+        "method": "GET",
+        "url": "v64.0/query?q=SELECT+Id+FROM+Account"
+      }
+    ]
+  }
+
+   ```
+
+  ---
+
+  # 2\. Composite API (Chained Requests)
+
+  Endpoint:
+
+  ``` http
+  POST /services/data/v64.0/composite
+
+   ```
+
+  Purpose:  
+  Allows requests to use results from previous requests.
+
+  Key Concept:
+
+  ``` text
+  referenceId
+
+   ```
+
+  Example:
+
+  ``` json
+  {
+    "compositeRequest": [
+      {
+        "method": "POST",
+        "url": "/services/data/v64.0/sobjects/Account",
+        "referenceId": "newAccount",
+        "body": {
+          "Name": "Acme Corp"
+        }
+      },
+      {
+        "method": "POST",
+        "url": "/services/data/v64.0/sobjects/Contact",
+        "referenceId": "newContact",
+        "body": {
+          "LastName": "Smith",
+          "AccountId": "@{newAccount.id}"
+        }
+      }
+    ]
+  }
+
+   ```
+
+  ---
+
+  # 3\. Composite Tree API
+
+  Endpoint:
+
+  ``` http
+  POST /services/data/v64.0/composite/tree/Account
+
+   ```
+
+  Purpose:  
+  Insert parent-child hierarchical records together.
+
+  Example Structure:
+
+  ``` text
+  Account
+  ├── Contact
+  ├── Contact
+  └── Opportunity
+
+   ```
+
+  Example:
+
+  ``` json
+  {
+    "records": [
+      {
+        "attributes": {
+          "type": "Account",
+          "referenceId": "refAccount1"
+        },
+        "Name": "Acme Corporation"
+      }
+    ]
+  }
+
+   ```
+
+  ---
+
+  # Important Concepts
+
+  ## Single HTTP Request
+
+  Instead of:
+
+  ``` text
+  Call 1
+  Call 2
+  Call 3
+
+   ```
+
+  Composite performs:
+
+  ``` text
+  1 request
+  → multiple Salesforce operations
+
+   ```
+
+  ---
+
+  ## referenceId
+
+  Used in chained requests.
+
+  Example:
+
+  ``` text
+  @{newAccount.id}
+
+   ```
+
+  Allows later requests to use earlier responses.
+
+  ---
+
+  # Key Benefits
+
+  - fewer API calls
+      
+  - lower latency
+      
+  - reduced network traffic
+      
+  - orchestration support
+      
+  - better mobile performance
+      
+  - middleware optimization
+      
+
+  ---
+
+  # Important Interview Difference
+
+  | API | Purpose |
+  | --- | --- |
+  | `/batch/` | independent requests |
+  | `/composite/` | dependent chained requests |
+  | `/tree/` | hierarchical inserts |
+order: 4144137602273616

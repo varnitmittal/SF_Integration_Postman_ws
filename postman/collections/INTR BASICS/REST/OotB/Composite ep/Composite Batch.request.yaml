@@ -1,0 +1,238 @@
+$kind: http-request
+description: |-
+  # Salesforce REST API — Composite Batch API
+
+  Composite Batch API allows multiple independent Salesforce REST requests in a single HTTP request.
+
+  Endpoint:
+
+  ```
+  POST /services/data/v64.0/composite/batch
+
+   ```
+
+  Purpose:
+
+  -   
+      reduce API calls  
+      
+  -   
+      improve performance  
+      
+  -   
+      execute multiple operations together  
+      
+
+  Characteristics:
+
+  -   
+      requests are independent  
+      
+  -   
+      requests cannot share data  
+      
+  -   
+      response order matches request order  
+      
+
+  ---
+
+  # Request Structure
+
+  Salesforce REST API — Composite Batch API
+
+  Composite Batch API allows multiple independent Salesforce REST requests in a single HTTP request.
+
+  Endpoint:
+
+  ```
+  POST /services/data/v64.0/composite/batch
+
+   ```
+
+  Purpose:
+
+  -   
+      reduce API calls  
+      
+  -   
+      improve performance  
+      
+  -   
+      execute multiple operations together  
+      
+
+  Characteristics:
+
+  -   
+      requests are independent  
+      
+  -   
+      requests cannot share data  
+      
+  -   
+      response order matches request order  
+      
+
+  ---
+
+  # Request Structure
+
+  ```
+  {  "batchRequests": [    {      "method": "GET",      "url": "v64.0/sobjects/Student__c/describe"    },    {      "method": "GET",      "url": "v64.0/query?q=SELECT+Id,Name+FROM+Student__c+WHERE+Class_Enrolled__c=7"    }  ]}
+
+   ```
+
+  ---
+
+  # Important Notes
+
+  Inside batch requests:
+
+  ```
+  "url": "v64.0/query?q=..."
+
+   ```
+
+  NOT:
+
+  ```
+  "/services/data/v64.0/query?q=..."
+
+   ```
+
+  because Composite automatically prefixes:
+
+  ```
+  /services/data/
+
+   ```
+
+  ---
+
+  # Example Flow
+
+  Request 1:
+
+  ```
+  Describe Student__c metadata
+
+   ```
+
+  Request 2:
+
+  ```
+  Query students enrolled in class 7
+
+   ```
+
+  Both execute in one HTTP request.
+
+  ---
+
+  # Response Structure
+
+  ```
+  {  "hasErrors": false,  "results": [    {      "statusCode": 200,      "result": {        ...      }    },    {      "statusCode": 200,      "result": {        ...      }    }  ]}
+
+   ```
+
+  ---
+
+  # Response Mapping
+
+  Responses are returned in the SAME order as requests.
+
+  | Response | Original Request |
+  | --- | --- |
+  | results\[0\] | first batch request |
+  | results\[1\] | second batch request |
+
+  Meaning:
+
+  ```
+  response index = request index
+
+   ```
+
+  ---
+
+  # Important Limitation
+
+  Batch requests:
+
+  ```
+  cannot use data from other requests
+
+   ```
+
+  Example:
+
+  -   
+      Request 2 cannot use Request 1 result  
+      
+
+  That capability exists in:
+
+  ```
+  /services/data/v64.0/composite/
+
+   ```
+
+  using:
+
+  ```
+  referenceId
+
+   ```
+
+  ---
+
+  # Enterprise Use Cases
+
+  -   
+      dashboards  
+      
+  -   
+      metadata retrieval  
+      
+  -   
+      parallel queries  
+      
+  -   
+      mobile optimization  
+      
+  -   
+      middleware orchestration  
+      
+  -   
+      reducing network round trips
+url: "{{RootUrl}}/services/data/v64.0/composite/batch"
+method: POST
+body:
+  type: json
+  content: "{\r
+
+    \  \"batchRequests\": [\r
+
+    \    {\r
+
+    \      \"method\": \"GET\",\r
+
+    \      \"url\": \"v64.0/sobjects/Student__c/describe\"\r
+
+    \    },\r
+
+    \    {\r
+
+    \      \"method\": \"GET\",\r
+
+    \      \"url\": \"v64.0/query?q=SELECT+Id,Name,Student_Name__c,Class_Enrolled__c+FROM+Student__c+WHERE+Class_Enrolled__c=7+LIMIT+5\"\r
+
+    \    }\r
+
+    \  ]\r
+
+    }"
+examples: .resources/Composite Batch.resources/examples
+order: 1779274373344
