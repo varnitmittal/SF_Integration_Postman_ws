@@ -1,0 +1,44 @@
+$kind: http-example
+request:
+  url: "{{RootUrl}}/services/data/v64.0/ui-api/favorites"
+  method: GET
+response:
+  statusCode: 200
+  statusText: OK
+  headers:
+    date: Wed, 20 May 2026 13:24:48 GMT
+    content-type: application/json;charset=UTF-8
+    transfer-encoding: chunked
+    connection: keep-alive
+    x-robots-tag: none
+    x-content-type-options: nosniff
+    vary: Accept-Encoding
+    content-encoding: gzip
+    sforce-limit-info: api-usage=716/15000
+    cache-control: no-cache,must-revalidate,max-age=0,no-store,private
+    strict-transport-security: max-age=63072000; includeSubDomains
+    server: sfdcedge
+    x-sfdc-request-id: 9858b3809192d3be6509e8cebd6d0ef4
+    x-request-id: 9858b3809192d3be6509e8cebd6d0ef4
+    x-sfdc-edge-cache: none
+  body:
+    type: json
+    content: |-
+      {
+        "favorites": [
+          {
+            "accessCount": 1,
+            "iconColor": "06A59A",
+            "iconUrl": "https://vm-ai-dev-ed.develop.my.salesforce.com/img/icon/t4v35/standard/report_120.png",
+            "id": "0MVgK0000002gBFWAY",
+            "lastAccessDate": "2026-05-20T13:24:44.000Z",
+            "name": "All Bot Sessions Last 30 days",
+            "objectType": "Report",
+            "sortOrder": 1,
+            "subtitle": "Report",
+            "target": "00OgK00000065YXUAY",
+            "targetType": "Record"
+          }
+        ]
+      }
+order: 1779283494990

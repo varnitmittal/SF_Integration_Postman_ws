@@ -1,0 +1,659 @@
+$kind: http-request
+name: Record-ui
+description: |-
+  # Salesforce REST API — UI API Record UI
+
+  UI API Record UI provides:
+
+  - record data
+      
+  - layouts
+      
+  - field metadata
+      
+  - permissions
+      
+  - UI behavior
+      
+
+  in a single frontend-ready response.
+
+  Endpoint:
+
+  ``` http
+  GET /services/data/v64.0/ui-api/record-ui/{RecordId}
+
+   ```
+
+  Example:
+
+  ``` http
+  GET /services/data/v64.0/ui-api/record-ui/a1hgK000002LFR7QAO?layoutTypes=Full&modes=View
+
+   ```
+
+  ---
+
+  # Purpose
+
+  - support Lightning Experience
+      
+  - support LWC
+      
+  - provide layout-aware UI data
+      
+  - support dynamic forms
+      
+  - provide frontend page metadata
+      
+
+  ---
+
+  # Postman Request
+
+  Method:
+
+  ``` http
+  GET
+
+   ```
+
+  URL:
+
+  ``` http
+  {{RootUrl}}/services/data/v64.0/ui-api/record-ui/a1hgK000002LFR7QAO?layoutTypes=Full&modes=View
+
+   ```
+
+  Headers:
+
+  ``` http
+  Authorization: Bearer ACCESS_TOKEN
+
+   ```
+
+  ---
+
+  # Important Query Parameters
+
+  ## layoutTypes
+
+  Examples:
+
+  ``` text
+  Compact
+  Full
+
+   ```
+
+  Controls:
+
+  ``` text
+  which layout metadata is returned
+
+   ```
+
+  ---
+
+  # modes
+
+  Examples:
+
+  ``` text
+  View
+  Edit
+  Create
+
+   ```
+
+  Controls:
+
+  ``` text
+  UI behavior mode
+
+   ```
+
+  Example:
+
+  - editable fields
+      
+  - required fields
+      
+  - create/edit layouts
+      
+
+  ---
+
+  # What It Returns
+
+  - record data
+      
+  - layout sections
+      
+  - fields
+      
+  - field metadata
+      
+  - actions
+      
+  - editable fields
+      
+  - required fields
+      
+  - display values
+      
+
+  Essentially:
+
+  ``` text
+  complete page-rendering metadata
+
+   ```
+
+  ---
+
+  # Important Difference
+
+  | API | Purpose |
+  | --- | --- |
+  | `/ui-api/object-info/` | object metadata |
+  | `/ui-api/records/` | record data |
+  | `/ui-api/record-ui/` | record + layouts + UI orchestration |
+
+  ---
+
+  # Important Concept
+
+  Record UI is:
+
+  ``` text
+  layout-aware
+
+   ```
+
+  It understands:
+
+  - page layouts
+      
+  - sections
+      
+  - field placement
+      
+  - UI modes
+      
+  - permissions
+      
+
+  ---
+
+  # User Context Awareness
+
+  Response depends on:
+
+  - profile
+      
+  - permission sets
+      
+  - field-level security
+      
+  - current user access
+      
+
+  Different users can receive different UI metadata.
+
+  ---
+
+  # Real Frontend Benefit
+
+  Frontend applications do NOT need to:
+
+  - manually build layouts
+      
+  - calculate editable fields
+      
+  - determine required fields
+      
+  - understand Salesforce UI rules
+      
+
+  Salesforce already computes:
+
+  ``` text
+  how page should render for current user
+
+   ```
+
+  ---
+
+  # Enterprise Use Cases
+
+  - Lightning record pages
+      
+  - LWC
+      
+  - dynamic forms
+      
+  - metadata-driven UIs
+      
+  - frontend generators
+      
+  - custom Salesforce frontends
+      
+
+  ---
+
+  # Architectural Importance
+
+  Record UI is effectively:
+
+  ``` text
+  frontend page-definition API
+
+   ```
+
+  used heavily by:
+
+  - Lightning Experience
+      
+  - Dynamic Forms
+      
+  - modern Salesforce UI systems
+      
+
+  ---
+
+  ---
+
+  ---
+
+  ---
+
+  ---
+
+  ---
+
+  ---
+
+  ---
+
+  ---
+
+  ---
+
+  ---
+
+  ---
+
+  ---
+
+  ---
+
+  ---
+
+  ---
+
+  ---
+
+  ---
+
+  # Salesforce REST API — UI API Record UI
+
+  Endpoint:
+
+  ``` http
+  GET /services/data/v64.0/ui-api/record-ui/{RecordId}
+
+   ```
+
+  Purpose:  
+  Returns:
+
+  - record data
+      
+  - layout structure
+      
+  - editable fields
+      
+  - required fields
+      
+  - UI metadata
+      
+
+  in ONE response.
+
+  ---
+
+  # Simple Difference
+
+  ## records API
+
+  ``` text
+  gives record data
+
+   ```
+
+  Example:
+
+  - Name
+      
+  - Email
+      
+  - Class
+      
+
+  ---
+
+  ## record-ui API
+
+  ``` text
+  gives record data + how page should look
+
+   ```
+
+  Example:
+
+  - which section field belongs to
+      
+  - editable?
+      
+  - required?
+      
+  - visible?
+      
+  - layout order
+      
+
+  ---
+
+  # Postman Example
+
+  ``` http
+  GET
+  {{RootUrl}}/services/data/v64.0/ui-api/record-ui/a1hgK000002LFR7QAO?layoutTypes=Full&modes=View
+
+   ```
+
+  Headers:
+
+  ``` http
+  Authorization: Bearer ACCESS_TOKEN
+
+   ```
+
+  ---
+
+  # Important Query Params
+
+  ## layoutTypes
+
+  ``` text
+  Compact
+  Full
+
+   ```
+
+  Controls:
+
+  ``` text
+  which layout Salesforce returns
+
+   ```
+
+  ---
+
+  ## modes
+
+  ``` text
+  View
+  Edit
+  Create
+
+   ```
+
+  Controls:
+
+  ``` text
+  how UI should behave
+
+   ```
+
+  ---
+
+  # Real Use Case
+
+  Lightning Record Page needs:
+
+  - field values
+      
+  - layout sections
+      
+  - editability
+      
+  - required fields
+      
+
+  Record UI provides all together.
+
+  ---
+
+  # Important Concept
+
+  Record UI is:
+
+  ``` text
+  frontend page-rendering API
+
+   ```
+
+  Very heavily used internally by Lightning Experience.
+
+  ---
+
+  ---
+
+  ---
+
+  ---
+
+  ---
+
+  ---
+
+  ---
+
+  ---
+
+  ---
+
+  ---
+
+  ---
+
+  ---
+
+  ---
+
+  ---
+
+  ---
+
+  ---
+
+  ---
+
+  # PARAMS
+
+  For:
+
+  ``` http
+  /ui-api/record-ui/{RecordId}
+
+   ```
+
+  these are the most important query params to know.
+
+  ---
+
+  # 1\. layoutTypes
+
+  Controls:
+
+  ``` text
+  which layout Salesforce returns
+
+   ```
+
+  Examples:
+
+  ``` text
+  Full
+  Compact
+
+   ```
+
+  Example:
+
+  ``` http
+  ?layoutTypes=Full
+
+   ```
+
+  ---
+
+  # 2\. modes
+
+  Controls:
+
+  ``` text
+  UI behavior mode
+
+   ```
+
+  Examples:
+
+  ``` text
+  View
+  Edit
+  Create
+
+   ```
+
+  Example:
+
+  ``` http
+  ?modes=Edit
+
+   ```
+
+  Very important because:
+
+  - required fields can change
+      
+  - editable fields can change
+      
+  - layouts can change
+      
+
+  ---
+
+  # 3\. optionalFields
+
+  Adds extra fields beyond layout.
+
+  Example:
+
+  ``` http
+  &optionalFields=Student__c.Email__c
+
+   ```
+
+  Useful when:
+
+  ``` text
+  frontend needs additional hidden data
+
+   ```
+
+  without modifying layouts.
+
+  ---
+
+  # 4\. formFactor
+
+  Controls:
+
+  ``` text
+  device-specific layout
+
+   ```
+
+  Examples:
+
+  ``` text
+  Large
+  Medium
+  Small
+
+   ```
+
+  Meaning:
+
+  - Desktop
+      
+  - Tablet
+      
+  - Mobile
+      
+
+  Example:
+
+  ``` http
+  &formFactor=Small
+
+   ```
+
+  Lightning mobile heavily uses this.
+
+  ---
+
+  # 5\. recordIds
+
+  Can retrieve:
+
+  ``` text
+  multiple records
+
+   ```
+
+  Example:
+
+  ``` http
+  ?recordIds=a1hXXX,a1hYYY
+
+   ```
+
+  ---
+
+  # Most Important Real Combination
+
+  ``` http
+  {{RootUrl}}/services/data/v64.0/ui-api/record-ui/a1hgK000002LFR7QAO?layoutTypes=Full&modes=Edit&formFactor=Large
+
+   ```
+
+  This means:
+
+  ``` text
+  Give me desktop edit-page metadata for this record
+
+   ```
+
+  Very close to what Lightning internally needs.
+url: "{{RootUrl}}/services/data/v64.0/ui-api/record-ui/a1hgK000002LFR7QAO?layou\
+  tTypes=Compact&modes=View"
+method: GET
+queryParams:
+  layoutTypes: Compact
+  modes: View
+examples: .resources/Record-ui.resources/examples
+order: 1937914803178190

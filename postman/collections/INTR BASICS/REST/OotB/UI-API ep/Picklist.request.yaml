@@ -1,0 +1,269 @@
+$kind: http-request
+name: Picklist
+description: |-
+  # Salesforce REST API — UI API Picklist Values
+
+  UI API Picklist Values provides:
+
+  - picklist options
+      
+  - record-type-aware values
+      
+  - dependent picklists
+      
+  - frontend dropdown metadata
+      
+
+  Endpoint:
+
+  ``` http
+  GET /services/data/v64.0/ui-api/object-info/{ObjectApiName}/picklist-values/{RecordTypeId}/{FieldApiName}
+
+   ```
+
+  Example:
+
+  ``` http
+  GET /services/data/v64.0/ui-api/object-info/Student__c/picklist-values/012000000000000AAA/Status__c
+
+   ```
+
+  ---
+
+  # Purpose
+
+  - generate dynamic dropdowns
+      
+  - support Lightning forms
+      
+  - support LWC
+      
+  - support record-type-aware picklists
+      
+  - support frontend rendering
+      
+
+  ---
+
+  # Important Concept — Record Type Aware
+
+  Different record types can have:
+
+  - different picklist values
+      
+  - different defaults
+      
+  - different restrictions
+      
+
+  UI API automatically respects:
+
+  ``` text
+  record type configuration
+
+   ```
+
+  ---
+
+  # Example
+
+  ## School Student Record Type
+
+  Allowed values:
+
+  ``` text
+  Active
+  Inactive
+  Graduated
+
+   ```
+
+  ---
+
+  ## Alumni Record Type
+
+  Allowed values:
+
+  ``` text
+  Alumni
+  Archived
+
+   ```
+
+  Same field:
+
+  ``` text
+  Status__c
+
+   ```
+
+  Different values based on:
+
+  ``` text
+  RecordTypeId
+
+   ```
+
+  ---
+
+  # Postman Request
+
+  Method:
+
+  ``` http
+  GET
+
+   ```
+
+  URL:
+
+  ``` http
+  {{RootUrl}}/services/data/v64.0/ui-api/object-info/Student__c/picklist-values/012000000000000AAA/Status__c
+
+   ```
+
+  Headers:
+
+  ``` http
+  Authorization: Bearer ACCESS_TOKEN
+
+   ```
+
+  ---
+
+  # Important URL Parameters
+
+  | Parameter | Meaning |
+  | --- | --- |
+  | ObjectApiName | Salesforce object |
+  | RecordTypeId | record type context |
+  | FieldApiName | picklist field |
+
+  ---
+
+  # Important Special Record Type Id
+
+  Master Record Type:
+
+  ``` text
+  012000000000000AAA
+
+   ```
+
+  Used when:
+
+  ``` text
+  object has no custom record types
+
+   ```
+
+  Very commonly used.
+
+  ---
+
+  # Example Response
+
+  ``` json
+  {
+    "defaultValue": {
+      "label": "Active",
+      "value": "Active"
+    },
+    "values": [
+      {
+        "label": "Active",
+        "value": "Active"
+      },
+      {
+        "label": "Inactive",
+        "value": "Inactive"
+      }
+    ]
+  }
+
+   ```
+
+  ---
+
+  # Important Response Concepts
+
+  ## label
+
+  ``` json
+  "label"
+
+   ```
+
+  Human-readable UI text.
+
+  ---
+
+  ## value
+
+  ``` json
+  "value"
+
+   ```
+
+  Actual stored database value.
+
+  ---
+
+  ## defaultValue
+
+  Default selected option for current record type.
+
+  ---
+
+  # Important Difference from Describe API
+
+  Describe API:
+
+  ``` text
+  returns generic picklist metadata
+
+   ```
+
+  UI API Picklist Values:
+
+  ``` text
+  returns user + record-type aware dropdown values
+
+   ```
+
+  Much more frontend-oriented.
+
+  ---
+
+  # Enterprise Use Cases
+
+  - Lightning forms
+      
+  - LWC comboboxes
+      
+  - React/Vue dropdowns
+      
+  - dependent picklists
+      
+  - dynamic forms
+      
+  - metadata-driven frontend systems
+      
+
+  ---
+
+  # Real Importance
+
+  Modern Salesforce frontend systems heavily depend on:
+
+  ``` text
+  record-type-aware picklist APIs
+
+   ```
+
+  This is one of the most practically useful UI API endpoints.
+url: "{{RootUrl}}/services/data/v64.0/ui-api/object-info/Student__c/picklist-va\
+  lues/012gK000004at8XQAQ/Status__c"
+method: GET
+examples: .resources/Picklist.resources/examples
+order: 1941622674808826

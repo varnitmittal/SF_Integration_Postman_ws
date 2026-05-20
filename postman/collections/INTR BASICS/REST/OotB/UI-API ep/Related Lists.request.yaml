@@ -1,0 +1,207 @@
+$kind: http-request
+name: Related Lists
+description: |-
+  # UI API — Related Lists
+
+  Very important frontend API.
+
+  Used for:
+
+  ``` text
+  related records section
+
+   ```
+
+  like:
+
+  - Contacts on Account
+      
+  - Opportunities on Account
+      
+  - Students in School
+      
+
+  ---
+
+  # Endpoint
+
+  ``` http
+  GET /services/data/v64.0/ui-api/related-list-info/{ParentObjectApiName}
+
+   ```
+
+  Example:
+
+  ``` http
+  GET /services/data/v64.0/ui-api/related-list-info/School__c
+
+   ```
+
+  ---
+
+  # Purpose
+
+  Returns:
+
+  - related list metadata
+      
+  - child relationship info
+      
+  - columns
+      
+  - labels
+      
+  - UI behavior
+      
+
+  Used for:
+
+  ``` text
+  frontend related list rendering
+
+   ```
+
+  ---
+
+  # Postman Implementation
+
+  Method:
+
+  ``` http
+  GET
+
+   ```
+
+  URL:
+
+  ``` http
+  {{RootUrl}}/services/data/v64.0/ui-api/related-list-info/School__c
+
+   ```
+
+  Headers:
+
+  ``` http
+  Authorization: Bearer ACCESS_TOKEN
+
+   ```
+
+  ---
+
+  # What It Returns
+
+  Example:
+
+  - Students related list
+      
+  - columns
+      
+  - lookup relationships
+      
+  - labels
+      
+  - sort fields
+      
+
+  ---
+
+  # Important Concept
+
+  Suppose:
+
+  ``` text
+  School__c
+
+   ```
+
+  has child relationship:
+
+  ``` text
+  Students__r
+
+   ```
+
+  UI API returns metadata needed to render:
+
+  ``` text
+  Students related list section
+
+   ```
+
+  like Lightning does.
+
+  ---
+
+  # Difference from Describe API
+
+  Describe API:
+
+  ``` text
+  gives raw child relationship metadata
+
+   ```
+
+  UI API Related Lists:
+
+  ``` text
+  gives frontend-oriented related-list metadata
+
+   ```
+
+  including:
+
+  - columns
+      
+  - labels
+      
+  - display configuration
+      
+
+  ---
+
+  # Real Lightning Usage
+
+  Lightning Related Lists need:
+
+  - which columns to show
+      
+  - labels
+      
+  - sortable fields
+      
+  - relationship metadata
+      
+
+  This API provides that.
+
+  ---
+
+  # Enterprise Use Cases
+
+  - dynamic related lists
+      
+  - custom Lightning-like UIs
+      
+  - metadata-driven frontends
+      
+  - admin generators
+      
+  - React/Vue Salesforce apps
+      
+
+  ---
+
+  # Important Concept
+
+  Related Lists API is:
+
+  ``` text
+  frontend related-section metadata API
+
+   ```
+
+  EndFragment
+url: "{{RootUrl}}/services/data/v64.0/ui-api/related-list-info/School__c"
+method: GET
+examples: .resources/Related Lists.resources/examples
+order: 4481800513919682

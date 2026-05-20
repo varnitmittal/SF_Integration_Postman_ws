@@ -1,0 +1,252 @@
+$kind: http-example
+description: |-
+  # UI API — Related Lists
+
+  Very important frontend API.
+
+  Used for:
+
+  ``` text
+  related records section
+
+   ```
+
+  like:
+
+  - Contacts on Account
+      
+  - Opportunities on Account
+      
+  - Students in School
+      
+
+  ---
+
+  # Endpoint
+
+  ``` http
+  GET /services/data/v64.0/ui-api/related-list-info/{ParentObjectApiName}
+
+   ```
+
+  Example:
+
+  ``` http
+  GET /services/data/v64.0/ui-api/related-list-info/School__c
+
+   ```
+
+  ---
+
+  # Purpose
+
+  Returns:
+
+  - related list metadata
+      
+  - child relationship info
+      
+  - columns
+      
+  - labels
+      
+  - UI behavior
+      
+
+  Used for:
+
+  ``` text
+  frontend related list rendering
+
+   ```
+
+  ---
+
+  # Postman Implementation
+
+  Method:
+
+  ``` http
+  GET
+
+   ```
+
+  URL:
+
+  ``` http
+  {{RootUrl}}/services/data/v64.0/ui-api/related-list-info/School__c
+
+   ```
+
+  Headers:
+
+  ``` http
+  Authorization: Bearer ACCESS_TOKEN
+
+   ```
+
+  ---
+
+  # What It Returns
+
+  Example:
+
+  - Students related list
+      
+  - columns
+      
+  - lookup relationships
+      
+  - labels
+      
+  - sort fields
+      
+
+  ---
+
+  # Important Concept
+
+  Suppose:
+
+  ``` text
+  School__c
+
+   ```
+
+  has child relationship:
+
+  ``` text
+  Students__r
+
+   ```
+
+  UI API returns metadata needed to render:
+
+  ``` text
+  Students related list section
+
+   ```
+
+  like Lightning does.
+
+  ---
+
+  # Difference from Describe API
+
+  Describe API:
+
+  ``` text
+  gives raw child relationship metadata
+
+   ```
+
+  UI API Related Lists:
+
+  ``` text
+  gives frontend-oriented related-list metadata
+
+   ```
+
+  including:
+
+  - columns
+      
+  - labels
+      
+  - display configuration
+      
+
+  ---
+
+  # Real Lightning Usage
+
+  Lightning Related Lists need:
+
+  - which columns to show
+      
+  - labels
+      
+  - sortable fields
+      
+  - relationship metadata
+      
+
+  This API provides that.
+
+  ---
+
+  # Enterprise Use Cases
+
+  - dynamic related lists
+      
+  - custom Lightning-like UIs
+      
+  - metadata-driven frontends
+      
+  - admin generators
+      
+  - React/Vue Salesforce apps
+      
+
+  ---
+
+  # Important Concept
+
+  Related Lists API is:
+
+  ``` text
+  frontend related-section metadata API
+
+   ```
+
+  EndFragment
+request:
+  url: "{{RootUrl}}/services/data/v64.0/ui-api/related-list-info/School__c"
+  method: GET
+response:
+  statusCode: 200
+  statusText: OK
+  headers:
+    date: Wed, 20 May 2026 13:21:06 GMT
+    content-type: application/json;charset=UTF-8
+    transfer-encoding: chunked
+    connection: keep-alive
+    x-robots-tag: none
+    sforce-limit-info: api-usage=711/15000
+    content-encoding: gzip
+    cache-control: no-cache,must-revalidate,max-age=0,no-store,private
+    vary: Accept-Encoding
+    etag: '"b10fa4f872c340482a53072d457fd593--gzip"'
+    x-content-type-options: nosniff
+    strict-transport-security: max-age=63072000; includeSubDomains
+    server: sfdcedge
+    x-sfdc-request-id: 86e29ff2ffdc1995c055706b9b3a950b
+    x-request-id: 86e29ff2ffdc1995c055706b9b3a950b
+    x-sfdc-edge-cache: none
+  body:
+    type: json
+    content: |-
+      {
+        "eTag": "b10fa4f872c340482a53072d457fd593",
+        "parentObjectApiName": "School__c",
+        "parentRecordTypeId": null,
+        "relatedLists": [
+          {
+            "entityLabel": "Student",
+            "entityPluralLabel": "Students",
+            "fieldApiName": "School__c",
+            "keyPrefix": "a1h",
+            "label": "Students",
+            "objectApiName": "Student__c",
+            "parentFieldApiName": "Id",
+            "relatedListId": "Students__r",
+            "relatedListInfoUrl": "/services/data/v64.0/ui-api/related-list-info/School__c/Students__r?recordTypeId=012000000000000AAA",
+            "themeInfo": {
+              "color": "3BA755",
+              "iconUrl": "https://vm-ai-dev-ed.develop.my.salesforce.com/img/icon/t4v35/custom/custom33_120.png"
+            },
+            "uiApiEnabledLayout": true
+          }
+        ]
+      }
+order: 1779283327176

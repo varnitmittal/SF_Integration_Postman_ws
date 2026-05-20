@@ -1,0 +1,395 @@
+$kind: http-example
+description: |-
+  # Salesforce REST API — UI API Records
+
+  UI API Records provides frontend-aware record retrieval.
+
+  Endpoint:
+
+  ``` http
+  GET /services/data/v64.0/ui-api/records/{RecordId}
+
+   ```
+
+  Example:
+
+  ``` http
+  GET /services/data/v64.0/ui-api/records/a1hgK000002LFR7QAO
+
+   ```
+
+  ---
+
+  # Purpose
+
+  - retrieve UI-aware record data
+      
+  - support frontend rendering
+      
+  - provide formatted display values
+      
+  - respect user permissions
+      
+  - support Lightning Experience and LWC
+      
+
+  ---
+
+  # Postman Request
+
+  Method:
+
+  ``` http
+  GET
+
+   ```
+
+  URL:
+
+  ``` http
+  {{RootUrl}}/services/data/v64.0/ui-api/records/a1hgK000002LFR7QAO?fields=Student__c.Student_Name__c,Student__c.Email__c
+
+   ```
+
+  Headers:
+
+  ``` http
+  Authorization: Bearer ACCESS_TOKEN
+
+   ```
+
+  ---
+
+  # Important Query Parameter
+
+  ## fields
+
+  Specifies fields to retrieve.
+
+  Example:
+
+  ``` http
+  ?fields=Student__c.Student_Name__c,Student__c.Email__c
+
+   ```
+
+  Required because UI API is optimized for:
+
+  ``` text
+  frontend field-level retrieval
+
+   ```
+
+  instead of full raw records.
+
+  ---
+
+  # What It Returns
+
+  Example Response:
+
+  ``` json
+  {
+    "fields": {
+      "Student_Name__c": {
+        "displayValue": null,
+        "value": "Alex Smith"
+      },
+      "Email__c": {
+        "displayValue": null,
+        "value": "alex@test.com"
+      }
+    }
+  }
+
+   ```
+
+  ---
+
+  # Important Concepts
+
+  ## value
+
+  ``` json
+  "value"
+
+   ```
+
+  Raw database value.
+
+  Example:
+
+  ``` text
+  Alex Smith
+
+   ```
+
+  ---
+
+  ## displayValue
+
+  ``` json
+  "displayValue"
+
+   ```
+
+  Frontend-rendered value.
+
+  Used for:
+
+  - dates
+      
+  - currency
+      
+  - lookups
+      
+  - formatted fields
+      
+  - picklists
+      
+
+  ---
+
+  # Example
+
+  Database value:
+
+  ``` text
+  2026-05-19T00:00:00.000Z
+
+   ```
+
+  displayValue:
+
+  ``` text
+  May 19, 2026
+
+   ```
+
+  Frontend-ready formatting.
+
+  ---
+
+  # Important Difference from sObjects API
+
+  sObjects API:
+
+  ``` http
+  /sobjects/Student__c/{Id}
+
+   ```
+
+  Purpose:
+
+  ``` text
+  database-centric retrieval
+
+   ```
+
+  UI API Records:
+
+  ``` http
+  /ui-api/records/{Id}
+
+   ```
+
+  Purpose:
+
+  ``` text
+  frontend-aware retrieval
+
+   ```
+
+  ---
+
+  # Key Differences
+
+  | Feature | sObjects API | UI API Records |
+  | --- | --- | --- |
+  | Raw values | ✅ | ✅ |
+  | displayValue | ❌ | ✅ |
+  | UI-aware | ❌ | ✅ |
+  | Frontend optimized | ❌ | ✅ |
+  | Permissions-aware | Limited | ✅ |
+  | Formatting support | ❌ | ✅ |
+
+  ---
+
+  # User Context Awareness
+
+  UI API executes in context of authenticated user.
+
+  Response respects:
+
+  - field-level security
+      
+  - permissions
+      
+  - visibility
+      
+  - editability
+      
+
+  Different users can receive different responses.
+
+  ---
+
+  # Real Frontend Benefit
+
+  Frontend applications do NOT need to:
+
+  - manually format fields
+      
+  - calculate permissions
+      
+  - interpret lookup display values
+      
+  - understand Salesforce formatting deeply
+      
+
+  UI API already returns:
+
+  ``` text
+  display-ready frontend data
+
+   ```
+
+  ---
+
+  # Enterprise Use Cases
+
+  - Lightning record pages
+      
+  - LWC
+      
+  - React/Vue frontends
+      
+  - dynamic forms
+      
+  - metadata-driven UI systems
+      
+  - frontend rendering engines
+      
+
+  ---
+
+  # Architectural Difference
+
+  sObjects API:
+
+  ``` text
+  database-centric
+
+   ```
+
+  UI API Records:
+
+  ``` text
+  frontend-centric
+
+   ```
+
+  ---
+
+  # Real Importance
+
+  UI API Records is part of Salesforce’s:
+
+  ``` text
+  frontend backend architecture
+
+   ```
+
+  used heavily by:
+
+  - Lightning Experience
+      
+  - LWC
+      
+  - Dynamic Forms
+      
+  - modern Salesforce UI systems
+request:
+  url: "{{RootUrl}}/services/data/v64.0/ui-api/records/a1hgK000002LFR7QAO?fields=Student__c.Student_Name__c,Student__c.Email__c,Student__c.Class_Enrolled__c,student__c.school__r.Name"
+  method: GET
+  queryParams:
+    fields: Student__c.Student_Name__c,Student__c.Email__c,Student__c.Class_Enrolled__c,student__c.school__r.Name
+response:
+  statusCode: 200
+  statusText: OK
+  headers:
+    date: Wed, 20 May 2026 12:56:38 GMT
+    content-type: application/json;charset=UTF-8
+    transfer-encoding: chunked
+    connection: keep-alive
+    x-content-type-options: nosniff
+    etag: '"337ee3a2124006d99fa684563ca96fa4--gzip"'
+    strict-transport-security: max-age=63072000; includeSubDomains
+    x-robots-tag: none
+    cache-control: no-cache,must-revalidate,max-age=0,no-store,private
+    content-encoding: gzip
+    sforce-limit-info: api-usage=548/15000
+    vary: Accept-Encoding
+    server: sfdcedge
+    x-sfdc-request-id: 75dcc3e970f7609b5e5df3283db09133
+    x-request-id: 75dcc3e970f7609b5e5df3283db09133
+    x-sfdc-edge-cache: none
+  body:
+    type: json
+    content: |-
+      {
+        "apiName": "Student__c",
+        "childRelationships": {},
+        "eTag": "337ee3a2124006d99fa684563ca96fa4",
+        "fields": {
+          "Class_Enrolled__c": {
+            "displayValue": null,
+            "value": 5
+          },
+          "Email__c": {
+            "displayValue": null,
+            "value": "st84165@yopmail.com"
+          },
+          "School__c": {
+            "displayValue": null,
+            "value": "a1ggK000001WTuLQAW"
+          },
+          "School__r": {
+            "displayValue": "Mckinney High School",
+            "value": {
+              "apiName": "School__c",
+              "childRelationships": {},
+              "eTag": "18a1fda547c2d7e7a19e6d720e4c834d",
+              "fields": {
+                "Id": {
+                  "displayValue": null,
+                  "value": "a1ggK000001WTuLQAW"
+                },
+                "Name": {
+                  "displayValue": null,
+                  "value": "Mckinney High School"
+                }
+              },
+              "id": "a1ggK000001WTuLQAW",
+              "lastModifiedById": "005gK000000P8s3QAC",
+              "lastModifiedDate": "2026-05-14T08:13:18.000Z",
+              "recordTypeId": "012000000000000AAA",
+              "recordTypeInfo": null,
+              "systemModstamp": "2026-05-14T08:13:18.000Z",
+              "weakEtag": 1778746398000
+            }
+          },
+          "Student_Name__c": {
+            "displayValue": null,
+            "value": "Alex Smith"
+          }
+        },
+        "id": "a1hgK000002LFR7QAO",
+        "lastModifiedById": "005gK000000P8s3QAC",
+        "lastModifiedDate": "2026-05-18T14:56:21.000Z",
+        "recordTypeId": "012000000000000AAA",
+        "recordTypeInfo": null,
+        "systemModstamp": "2026-05-18T14:56:21.000Z",
+        "weakEtag": 1779116181000
+      }
+order: 1779281824708

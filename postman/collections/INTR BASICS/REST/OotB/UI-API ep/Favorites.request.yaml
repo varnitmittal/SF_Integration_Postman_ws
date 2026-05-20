@@ -1,0 +1,6 @@
+$kind: http-request
+name: Favorites
+url: "{{RootUrl}}/services/data/v64.0/ui-api/favorites"
+method: GET
+examples: .resources/Favorites.resources/examples
+order: 4492171139476153

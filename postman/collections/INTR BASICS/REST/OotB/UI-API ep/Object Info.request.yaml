@@ -1,0 +1,685 @@
+$kind: http-request
+name: Object Info
+description: |-
+  # Salesforce REST API — UI API Object Info
+
+  UI API Object Info provides frontend-aware metadata for Salesforce objects.
+
+  Endpoint:
+
+  ``` http
+  GET /services/data/v64.0/ui-api/object-info/Student__c
+
+   ```
+
+  Purpose:
+
+  - provide UI-aware metadata
+      
+  - support Lightning Experience
+      
+  - support LWC
+      
+  - support dynamic forms
+      
+  - support frontend rendering
+      
+
+  ---
+
+  # Postman Request
+
+  Method:
+
+  ``` http
+  GET
+
+   ```
+
+  URL:
+
+  ``` http
+  {{RootUrl}}/services/data/v64.0/ui-api/object-info/Student__c
+
+   ```
+
+  Headers:
+
+  ``` http
+  Authorization: Bearer ACCESS_TOKEN
+
+   ```
+
+  ---
+
+  # What It Returns
+
+  - fields
+      
+  - labels
+      
+  - field types
+      
+  - permissions
+      
+  - editability
+      
+  - theme info
+      
+  - record types
+      
+  - child relationships
+      
+  - UI metadata
+      
+
+  ---
+
+  # Important Difference from Describe API
+
+  Describe API:
+
+  ``` http
+  /sobjects/Student__c/describe
+
+   ```
+
+  Purpose:
+
+  ``` text
+  backend schema metadata
+
+   ```
+
+  UI API:
+
+  ``` http
+  /ui-api/object-info/Student__c
+
+   ```
+
+  Purpose:
+
+  ``` text
+  frontend-aware metadata
+
+   ```
+
+  ---
+
+  # Core Concept
+
+  Describe API asks:
+
+  ``` text
+  "What is this object?"
+
+   ```
+
+  UI API asks:
+
+  ``` text
+  "How should UI render this object for this user?"
+
+   ```
+
+  ---
+
+  # Important Differences
+
+  | Feature | Describe API | UI API |
+  | --- | --- | --- |
+  | Raw schema | ✅ | ✅ |
+  | Field metadata | ✅ | ✅ |
+  | CRUD metadata | ✅ | ✅ |
+  | UI rendering metadata | ❌ | ✅ |
+  | Theme metadata | ❌ | ✅ |
+  | Permissions-aware | ❌ Limited | ✅ |
+  | Dynamic form support | ❌ | ✅ |
+  | Lightning-oriented | ❌ | ✅ |
+
+  ---
+
+  # Most Important UI API-Specific Sections
+
+  ## 1\. themeInfo
+
+  Example:
+
+  ``` json
+  "themeInfo"
+
+   ```
+
+  Contains:
+
+  - icons
+      
+  - colors
+      
+  - branding
+      
+  - Lightning theme metadata
+      
+
+  Used for frontend rendering.
+
+  ---
+
+  ## 2\. editableForNew
+
+  Example:
+
+  ``` json
+  "editableForNew": true
+
+   ```
+
+  Indicates whether current user can edit field during create operation.
+
+  Frontend-oriented metadata.
+
+  ---
+
+  ## 3\. editableForUpdate
+
+  Example:
+
+  ``` json
+  "editableForUpdate": false
+
+   ```
+
+  Indicates whether field is editable during update.
+
+  Used heavily in:
+
+  - Lightning forms
+      
+  - dynamic UI rendering
+      
+  - frontend validation
+      
+
+  ---
+
+  ## 4\. User-Context Permissions
+
+  UI API is more:
+
+  ``` text
+  user-context aware
+
+   ```
+
+  It strongly respects:
+
+  - field-level security
+      
+  - permissions
+      
+  - visibility
+      
+  - editability
+      
+
+  ---
+
+  ## 5\. recordTypeInfos
+
+  Provides:
+
+  - record type metadata
+      
+  - default mappings
+      
+  - UI behavior
+      
+  - frontend form support
+      
+
+  Very important for:
+
+  - dynamic forms
+      
+  - picklists
+      
+  - Lightning record pages
+      
+
+  ---
+
+  # Important Architectural Difference
+
+  Describe API:
+
+  ``` text
+  schema-centric
+
+   ```
+
+  UI API:
+
+  ``` text
+  user-experience-centric
+
+   ```
+
+  ---
+
+  # Enterprise Use Cases
+
+  - Lightning Experience
+      
+  - LWC
+      
+  - dynamic forms
+      
+  - metadata-driven UIs
+      
+  - frontend generators
+      
+  - admin tooling
+      
+  - schema explorers
+      
+
+  ---
+
+  # Real Importance
+
+  UI API is effectively:
+
+  ``` text
+  Salesforce frontend backend layer
+
+   ```
+
+  Lightning Experience and many LWC experiences rely heavily on these concepts internally.
+
+  ---
+
+  ---
+
+  ---
+
+  ---
+
+  ---
+
+  ---
+
+  # Salesforce UI API — User Context Awareness
+
+  UI API executes in context of the authenticated user.
+
+  The access token identifies:
+
+  - current user
+      
+  - profile
+      
+  - permission sets
+      
+  - field-level security
+      
+  - object permissions
+      
+  - sharing access
+      
+
+  Because of this, UI API responses can differ for different users.
+
+  ---
+
+  # Example
+
+  Endpoint:
+
+  ``` http
+  GET /services/data/v64.0/ui-api/object-info/Student__c
+
+   ```
+
+  ---
+
+  # Scenario 1 — Admin User
+
+  If token belongs to:
+
+  ``` text
+  System Administrator
+
+   ```
+
+  Response may contain:
+
+  ``` json
+  "editableForUpdate": true
+
+   ```
+
+  Meaning:  
+  current user can edit field during update.
+
+  ---
+
+  # Scenario 2 — Read Only User
+
+  If token belongs to:
+
+  ``` text
+  Read Only User
+
+   ```
+
+  Same endpoint may return:
+
+  ``` json
+  "editableForUpdate": false
+
+   ```
+
+  Meaning:  
+  current user cannot edit field.
+
+  ---
+
+  # What Salesforce Internally Evaluates
+
+  UI API checks:
+
+  - profile permissions
+      
+  - permission sets
+      
+  - field-level security
+      
+  - object CRUD
+      
+  - sharing model
+      
+
+  for CURRENT authenticated user.
+
+  ---
+
+  # Important Concept
+
+  UI API is:
+
+  ``` text
+  security-context aware
+
+   ```
+
+  Response can vary:
+
+  ``` text
+  per user
+
+   ```
+
+  depending on access rights.
+
+  ---
+
+  # Difference from Describe API
+
+  Describe API is mostly:
+
+  ``` text
+  schema-centric
+
+   ```
+
+  UI API is:
+
+  ``` text
+  user-experience-centric
+
+   ```
+
+  Describe API mainly describes:
+
+  - object structure
+      
+  - field definitions
+      
+
+  UI API additionally describes:
+
+  - what current user can see
+      
+  - what current user can edit
+      
+  - how frontend should render UI
+      
+
+  ---
+
+  # Real Frontend Benefit
+
+  Frontend applications do NOT need to:
+
+  - manually calculate Salesforce permissions
+      
+  - replicate security logic
+      
+  - understand profiles deeply
+      
+
+  Salesforce already computes:
+
+  ``` text
+  "What should THIS user see/edit?"
+
+   ```
+
+  UI API simply returns that information.
+
+  ---
+
+  # Enterprise Importance
+
+  Very important for:
+
+  - Lightning Experience
+      
+  - LWC
+      
+  - dynamic forms
+      
+  - metadata-driven UIs
+      
+  - frontend applications
+      
+  - admin tooling
+      
+
+  This is one of the core reasons UI API exists.  
+
+  ---
+
+  ---
+
+  ---
+
+  ---
+
+  ---
+
+  ---
+
+  ---
+
+  ---
+
+  ---
+
+  ---
+
+  ---
+
+  ---
+
+  ---
+
+  ---
+
+  # Use Describe API When
+
+  ``` http
+  /sobjects/{Object}/describe
+
+   ```
+
+  Choose this for:
+
+  - integrations
+      
+  - middleware
+      
+  - backend systems
+      
+  - schema inspection
+      
+  - generic CRUD engines
+      
+  - ETL tools
+      
+  - metadata utilities
+      
+
+  Because you mainly need:
+
+  ``` text
+  object structure
+
+   ```
+
+  Example needs:
+
+  - field names
+      
+  - data types
+      
+  - relationships
+      
+  - createable/updateable
+      
+  - picklists
+      
+  - generic API tooling
+      
+
+  ---
+
+  # Use UI API When
+
+  ``` http
+  /ui-api/object-info/{Object}
+
+   ```
+
+  Choose this for:
+
+  - frontend apps
+      
+  - Lightning-like UIs
+      
+  - dynamic forms
+      
+  - LWC
+      
+  - React/Vue frontend
+      
+  - metadata-driven rendering
+      
+  - permission-aware UX
+      
+
+  Because you need:
+
+  ``` text
+  UI behavior for CURRENT user
+
+   ```
+
+  Example needs:
+
+  - editableForUpdate
+      
+  - visible fields
+      
+  - record type UI behavior
+      
+  - layouts
+      
+  - theme/icons
+      
+  - frontend rendering metadata
+      
+
+  ---
+
+  # Real Decision Rule
+
+  ## Backend/Integration Problem?
+
+  Use:
+
+  ``` text
+  Describe API
+
+   ```
+
+  ---
+
+  ## Frontend/UI Rendering Problem?
+
+  Use:
+
+  ``` text
+  UI API
+
+   ```
+
+  ---
+
+  # Examples
+
+  | Scenario | Correct API |
+  | --- | --- |
+  | Build ETL tool | Describe |
+  | Generic CRUD middleware | Describe |
+  | Build schema explorer | Describe |
+  | Build React form generator | UI API |
+  | Build Lightning-like UI | UI API |
+  | Dynamic frontend rendering | UI API |
+  | Respect user editability in frontend | UI API |
+  | Render layouts dynamically | UI API |
+
+  ---
+
+  # Strong Interview Answer
+
+  Describe API:
+
+  ``` text
+  backend schema metadata
+
+   ```
+
+  UI API:
+
+  ``` text
+  frontend user-context metadata
+
+   ```
+
+  That one sentence usually signals clear architectural understanding.
+url: "{{RootUrl}}/services/data/v64.0/ui-api/object-info/Student__c"
+method: GET
+examples: .resources/Object Info.resources/examples
+order: 1779280191119
