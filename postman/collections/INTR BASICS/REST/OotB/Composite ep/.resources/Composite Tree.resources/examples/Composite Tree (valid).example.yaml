@@ -1,0 +1,109 @@
+$kind: http-example
+request:
+  url: "{{RootUrl}}/services/data/v64.0/composite/tree/School__c"
+  method: POST
+  body:
+    type: json
+    content: "{\r
+
+      \  \"records\": [\r
+
+      \    {\r
+
+      \      \"attributes\": {\r
+
+      \        \"type\": \"School__c\",\r
+
+      \        \"referenceId\": \"refSchool1\"\r
+
+      \      },\r
+
+      \      \"Name\": \"Springfield High School\",\r
+
+      \r
+
+      \      \"Students__r\": {\r
+
+      \        \"records\": [\r
+
+      \          {\r
+
+      \            \"attributes\": {\r
+
+      \              \"type\": \"Student__c\",\r
+
+      \              \"referenceId\": \"refStudent1\"\r
+
+      \            },\r
+
+      \            \"Student_Name__c\": \"Alex Smith\",\r
+
+      \            \"Class_Enrolled__c\": 7\r
+
+      \          },\r
+
+      \          {\r
+
+      \            \"attributes\": {\r
+
+      \              \"type\": \"Student__c\",\r
+
+      \              \"referenceId\": \"refStudent2\"\r
+
+      \            },\r
+
+      \            \"Student_Name__c\": \"Emma Johnson\",\r
+
+      \            \"Class_Enrolled__c\": 8\r
+
+      \          }\r
+
+      \        ]\r
+
+      \      }\r
+
+      \    }\r
+
+      \  ]\r
+
+      }"
+response:
+  statusCode: 201
+  statusText: Created
+  headers:
+    date: Wed, 20 May 2026 12:24:34 GMT
+    content-type: application/json;charset=UTF-8
+    transfer-encoding: chunked
+    connection: keep-alive
+    sforce-limit-info: api-usage=525/15000
+    vary: Accept-Encoding
+    strict-transport-security: max-age=63072000; includeSubDomains
+    x-robots-tag: none
+    content-encoding: gzip
+    cache-control: no-cache,must-revalidate,max-age=0,no-store,private
+    x-content-type-options: nosniff
+    server: sfdcedge
+    x-sfdc-request-id: 23ecb80fcaaf330717050ad09e6f5614
+    x-request-id: 23ecb80fcaaf330717050ad09e6f5614
+    x-sfdc-edge-cache: none
+  body:
+    type: json
+    content: |-
+      {
+        "hasErrors": false,
+        "results": [
+          {
+            "referenceId": "refSchool1",
+            "id": "a1ggK000001X4PFQA0"
+          },
+          {
+            "referenceId": "refStudent1",
+            "id": "a1hgK000002N9O1QAK"
+          },
+          {
+            "referenceId": "refStudent2",
+            "id": "a1hgK000002N9O2QAK"
+          }
+        ]
+      }
+order: 1779279933610

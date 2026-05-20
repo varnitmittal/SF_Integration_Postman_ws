@@ -1,0 +1,100 @@
+$kind: http-example
+request:
+  url: "{{RootUrl}}/services/data/v64.0/composite"
+  method: POST
+  body:
+    type: json
+    content: "{\r
+
+      \  \"allOrNone\": true,\r
+
+      \  \"compositeRequest\": [\r
+
+      \    {\r
+
+      \      \"method\": \"POST\",\r
+
+      \      \"url\": \"/services/data/v64.0/sobjects/School__c\",\r
+
+      \      \"referenceId\": \"newSchool\",\r
+
+      \      \"body\": {\r
+
+      \        \"Name\": \"Springfield High School\"\r
+
+      \      }\r
+
+      \    },\r
+
+      \    {\r
+
+      \      \"method\": \"POST\",\r
+
+      \      \"url\": \"/services/data/v65.0/sobjects/Student__c\",\r
+
+      \      \"referenceId\": \"newStudent\",\r
+
+      \      \"body\": {\r
+
+      \        \"Student_Name__c\": \"Alex Smith\",\r
+
+      \        \"Class_Enrolled__c\": 7,\r
+
+      \        \"School__c\": \"@{newSchool.id}\"\r
+
+      \      }\r
+
+      \    }\r
+
+      \  ]\r
+
+      }"
+response:
+  statusCode: 200
+  statusText: OK
+  headers:
+    date: Wed, 20 May 2026 11:08:39 GMT
+    content-type: application/json;charset=UTF-8
+    transfer-encoding: chunked
+    connection: keep-alive
+    strict-transport-security: max-age=63072000; includeSubDomains
+    x-content-type-options: nosniff
+    content-encoding: gzip
+    x-robots-tag: none
+    cache-control: no-cache,must-revalidate,max-age=0,no-store,private
+    sforce-limit-info: api-usage=510/15000
+    vary: Accept-Encoding
+    server: sfdcedge
+    x-sfdc-request-id: 2e59ade19f884de51f3c9364b78e3536
+    x-request-id: 2e59ade19f884de51f3c9364b78e3536
+    x-sfdc-edge-cache: none
+  body:
+    type: json
+    content: |-
+      {
+        "compositeResponse": [
+          {
+            "body": [
+              {
+                "errorCode": "PROCESSING_HALTED",
+                "message": "The transaction was rolled back since another operation in the same transaction failed."
+              }
+            ],
+            "httpHeaders": {},
+            "httpStatusCode": 400,
+            "referenceId": "newSchool"
+          },
+          {
+            "body": [
+              {
+                "errorCode": "NOT_FOUND",
+                "message": "The requested resource does not exist"
+              }
+            ],
+            "httpHeaders": {},
+            "httpStatusCode": 404,
+            "referenceId": "newStudent"
+          }
+        ]
+      }
+order: 659624707166544

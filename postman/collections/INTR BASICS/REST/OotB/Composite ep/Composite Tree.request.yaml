@@ -1,0 +1,381 @@
+$kind: http-request
+name: Composite Tree
+description: |-
+  # Salesforce REST API — Composite Tree API
+
+  Composite Tree API allows hierarchical parent-child record creation in a single HTTP request.
+
+  Endpoint:
+
+  ``` http
+  POST /services/data/v64.0/composite/tree/{ParentObject}
+
+   ```
+
+  Example:
+
+  ``` http
+  POST /services/data/v64.0/composite/tree/School__c
+
+   ```
+
+  ---
+
+  # Purpose
+
+  - create parent + child records together
+      
+  - reduce API calls
+      
+  - simplify relationship inserts
+      
+  - support hierarchical payloads
+      
+  - support bulk parent-child creation
+      
+
+  ---
+
+  # Characteristics
+
+  - hierarchical JSON structure
+      
+  - automatic relationship linking
+      
+  - single transaction behavior
+      
+  - supports nested child records
+      
+  - no manual parent Id linking required
+      
+
+  ---
+
+  # Example Structure
+
+  ``` text
+  School__c
+  ├── Student__c
+  ├── Student__c
+  └── Student__c
+
+   ```
+
+  ---
+
+  # Request Structure
+
+  ``` json
+  {
+    "records": [
+      {
+        "attributes": {
+          "type": "School__c",
+          "referenceId": "refSchool1"
+        },
+        "Name": "Springfield High School",
+        "Students__r": {
+          "records": [
+            {
+              "attributes": {
+                "type": "Student__c",
+                "referenceId": "refStudent1"
+              },
+              "Student_Name__c": "Alex Smith",
+              "Class_Enrolled__c": 7
+            },
+            {
+              "attributes": {
+                "type": "Student__c",
+                "referenceId": "refStudent2"
+              },
+              "Student_Name__c": "Emma Johnson",
+              "Class_Enrolled__c": 8
+            }
+          ]
+        }
+      }
+    ]
+  }
+
+   ```
+
+  ---
+
+  # Important Concepts
+
+  ## records
+
+  ``` json
+  "records"
+
+   ```
+
+  Root collection containing parent records.
+
+  ---
+
+  ## attributes.type
+
+  Defines Salesforce object type.
+
+  Example:
+
+  ``` json
+  "type": "School__c"
+
+   ```
+
+  ---
+
+  ## Child Relationship Name
+
+  ``` json
+  "Students__r"
+
+   ```
+
+  is:
+
+  ``` text
+  child relationship name
+
+   ```
+
+  NOT object API name.
+
+  Used to define:
+
+  ``` text
+  parent → child relationship
+
+   ```
+
+  ---
+
+  # How To Find Child Relationship Name
+
+  Use Describe API:
+
+  ``` http
+  GET /services/data/v64.0/sobjects/School__c/describe
+
+   ```
+
+  Look inside:
+
+  ``` text
+  childRelationships
+
+   ```
+
+  Find:
+
+  ``` text
+  relationshipName
+
+   ```
+
+  Example:
+
+  ``` text
+  Students__r
+
+   ```
+
+  ---
+
+  # Automatic Relationship Linking
+
+  Tree API automatically links child records to parent.
+
+  You do NOT manually pass:
+
+  ``` text
+  School__c Id
+
+   ```
+
+  Hierarchy itself defines relationship.
+
+  ---
+
+  # referenceId
+
+  Example:
+
+  ``` json
+  "referenceId": "refStudent1"
+
+   ```
+
+  Purpose:
+
+  - response mapping
+      
+  - request identification
+      
+  - debugging
+      
+
+  NOT used for:
+
+  - dynamic chaining
+      
+  - relationship linking
+      
+
+  Unlike:
+
+  ``` text
+  /composite/
+
+   ```
+
+  Tree API does not use:
+
+  ``` text
+  @{referenceId.id}
+
+   ```
+
+  ---
+
+  # Response Structure
+
+  ``` json
+  {
+    "hasErrors": false,
+    "results": [
+      {
+        "referenceId": "refSchool1",
+        "id": "a0BXXXXXXXXXXXX"
+      },
+      {
+        "referenceId": "refStudent1",
+        "id": "a1hXXXXXXXXXXXX"
+      },
+      {
+        "referenceId": "refStudent2",
+        "id": "a1hYYYYYYYYYYYY"
+      }
+    ]
+  }
+
+   ```
+
+  ---
+
+  # Response Mapping
+
+  Responses are identified using:
+
+  ``` text
+  referenceId
+
+   ```
+
+  Example:
+
+  | referenceId | Meaning |
+  | --- | --- |
+  | refSchool1 | created School__c |
+  | refStudent1 | Alex Smith |
+  | refStudent2 | Emma Johnson |
+
+  ---
+
+  # Important Difference
+
+  | API | Purpose |
+  | --- | --- |
+  | `/batch/` | independent requests |
+  | `/composite/` | dependent chained requests |
+  | `/tree/` | hierarchical parent-child inserts |
+
+  ---
+
+  # Enterprise Use Cases
+
+  - onboarding systems
+      
+  - ERP imports
+      
+  - migrations
+      
+  - order/order-item creation
+      
+  - school/student imports
+      
+  - parent-child bulk inserts
+      
+  - hierarchical data loading
+url: "{{RootUrl}}/services/data/v64.0/composite/tree/School__c"
+method: POST
+body:
+  type: json
+  content: "{\r
+
+    \  \"records\": [\r
+
+    \    {\r
+
+    \      \"attributes\": {\r
+
+    \        \"type\": \"School__c\",\r
+
+    \        \"referenceId\": \"refSchool12\"\r
+
+    \      },\r
+
+    \      \"Name\": \"Springfield High School\",\r
+
+    \r
+
+    \      \"Students_null__r\": {\r
+
+    \        \"records\": [\r
+
+    \          {\r
+
+    \            \"attributes\": {\r
+
+    \              \"type\": \"Student__c\",\r
+
+    \              \"referenceId\": \"refStudent1\"\r
+
+    \            },\r
+
+    \            \"Student_Name__c\": \"Alex Smith\",\r
+
+    \            \"Class_Enrolled__c\": 7\r
+
+    \          },\r
+
+    \          {\r
+
+    \            \"attributes\": {\r
+
+    \              \"type\": \"Student__c\",\r
+
+    \              \"referenceId\": \"refStudent2\"\r
+
+    \            },\r
+
+    \            \"Student_Name__c\": \"Emma Johnson\",\r
+
+    \            \"Class_Enrolled__c\": 8\r
+
+    \          }\r
+
+    \        ]\r
+
+    \      }\r
+
+    \    }\r
+
+    \  ]\r
+
+    }"
+examples: .resources/Composite Tree.resources/examples
+order: 1688765440645210

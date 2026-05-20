@@ -1,0 +1,102 @@
+$kind: http-example
+request:
+  url: "{{RootUrl}}/services/data/v64.0/composite"
+  method: POST
+  body:
+    type: json
+    content: "{\r
+
+      \  \"allOrNone\": true,\r
+
+      \  \"compositeRequest\": [\r
+
+      \    {\r
+
+      \      \"method\": \"POST\",\r
+
+      \      \"url\": \"/services/data/v64.0/sobjects/School__c\",\r
+
+      \      \"referenceId\": \"newSchool\",\r
+
+      \      \"body\": {\r
+
+      \        \"Name\": \"Springfield High School\"\r
+
+      \      }\r
+
+      \    },\r
+
+      \    {\r
+
+      \      \"method\": \"POST\",\r
+
+      \      \"url\": \"/services/data/v64.0/sobjects/Student__c\",\r
+
+      \      \"referenceId\": \"newStudent\",\r
+
+      \      \"body\": {\r
+
+      \        \"Student_Name__c\": \"Alex Smith\",\r
+
+      \        \"Class_Enrolled__c\": 7,\r
+
+      \        \"School__c\": \"@{newSchool.id}\"\r
+
+      \      }\r
+
+      \    }\r
+
+      \  ]\r
+
+      }"
+response:
+  statusCode: 200
+  statusText: OK
+  headers:
+    date: Wed, 20 May 2026 11:04:50 GMT
+    content-type: application/json;charset=UTF-8
+    transfer-encoding: chunked
+    connection: keep-alive
+    content-encoding: gzip
+    sforce-limit-info: api-usage=507/15000
+    x-content-type-options: nosniff
+    strict-transport-security: max-age=63072000; includeSubDomains
+    vary: Accept-Encoding
+    cache-control: no-cache,must-revalidate,max-age=0,no-store,private
+    x-robots-tag: none
+    server: sfdcedge
+    x-sfdc-request-id: e1fefa7bbc712aac9e7ba3ad96394a32
+    x-request-id: e1fefa7bbc712aac9e7ba3ad96394a32
+    x-sfdc-edge-cache: none
+  body:
+    type: json
+    content: |-
+      {
+        "compositeResponse": [
+          {
+            "body": {
+              "id": "a1ggK000001X3o9QAC",
+              "success": true,
+              "errors": []
+            },
+            "httpHeaders": {
+              "Location": "/services/data/v64.0/sobjects/School__c/a1ggK000001X3o9QAC"
+            },
+            "httpStatusCode": 201,
+            "referenceId": "newSchool"
+          },
+          {
+            "body": {
+              "id": "a1hgK000002N8zpQAC",
+              "success": true,
+              "errors": []
+            },
+            "httpHeaders": {
+              "Location": "/services/data/v64.0/sobjects/Student__c/a1hgK000002N8zpQAC"
+            },
+            "httpStatusCode": 201,
+            "referenceId": "newStudent"
+          }
+        ]
+      }
+order: 1779275301940

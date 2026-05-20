@@ -1,4 +1,5 @@
 $kind: http-request
+name: Composite Batch
 description: |-
   # Salesforce REST API — Composite Batch API
 
@@ -13,26 +14,20 @@ description: |-
 
   Purpose:
 
-  -   
-      reduce API calls  
+  - reduce API calls
       
-  -   
-      improve performance  
+  - improve performance
       
-  -   
-      execute multiple operations together  
+  - execute multiple operations together
       
 
   Characteristics:
 
-  -   
-      requests are independent  
+  - requests are independent
       
-  -   
-      requests cannot share data  
+  - requests cannot share data
       
-  -   
-      response order matches request order  
+  - response order matches request order
       
 
   ---
@@ -52,26 +47,20 @@ description: |-
 
   Purpose:
 
-  -   
-      reduce API calls  
+  - reduce API calls
       
-  -   
-      improve performance  
+  - improve performance
       
-  -   
-      execute multiple operations together  
+  - execute multiple operations together
       
 
   Characteristics:
 
-  -   
-      requests are independent  
+  - requests are independent
       
-  -   
-      requests cannot share data  
+  - requests cannot share data
       
-  -   
-      response order matches request order  
+  - response order matches request order
       
 
   ---
@@ -168,8 +157,7 @@ description: |-
 
   Example:
 
-  -   
-      Request 2 cannot use Request 1 result  
+  - Request 2 cannot use Request 1 result
       
 
   That capability exists in:
@@ -190,23 +178,17 @@ description: |-
 
   # Enterprise Use Cases
 
-  -   
-      dashboards  
+  - dashboards
       
-  -   
-      metadata retrieval  
+  - metadata retrieval
       
-  -   
-      parallel queries  
+  - parallel queries
       
-  -   
-      mobile optimization  
+  - mobile optimization
       
-  -   
-      middleware orchestration  
+  - middleware orchestration
       
-  -   
-      reducing network round trips
+  - reducing network round trips
 url: "{{RootUrl}}/services/data/v64.0/composite/batch"
 method: POST
 body:

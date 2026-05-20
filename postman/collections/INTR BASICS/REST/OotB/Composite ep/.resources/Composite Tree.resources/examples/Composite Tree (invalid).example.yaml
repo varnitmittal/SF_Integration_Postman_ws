@@ -1,0 +1,96 @@
+$kind: http-example
+request:
+  url: "{{RootUrl}}/services/data/v64.0/composite/tree/School__c"
+  method: POST
+  body:
+    type: json
+    content: "{\r
+
+      \  \"records\": [\r
+
+      \    {\r
+
+      \      \"attributes\": {\r
+
+      \        \"type\": \"School__c\",\r
+
+      \        \"referenceId\": \"refSchool12\"\r
+
+      \      },\r
+
+      \      \"Name\": \"Springfield High School\",\r
+
+      \r
+
+      \      \"Students_null__r\": {\r
+
+      \        \"records\": [\r
+
+      \          {\r
+
+      \            \"attributes\": {\r
+
+      \              \"type\": \"Student__c\",\r
+
+      \              \"referenceId\": \"refStudent1\"\r
+
+      \            },\r
+
+      \            \"Student_Name__c\": \"Alex Smith\",\r
+
+      \            \"Class_Enrolled__c\": 7\r
+
+      \          },\r
+
+      \          {\r
+
+      \            \"attributes\": {\r
+
+      \              \"type\": \"Student__c\",\r
+
+      \              \"referenceId\": \"refStudent2\"\r
+
+      \            },\r
+
+      \            \"Student_Name__c\": \"Emma Johnson\",\r
+
+      \            \"Class_Enrolled__c\": 8\r
+
+      \          }\r
+
+      \        ]\r
+
+      \      }\r
+
+      \    }\r
+
+      \  ]\r
+
+      }"
+response:
+  statusCode: 400
+  statusText: Bad Request
+  headers:
+    date: Wed, 20 May 2026 12:26:55 GMT
+    content-type: application/json;charset=UTF-8
+    transfer-encoding: chunked
+    connection: keep-alive
+    vary: Accept-Encoding
+    x-content-type-options: nosniff
+    strict-transport-security: max-age=63072000; includeSubDomains
+    x-robots-tag: none
+    cache-control: no-cache,must-revalidate,max-age=0,no-store,private
+    sforce-limit-info: api-usage=538/15000
+    server: sfdcedge
+    x-sfdc-request-id: 187f5f93a2122ae29939fbbcc115234d
+    x-request-id: 187f5f93a2122ae29939fbbcc115234d
+  body:
+    type: json
+    content: |-
+      [
+        {
+          "message": "No such column 'Students_null__r' on sobject of type School__c",
+          "errorCode": "INVALID_FIELD"
+        }
+      ]
+order: 36577453785237

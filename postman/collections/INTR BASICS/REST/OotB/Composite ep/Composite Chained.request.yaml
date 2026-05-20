@@ -1,0 +1,292 @@
+$kind: http-request
+name: Composite Chained
+description: |-
+  # Salesforce REST API — Composite API (Chained Requests)
+
+  Composite API allows multiple dependent Salesforce REST requests in a single HTTP request.
+
+  Endpoint:
+
+  ``` http
+  POST /services/data/v64.0/composite
+
+   ```
+
+  Purpose:
+
+  - reduce API calls
+      
+  - orchestrate dependent operations
+      
+  - chain requests together
+      
+  - support transaction-style workflows
+      
+
+  Characteristics:
+
+  - requests can share data
+      
+  - later requests can use earlier responses
+      
+  - supports request orchestration
+      
+  - supports transaction-like behavior
+      
+
+  ---
+
+  # Request Structure
+
+  ``` json
+  {
+    "allOrNone": true,
+    "compositeRequest": [
+      {
+        "method": "POST",
+        "url": "/services/data/v64.0/sobjects/School__c",
+        "referenceId": "newSchool",
+        "body": {
+          "Name": "Springfield High School"
+        }
+      },
+      {
+        "method": "POST",
+        "url": "/services/data/v64.0/sobjects/Student__c",
+        "referenceId": "newStudent",
+        "body": {
+          "Student_Name__c": "Alex Smith",
+          "Class_Enrolled__c": 7,
+          "School__c": "@{newSchool.id}"
+        }
+      }
+    ]
+  }
+
+   ```
+
+  ---
+
+  # Important Concepts
+
+  ## referenceId
+
+  ``` text
+  referenceId
+
+   ```
+
+  labels a request response.
+
+  Example:
+
+  ``` text
+  newSchool
+
+   ```
+
+  ---
+
+  ## Dynamic Reference
+
+  ``` text
+  @{newSchool.id}
+
+   ```
+
+  means:
+
+  ``` text
+  use School__c Id returned by first request
+
+   ```
+
+  This allows:
+
+  ``` text
+  request chaining
+
+   ```
+
+  ---
+
+  # Example Flow
+
+  Request 1:
+
+  ``` text
+  Create School__c
+
+   ```
+
+  Request 2:
+
+  ``` text
+  Create Student__c linked to created School__c
+
+   ```
+
+  Both execute in one HTTP request.
+
+  ---
+
+  # allOrNone
+
+  ``` json
+  "allOrNone": true
+
+   ```
+
+  Meaning:
+
+  - if one request fails
+      
+  - all previous successful requests rollback
+      
+
+  Transaction-style behavior.
+
+  If:
+
+  ``` json
+  false
+
+   ```
+
+  then successful requests remain committed.
+
+  ---
+
+  # Response Structure
+
+  ``` json
+  {
+    "compositeResponse": [
+      {
+        "body": {
+          "id": "a0BXXXXXXXXXXXX"
+        },
+        "httpStatusCode": 201,
+        "referenceId": "newSchool"
+      },
+      {
+        "body": {
+          "id": "a1hXXXXXXXXXXXX"
+        },
+        "httpStatusCode": 201,
+        "referenceId": "newStudent"
+      }
+    ]
+  }
+
+   ```
+
+  ---
+
+  # Response Mapping
+
+  Responses are identified using:
+
+  ``` text
+  referenceId
+
+   ```
+
+  instead of:
+
+  ``` text
+  response index
+
+   ```
+
+  Example:
+
+  | referenceId | Meaning |
+  | --- | --- |
+  | newSchool | School__c creation response |
+  | newStudent | Student__c creation response |
+
+  ---
+
+  # Important Difference from Batch API
+
+  Batch API:
+
+  ``` text
+  requests are independent
+
+   ```
+
+  Composite API:
+
+  ``` text
+  requests can share data
+
+   ```
+
+  ---
+
+  # Enterprise Use Cases
+
+  - parent-child record creation
+      
+  - orchestrated integrations
+      
+  - middleware workflows
+      
+  - transactional APIs
+      
+  - mobile backend optimization
+      
+  - multi-step business processes
+url: "{{RootUrl}}/services/data/v64.0/composite"
+method: POST
+body:
+  type: json
+  content: "{\r
+
+    \  \"allOrNone\": true,\r
+
+    \  \"compositeRequest\": [\r
+
+    \    {\r
+
+    \      \"method\": \"POST\",\r
+
+    \      \"url\": \"/services/data/v64.0/sobjects/School__c\",\r
+
+    \      \"referenceId\": \"newSchool\",\r
+
+    \      \"body\": {\r
+
+    \        \"Name\": \"Springfield High School\"\r
+
+    \      }\r
+
+    \    },\r
+
+    \    {\r
+
+    \      \"method\": \"POST\",\r
+
+    \      \"url\": \"/services/data/v65.0/sobjects/Student__c\",\r
+
+    \      \"referenceId\": \"newStudent\",\r
+
+    \      \"body\": {\r
+
+    \        \"Student_Name__c\": \"Alex Smith\",\r
+
+    \        \"Class_Enrolled__c\": 7,\r
+
+    \        \"School__c\": \"@{newSchool.id}\"\r
+
+    \      }\r
+
+    \    }\r
+
+    \  ]\r
+
+    }"
+examples: .resources/Composite Chained.resources/examples
+order: 309861658493224
