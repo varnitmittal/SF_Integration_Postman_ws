@@ -1,0 +1,41 @@
+$kind: http-example
+request:
+  url: "{{RootUrl}}/services/data/v64.0/query?q=SELECT+COUNT(school__c)+FROM+Student__c"
+  method: GET
+  queryParams:
+    q: SELECT+COUNT(school__c)+FROM+Student__c
+response:
+  statusCode: 200
+  statusText: OK
+  headers:
+    date: Wed, 20 May 2026 09:26:11 GMT
+    content-type: application/json;charset=UTF-8
+    transfer-encoding: chunked
+    connection: keep-alive
+    x-content-type-options: nosniff
+    sforce-limit-info: api-usage=67/15000
+    strict-transport-security: max-age=63072000; includeSubDomains
+    content-encoding: gzip
+    x-robots-tag: none
+    vary: Accept-Encoding
+    cache-control: no-cache,must-revalidate,max-age=0,no-store,private
+    server: sfdcedge
+    x-sfdc-request-id: f3d316c46a23fcf8ee3fc2514e454c63
+    x-request-id: f3d316c46a23fcf8ee3fc2514e454c63
+    x-sfdc-edge-cache: none
+  body:
+    type: json
+    content: |-
+      {
+        "totalSize": 1,
+        "done": true,
+        "records": [
+          {
+            "attributes": {
+              "type": "AggregateResult"
+            },
+            "expr0": 50
+          }
+        ]
+      }
+order: 1779269174151

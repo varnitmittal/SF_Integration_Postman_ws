@@ -1,0 +1,12 @@
+$kind: http-request
+name: Simple Query
+url: "{{RootUrl}}/services/data/v64.0/query?q=SELECT+Id,Name,Student_Name__c,Email__c+FROM+Student_a__c"
+method: GET
+queryParams:
+  q: SELECT+Id,Name,Student_Name__c,Email__c+FROM+Student_a__c
+auth:
+  type: bearer
+  credentials:
+    token: "{{MyBearerToken}}"
+examples: .resources/Simple Query.resources/examples
+order: 1779268900518

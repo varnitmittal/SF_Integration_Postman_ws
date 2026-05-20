@@ -1,0 +1,33 @@
+$kind: http-example
+request:
+  url: "{{RootUrl}}/services/data/v64.0/query?q=SELECT+Id,Name,Student_Name__c,Email__c+FROM+Student_a__c"
+  method: GET
+  queryParams:
+    q: SELECT+Id,Name,Student_Name__c,Email__c+FROM+Student_a__c
+response:
+  statusCode: 400
+  statusText: Bad Request
+  headers:
+    date: Wed, 20 May 2026 09:22:45 GMT
+    content-type: application/json;charset=UTF-8
+    transfer-encoding: chunked
+    connection: keep-alive
+    vary: Accept-Encoding
+    x-content-type-options: nosniff
+    strict-transport-security: max-age=63072000; includeSubDomains
+    x-robots-tag: none
+    cache-control: no-cache,must-revalidate,max-age=0,no-store,private
+    sforce-limit-info: api-usage=62/15000
+    server: sfdcedge
+    x-sfdc-request-id: 11cba92674adc9c27819d20837e161d0
+    x-request-id: 11cba92674adc9c27819d20837e161d0
+  body:
+    type: json
+    content: |-
+      [
+        {
+          "message": "\nStudent_Name__c,Email__c FROM Student_a__c\n                              ^\nERROR at Row:1:Column:46\nsObject type 'Student_a__c' is not supported. If you are attempting to use a custom object, be sure to append the '__c' after the entity name. Please reference your WSDL or the describe call for the appropriate names.",
+          "errorCode": "INVALID_TYPE"
+        }
+      ]
+order: 4206262588169069

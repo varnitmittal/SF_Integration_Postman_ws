@@ -1,8 +1,6 @@
 $kind: collection
 name: SObject ep
 description: |-
-  StartFragment
-
   # Salesforce REST API — `/services/data/v64.0/sobjects/`
 
   This endpoint is used to work with Salesforce objects (`sObjects`) through REST API.
@@ -286,6 +284,4 @@ description: |-
    ```
 
   That is the standard Salesforce REST CRUD endpoint for your custom object.
-
-  EndFragment
 order: 2382534874759167

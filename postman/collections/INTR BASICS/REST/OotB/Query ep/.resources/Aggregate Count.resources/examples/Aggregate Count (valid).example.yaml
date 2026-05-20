@@ -1,0 +1,119 @@
+$kind: http-example
+request:
+  url: "{{RootUrl}}/services/data/v64.0/query?q=SELECT+School__r.Name,COUNT(Id)+FROM+Student__c+GROUP+BY+School__r.Name"
+  method: GET
+  queryParams:
+    q: SELECT+School__r.Name,COUNT(Id)+FROM+Student__c+GROUP+BY+School__r.Name
+response:
+  statusCode: 200
+  statusText: OK
+  headers:
+    date: Wed, 20 May 2026 09:27:59 GMT
+    content-type: application/json;charset=UTF-8
+    transfer-encoding: chunked
+    connection: keep-alive
+    content-encoding: gzip
+    sforce-limit-info: api-usage=70/15000
+    x-content-type-options: nosniff
+    vary: Accept-Encoding
+    cache-control: no-cache,must-revalidate,max-age=0,no-store,private
+    strict-transport-security: max-age=63072000; includeSubDomains
+    x-robots-tag: none
+    server: sfdcedge
+    x-sfdc-request-id: 1c8456dcbe1516e824cca243f52b51c6
+    x-request-id: 1c8456dcbe1516e824cca243f52b51c6
+    x-sfdc-edge-cache: none
+  body:
+    type: json
+    content: |-
+      {
+        "totalSize": 12,
+        "done": true,
+        "records": [
+          {
+            "attributes": {
+              "type": "AggregateResult"
+            },
+            "Name": null,
+            "expr0": 2
+          },
+          {
+            "attributes": {
+              "type": "AggregateResult"
+            },
+            "Name": "Bright Future School",
+            "expr0": 4
+          },
+          {
+            "attributes": {
+              "type": "AggregateResult"
+            },
+            "Name": "Sunrise Public School",
+            "expr0": 4
+          },
+          {
+            "attributes": {
+              "type": "AggregateResult"
+            },
+            "Name": "Cedar Valley School",
+            "expr0": 4
+          },
+          {
+            "attributes": {
+              "type": "AggregateResult"
+            },
+            "Name": "Oakridge International",
+            "expr0": 3
+          },
+          {
+            "attributes": {
+              "type": "AggregateResult"
+            },
+            "Name": "Riverdale High",
+            "expr0": 5
+          },
+          {
+            "attributes": {
+              "type": "AggregateResult"
+            },
+            "Name": "Mckinney High School",
+            "expr0": 7
+          },
+          {
+            "attributes": {
+              "type": "AggregateResult"
+            },
+            "Name": "Westview Academy",
+            "expr0": 5
+          },
+          {
+            "attributes": {
+              "type": "AggregateResult"
+            },
+            "Name": "Hillcrest High",
+            "expr0": 4
+          },
+          {
+            "attributes": {
+              "type": "AggregateResult"
+            },
+            "Name": "Lincoln High School",
+            "expr0": 5
+          },
+          {
+            "attributes": {
+              "type": "AggregateResult"
+            },
+            "Name": "Roosevelt High School",
+            "expr0": 5
+          },
+          {
+            "attributes": {
+              "type": "AggregateResult"
+            },
+            "Name": "Greenwood School",
+            "expr0": 4
+          }
+        ]
+      }
+order: 1779269292436

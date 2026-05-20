@@ -1,0 +1,7 @@
+$kind: http-request
+url: "{{RootUrl}}/services/data/v64.0/query?q=SELECT+School__r.Name,COUNT(Id)+FROM+Student__c+GROUP+BY+School__r.Name"
+method: GET
+queryParams:
+  q: SELECT+School__r.Name,COUNT(Id)+FROM+Student__c+GROUP+BY+School__r.Name
+examples: .resources/Aggregate Count.resources/examples
+order: 3278075977980207

@@ -1,3 +1,9 @@
 $kind: collection
 name: REST
+auth:
+  - id: 66db992e-984f-47fe-922f-a42974c8e2c3
+    type: bearer
+    name: Bearer Token
+    credentials:
+      token: "{{MyBearerToken}}"
 order: 1447507993296895

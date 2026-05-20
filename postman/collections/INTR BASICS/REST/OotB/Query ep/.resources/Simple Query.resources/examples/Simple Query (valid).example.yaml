@@ -1,0 +1,555 @@
+$kind: http-example
+request:
+  url: "{{RootUrl}}/services/data/v64.0/query?q=SELECT+Id,Name,Student_Name__c,Email__c+FROM+Student__c"
+  method: GET
+  queryParams:
+    q: SELECT+Id,Name,Student_Name__c,Email__c+FROM+Student__c
+response:
+  statusCode: 200
+  statusText: OK
+  headers:
+    date: Wed, 20 May 2026 09:22:04 GMT
+    content-type: application/json;charset=UTF-8
+    transfer-encoding: chunked
+    connection: keep-alive
+    vary: Accept-Encoding
+    cache-control: no-cache,must-revalidate,max-age=0,no-store,private
+    x-content-type-options: nosniff
+    content-encoding: gzip
+    sforce-limit-info: api-usage=62/15000
+    strict-transport-security: max-age=63072000; includeSubDomains
+    x-robots-tag: none
+    server: sfdcedge
+    x-sfdc-request-id: eb7652556e6af8d3b885c2e44228861a
+    x-request-id: eb7652556e6af8d3b885c2e44228861a
+    x-sfdc-edge-cache: none
+  body:
+    type: json
+    content: |-
+      {
+        "totalSize": 52,
+        "done": true,
+        "records": [
+          {
+            "attributes": {
+              "type": "Student__c",
+              "url": "/services/data/v64.0/sobjects/Student__c/a1hgK000002LFR7QAO"
+            },
+            "Id": "a1hgK000002LFR7QAO",
+            "Name": "St-0001",
+            "Student_Name__c": "Alex Smith",
+            "Email__c": "st84165@yopmail.com"
+          },
+          {
+            "attributes": {
+              "type": "Student__c",
+              "url": "/services/data/v64.0/sobjects/Student__c/a1hgK000002LFSjQAO"
+            },
+            "Id": "a1hgK000002LFSjQAO",
+            "Name": "St-0002",
+            "Student_Name__c": "Emma Johnson",
+            "Email__c": "st0002@yopmail.com"
+          },
+          {
+            "attributes": {
+              "type": "Student__c",
+              "url": "/services/data/v64.0/sobjects/Student__c/a1hgK000002LFSkQAO"
+            },
+            "Id": "a1hgK000002LFSkQAO",
+            "Name": "St-0003",
+            "Student_Name__c": "Liam Brown",
+            "Email__c": "updatedstudent123@yopmail.com"
+          },
+          {
+            "attributes": {
+              "type": "Student__c",
+              "url": "/services/data/v64.0/sobjects/Student__c/a1hgK000002LFSlQAO"
+            },
+            "Id": "a1hgK000002LFSlQAO",
+            "Name": "St-0004",
+            "Student_Name__c": "Olivia Davis",
+            "Email__c": "st0004@yopmail.com"
+          },
+          {
+            "attributes": {
+              "type": "Student__c",
+              "url": "/services/data/v64.0/sobjects/Student__c/a1hgK000002LFSnQAO"
+            },
+            "Id": "a1hgK000002LFSnQAO",
+            "Name": "St-0006",
+            "Student_Name__c": "Sophia Moore",
+            "Email__c": "patchviacodex12@yopmail.com"
+          },
+          {
+            "attributes": {
+              "type": "Student__c",
+              "url": "/services/data/v64.0/sobjects/Student__c/a1hgK000002LFSoQAO"
+            },
+            "Id": "a1hgK000002LFSoQAO",
+            "Name": "St-0007",
+            "Student_Name__c": "James Taylor",
+            "Email__c": "st0007@yopmail.com"
+          },
+          {
+            "attributes": {
+              "type": "Student__c",
+              "url": "/services/data/v64.0/sobjects/Student__c/a1hgK000002LFSpQAO"
+            },
+            "Id": "a1hgK000002LFSpQAO",
+            "Name": "St-0008",
+            "Student_Name__c": "Isabella Martinez",
+            "Email__c": "st0008@yopmail.com"
+          },
+          {
+            "attributes": {
+              "type": "Student__c",
+              "url": "/services/data/v64.0/sobjects/Student__c/a1hgK000002LFSqQAO"
+            },
+            "Id": "a1hgK000002LFSqQAO",
+            "Name": "St-0009",
+            "Student_Name__c": "William Anderson",
+            "Email__c": "st0009@yopmail.com"
+          },
+          {
+            "attributes": {
+              "type": "Student__c",
+              "url": "/services/data/v64.0/sobjects/Student__c/a1hgK000002LFSrQAO"
+            },
+            "Id": "a1hgK000002LFSrQAO",
+            "Name": "St-0010",
+            "Student_Name__c": "Mia Thomas",
+            "Email__c": "st0010@yopmail.com"
+          },
+          {
+            "attributes": {
+              "type": "Student__c",
+              "url": "/services/data/v64.0/sobjects/Student__c/a1hgK000002LFSsQAO"
+            },
+            "Id": "a1hgK000002LFSsQAO",
+            "Name": "St-0011",
+            "Student_Name__c": "Benjamin Jackson",
+            "Email__c": "st0011@yopmail.com"
+          },
+          {
+            "attributes": {
+              "type": "Student__c",
+              "url": "/services/data/v64.0/sobjects/Student__c/a1hgK000002LFStQAO"
+            },
+            "Id": "a1hgK000002LFStQAO",
+            "Name": "St-0012",
+            "Student_Name__c": "Charlotte White",
+            "Email__c": "st0012@yopmail.com"
+          },
+          {
+            "attributes": {
+              "type": "Student__c",
+              "url": "/services/data/v64.0/sobjects/Student__c/a1hgK000002LFSuQAO"
+            },
+            "Id": "a1hgK000002LFSuQAO",
+            "Name": "St-0013",
+            "Student_Name__c": "Lucas Harris",
+            "Email__c": "st0013@yopmail.com"
+          },
+          {
+            "attributes": {
+              "type": "Student__c",
+              "url": "/services/data/v64.0/sobjects/Student__c/a1hgK000002LFSvQAO"
+            },
+            "Id": "a1hgK000002LFSvQAO",
+            "Name": "St-0014",
+            "Student_Name__c": "Amelia Lewis",
+            "Email__c": "st0014@yopmail.com"
+          },
+          {
+            "attributes": {
+              "type": "Student__c",
+              "url": "/services/data/v64.0/sobjects/Student__c/a1hgK000002LFSwQAO"
+            },
+            "Id": "a1hgK000002LFSwQAO",
+            "Name": "St-0015",
+            "Student_Name__c": "Henry Walker",
+            "Email__c": "st0015@yopmail.com"
+          },
+          {
+            "attributes": {
+              "type": "Student__c",
+              "url": "/services/data/v64.0/sobjects/Student__c/a1hgK000002LFSxQAO"
+            },
+            "Id": "a1hgK000002LFSxQAO",
+            "Name": "St-0016",
+            "Student_Name__c": "Evelyn Hall",
+            "Email__c": "st0016@yopmail.com"
+          },
+          {
+            "attributes": {
+              "type": "Student__c",
+              "url": "/services/data/v64.0/sobjects/Student__c/a1hgK000002LFSyQAO"
+            },
+            "Id": "a1hgK000002LFSyQAO",
+            "Name": "St-0017",
+            "Student_Name__c": "Daniel Allen",
+            "Email__c": "st0017@yopmail.com"
+          },
+          {
+            "attributes": {
+              "type": "Student__c",
+              "url": "/services/data/v64.0/sobjects/Student__c/a1hgK000002LFSzQAO"
+            },
+            "Id": "a1hgK000002LFSzQAO",
+            "Name": "St-0018",
+            "Student_Name__c": "Harper Young",
+            "Email__c": "st0018@yopmail.com"
+          },
+          {
+            "attributes": {
+              "type": "Student__c",
+              "url": "/services/data/v64.0/sobjects/Student__c/a1hgK000002LFT0QAO"
+            },
+            "Id": "a1hgK000002LFT0QAO",
+            "Name": "St-0019",
+            "Student_Name__c": "Michael King",
+            "Email__c": "st0019@yopmail.com"
+          },
+          {
+            "attributes": {
+              "type": "Student__c",
+              "url": "/services/data/v64.0/sobjects/Student__c/a1hgK000002LFT1QAO"
+            },
+            "Id": "a1hgK000002LFT1QAO",
+            "Name": "St-0020",
+            "Student_Name__c": "Ella Scott",
+            "Email__c": "st0020@yopmail.com"
+          },
+          {
+            "attributes": {
+              "type": "Student__c",
+              "url": "/services/data/v64.0/sobjects/Student__c/a1hgK000002LFkTQAW"
+            },
+            "Id": "a1hgK000002LFkTQAW",
+            "Name": "St-0021",
+            "Student_Name__c": "Aiden Green",
+            "Email__c": "st0021@yopmail.com"
+          },
+          {
+            "attributes": {
+              "type": "Student__c",
+              "url": "/services/data/v64.0/sobjects/Student__c/a1hgK000002LFkUQAW"
+            },
+            "Id": "a1hgK000002LFkUQAW",
+            "Name": "St-0022",
+            "Student_Name__c": "Scarlett Adams",
+            "Email__c": "st0022@yopmail.com"
+          },
+          {
+            "attributes": {
+              "type": "Student__c",
+              "url": "/services/data/v64.0/sobjects/Student__c/a1hgK000002LFkVQAW"
+            },
+            "Id": "a1hgK000002LFkVQAW",
+            "Name": "St-0023",
+            "Student_Name__c": "Jack Nelson",
+            "Email__c": "st0023@yopmail.com"
+          },
+          {
+            "attributes": {
+              "type": "Student__c",
+              "url": "/services/data/v64.0/sobjects/Student__c/a1hgK000002LFkWQAW"
+            },
+            "Id": "a1hgK000002LFkWQAW",
+            "Name": "St-0024",
+            "Student_Name__c": "Grace Carter",
+            "Email__c": "st0024@yopmail.com"
+          },
+          {
+            "attributes": {
+              "type": "Student__c",
+              "url": "/services/data/v64.0/sobjects/Student__c/a1hgK000002LFkXQAW"
+            },
+            "Id": "a1hgK000002LFkXQAW",
+            "Name": "St-0025",
+            "Student_Name__c": "Leo Mitchell",
+            "Email__c": "st0025@yopmail.com"
+          },
+          {
+            "attributes": {
+              "type": "Student__c",
+              "url": "/services/data/v64.0/sobjects/Student__c/a1hgK000002LFkYQAW"
+            },
+            "Id": "a1hgK000002LFkYQAW",
+            "Name": "St-0026",
+            "Student_Name__c": "Chloe Perez",
+            "Email__c": "st0026@yopmail.com"
+          },
+          {
+            "attributes": {
+              "type": "Student__c",
+              "url": "/services/data/v64.0/sobjects/Student__c/a1hgK000002LFkZQAW"
+            },
+            "Id": "a1hgK000002LFkZQAW",
+            "Name": "St-0027",
+            "Student_Name__c": "Matthew Roberts",
+            "Email__c": "st0027@yopmail.com"
+          },
+          {
+            "attributes": {
+              "type": "Student__c",
+              "url": "/services/data/v64.0/sobjects/Student__c/a1hgK000002LFkaQAG"
+            },
+            "Id": "a1hgK000002LFkaQAG",
+            "Name": "St-0028",
+            "Student_Name__c": "Zoe Turner",
+            "Email__c": "st0028@yopmail.com"
+          },
+          {
+            "attributes": {
+              "type": "Student__c",
+              "url": "/services/data/v64.0/sobjects/Student__c/a1hgK000002LFkbQAG"
+            },
+            "Id": "a1hgK000002LFkbQAG",
+            "Name": "St-0029",
+            "Student_Name__c": "David Phillips",
+            "Email__c": "st0029@yopmail.com"
+          },
+          {
+            "attributes": {
+              "type": "Student__c",
+              "url": "/services/data/v64.0/sobjects/Student__c/a1hgK000002LFkcQAG"
+            },
+            "Id": "a1hgK000002LFkcQAG",
+            "Name": "St-0030",
+            "Student_Name__c": "Lily Campbell",
+            "Email__c": "st0030@yopmail.com"
+          },
+          {
+            "attributes": {
+              "type": "Student__c",
+              "url": "/services/data/v64.0/sobjects/Student__c/a1hgK000002LFkdQAG"
+            },
+            "Id": "a1hgK000002LFkdQAG",
+            "Name": "St-0031",
+            "Student_Name__c": "Joseph Parker",
+            "Email__c": "st0031@yopmail.com"
+          },
+          {
+            "attributes": {
+              "type": "Student__c",
+              "url": "/services/data/v64.0/sobjects/Student__c/a1hgK000002LFkeQAG"
+            },
+            "Id": "a1hgK000002LFkeQAG",
+            "Name": "St-0032",
+            "Student_Name__c": "Hannah Evans",
+            "Email__c": "st0032@yopmail.com"
+          },
+          {
+            "attributes": {
+              "type": "Student__c",
+              "url": "/services/data/v64.0/sobjects/Student__c/a1hgK000002LFkfQAG"
+            },
+            "Id": "a1hgK000002LFkfQAG",
+            "Name": "St-0033",
+            "Student_Name__c": "Samuel Edwards",
+            "Email__c": "st0033@yopmail.com"
+          },
+          {
+            "attributes": {
+              "type": "Student__c",
+              "url": "/services/data/v64.0/sobjects/Student__c/a1hgK000002LFkgQAG"
+            },
+            "Id": "a1hgK000002LFkgQAG",
+            "Name": "St-0034",
+            "Student_Name__c": "Victoria Collins",
+            "Email__c": "st0034@yopmail.com"
+          },
+          {
+            "attributes": {
+              "type": "Student__c",
+              "url": "/services/data/v64.0/sobjects/Student__c/a1hgK000002LFkhQAG"
+            },
+            "Id": "a1hgK000002LFkhQAG",
+            "Name": "St-0035",
+            "Student_Name__c": "Andrew Stewart",
+            "Email__c": "st0035@yopmail.com"
+          },
+          {
+            "attributes": {
+              "type": "Student__c",
+              "url": "/services/data/v64.0/sobjects/Student__c/a1hgK000002LFkiQAG"
+            },
+            "Id": "a1hgK000002LFkiQAG",
+            "Name": "St-0036",
+            "Student_Name__c": "Natalie Sanchez",
+            "Email__c": "st0036@yopmail.com"
+          },
+          {
+            "attributes": {
+              "type": "Student__c",
+              "url": "/services/data/v64.0/sobjects/Student__c/a1hgK000002LFkjQAG"
+            },
+            "Id": "a1hgK000002LFkjQAG",
+            "Name": "St-0037",
+            "Student_Name__c": "Ryan Morris",
+            "Email__c": "st0037@yopmail.com"
+          },
+          {
+            "attributes": {
+              "type": "Student__c",
+              "url": "/services/data/v64.0/sobjects/Student__c/a1hgK000002LFkkQAG"
+            },
+            "Id": "a1hgK000002LFkkQAG",
+            "Name": "St-0038",
+            "Student_Name__c": "Aria Rogers",
+            "Email__c": "st0038@yopmail.com"
+          },
+          {
+            "attributes": {
+              "type": "Student__c",
+              "url": "/services/data/v64.0/sobjects/Student__c/a1hgK000002LFklQAG"
+            },
+            "Id": "a1hgK000002LFklQAG",
+            "Name": "St-0039",
+            "Student_Name__c": "Christopher Cook",
+            "Email__c": "st0039@yopmail.com"
+          },
+          {
+            "attributes": {
+              "type": "Student__c",
+              "url": "/services/data/v64.0/sobjects/Student__c/a1hgK000002LFkmQAG"
+            },
+            "Id": "a1hgK000002LFkmQAG",
+            "Name": "St-0040",
+            "Student_Name__c": "Penelope Morgan",
+            "Email__c": "st0040@yopmail.com"
+          },
+          {
+            "attributes": {
+              "type": "Student__c",
+              "url": "/services/data/v64.0/sobjects/Student__c/a1hgK000002LFkoQAG"
+            },
+            "Id": "a1hgK000002LFkoQAG",
+            "Name": "St-0042",
+            "Student_Name__c": "Layla Murphy",
+            "Email__c": "st0042@yopmail.com"
+          },
+          {
+            "attributes": {
+              "type": "Student__c",
+              "url": "/services/data/v64.0/sobjects/Student__c/a1hgK000002LFkpQAG"
+            },
+            "Id": "a1hgK000002LFkpQAG",
+            "Name": "St-0043",
+            "Student_Name__c": "Anthony Bailey",
+            "Email__c": "st0043@yopmail.com"
+          },
+          {
+            "attributes": {
+              "type": "Student__c",
+              "url": "/services/data/v64.0/sobjects/Student__c/a1hgK000002LFkqQAG"
+            },
+            "Id": "a1hgK000002LFkqQAG",
+            "Name": "St-0044",
+            "Student_Name__c": "Nora Rivera",
+            "Email__c": "st0044@yopmail.com"
+          },
+          {
+            "attributes": {
+              "type": "Student__c",
+              "url": "/services/data/v64.0/sobjects/Student__c/a1hgK000002LFkrQAG"
+            },
+            "Id": "a1hgK000002LFkrQAG",
+            "Name": "St-0045",
+            "Student_Name__c": "Isaac Cooper",
+            "Email__c": "st0045@yopmail.com"
+          },
+          {
+            "attributes": {
+              "type": "Student__c",
+              "url": "/services/data/v64.0/sobjects/Student__c/a1hgK000002LFksQAG"
+            },
+            "Id": "a1hgK000002LFksQAG",
+            "Name": "St-0046",
+            "Student_Name__c": "Audrey Richardson",
+            "Email__c": "st0046@yopmail.com"
+          },
+          {
+            "attributes": {
+              "type": "Student__c",
+              "url": "/services/data/v64.0/sobjects/Student__c/a1hgK000002LFktQAG"
+            },
+            "Id": "a1hgK000002LFktQAG",
+            "Name": "St-0047",
+            "Student_Name__c": "Joshua Cox",
+            "Email__c": "st0047@yopmail.com"
+          },
+          {
+            "attributes": {
+              "type": "Student__c",
+              "url": "/services/data/v64.0/sobjects/Student__c/a1hgK000002LFkuQAG"
+            },
+            "Id": "a1hgK000002LFkuQAG",
+            "Name": "St-0048",
+            "Student_Name__c": "Brooklyn Howard",
+            "Email__c": "st0048@yopmail.com"
+          },
+          {
+            "attributes": {
+              "type": "Student__c",
+              "url": "/services/data/v64.0/sobjects/Student__c/a1hgK000002LFkvQAG"
+            },
+            "Id": "a1hgK000002LFkvQAG",
+            "Name": "St-0049",
+            "Student_Name__c": "Julian Ward",
+            "Email__c": "st0049@yopmail.com"
+          },
+          {
+            "attributes": {
+              "type": "Student__c",
+              "url": "/services/data/v64.0/sobjects/Student__c/a1hgK000002LFkwQAG"
+            },
+            "Id": "a1hgK000002LFkwQAG",
+            "Name": "St-0050",
+            "Student_Name__c": "Savannah Torres",
+            "Email__c": "st0050@yopmail.com"
+          },
+          {
+            "attributes": {
+              "type": "Student__c",
+              "url": "/services/data/v64.0/sobjects/Student__c/a1hgK000002LHzBQAW"
+            },
+            "Id": "a1hgK000002LHzBQAW",
+            "Name": "St-0070",
+            "Student_Name__c": "John Carter",
+            "Email__c": "st0051@yopmail.com"
+          },
+          {
+            "attributes": {
+              "type": "Student__c",
+              "url": "/services/data/v64.0/sobjects/Student__c/a1hgK000002LI2PQAW"
+            },
+            "Id": "a1hgK000002LI2PQAW",
+            "Name": "St-0072",
+            "Student_Name__c": "John Carter",
+            "Email__c": "st0051@yopmail.com"
+          },
+          {
+            "attributes": {
+              "type": "Student__c",
+              "url": "/services/data/v64.0/sobjects/Student__c/a1hgK000002Lq7JQAS"
+            },
+            "Id": "a1hgK000002Lq7JQAS",
+            "Name": "St-0074",
+            "Student_Name__c": "Ethan Clark",
+            "Email__c": "updatedstudent@yopmail.com"
+          },
+          {
+            "attributes": {
+              "type": "Student__c",
+              "url": "/services/data/v64.0/sobjects/Student__c/a1hgK000002LuqrQAC"
+            },
+            "Id": "a1hgK000002LuqrQAC",
+            "Name": "St-0075",
+            "Student_Name__c": null,
+            "Email__c": "updatedstudent123@yopmail.com"
+          }
+        ]
+      }
+order: 1779268944643

@@ -1,0 +1,180 @@
+$kind: collection
+name: Query ep
+description: |-
+  ## **Salesforce REST API —** **`/services/data/v64.0/query/`**
+
+  This endpoint is used to execute SOQL queries through Salesforce REST API.
+
+  Base Endpoint:
+
+  ```
+  GET /services/data/v64.0/query?q=
+
+   ```
+
+  You append URL-encoded SOQL after `q=`.
+
+  Example:
+
+  ```
+  GET /services/data/v64.0/query?q=SELECT+Id,Name+FROM+Student__c
+
+   ```
+
+  What Salesforce does:
+
+  1. Reads SOQL query
+      
+  2. Executes query
+      
+  3. Returns JSON response
+      
+
+  Example Response:
+
+  ```
+  {  "totalSize": 2,  "done": true,  "records": [    {      "Id": "a1hXXXXXXXXXXXX",      "Name": "St-0001"    }  ]}
+
+   ```
+
+  Important Response Fields:
+
+  | Field | Meaning |
+  | --- | --- |
+  | totalSize | Total matching records |
+  | done | Whether pagination is complete |
+  | records | Actual returned rows |
+  | nextRecordsUrl | URL for next batch/page |
+
+  ---
+
+  ### LIMIT Example
+
+  ```
+  GET /query?q=SELECT+Id,Name+FROM+Student__c+LIMIT+5
+
+   ```
+
+  ---
+
+  ### WHERE Example
+
+  ```
+  GET /query?q=SELECT+Id,Name+FROM+Student__c+WHERE+Name='St-0001'
+
+   ```
+
+  ---
+
+  ### ORDER BY Example
+
+  ```
+  GET /query?q=SELECT+Id,Name+FROM+Student__c+ORDER+BY+CreatedDate+DESC
+
+   ```
+
+  ---
+
+  ### LIKE Example
+
+  ```
+  GET /query?q=SELECT+Id,Name+FROM+Student__c+WHERE+Name+LIKE+'St%'
+
+   ```
+
+  ---
+
+  ### COUNT() Example
+
+  ```
+  GET /query?q=SELECT+COUNT()+FROM+Student__c
+
+   ```
+
+  ---
+
+  ### Aggregate Query Example
+
+  ```
+  GET /query?q=SELECT+School__c,COUNT(Id)+studentCount+FROM+Student__c+GROUP+BY+School__c
+
+   ```
+
+  ---
+
+  ### Pagination Example
+
+  Add header:
+
+  ```
+  Sforce-Query-Options: batchSize=10
+
+   ```
+
+  Request:
+
+  ```
+  GET /query?q=SELECT+Id,Name+FROM+Student__c
+
+   ```
+
+  Example Response:
+
+  ```
+  {  "done": false,  "nextRecordsUrl": "/services/data/v64.0/query/01gXXXXXXXXXXXX"}
+
+   ```
+
+  Fetch next page:
+
+  ```
+  GET /services/data/v64.0/query/01gXXXXXXXXXXXX
+
+   ```
+
+  ---
+
+  ### Important Concept — URL Encoding
+
+  SOQL must be URL encoded.
+
+  Example:
+
+  ```
+  SELECT Id, Name FROM Student__c
+
+   ```
+
+  becomes:
+
+  ```
+  SELECT+Id,+Name+FROM+Student__c
+
+   ```
+
+  Spaces become `+`.
+
+  ---
+
+  ### Real Importance
+
+  `/sobjects/`
+
+  - CRUD on single records
+      
+
+  `/query/`
+
+  - Data retrieval engine
+      
+
+  Most enterprise integrations heavily use query APIs for:
+
+  - reporting
+      
+  - synchronization
+      
+  - filtering
+      
+  - bulk retrieval
+order: 2003345869897727

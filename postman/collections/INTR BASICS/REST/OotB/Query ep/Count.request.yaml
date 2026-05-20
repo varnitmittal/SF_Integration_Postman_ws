@@ -1,0 +1,11 @@
+$kind: http-request
+url: "{{RootUrl}}/services/data/v64.0/query?q=SELECT+COUNT(school__c)+FROM+Student__c"
+method: GET
+queryParams:
+  q: SELECT+COUNT(school__c)+FROM+Student__c
+auth:
+  type: inherit
+  credentials:
+    id: 66db992e-984f-47fe-922f-a42974c8e2c3
+examples: .resources/Count.resources/examples
+order: 1278328568064884
