@@ -1,0 +1,203 @@
+$kind: collection
+name: executeAnonymous ep
+description: |-
+  # Salesforce Tooling API — Execute Anonymous
+
+  Execute Anonymous allows running:
+
+  ``` text
+  temporary Apex code dynamically
+
+   ```
+
+  without creating:
+
+  - Apex class
+      
+  - trigger
+      
+  - flow
+      
+
+  Very heavily used for:
+
+  - testing
+      
+  - debugging
+      
+  - quick scripts
+      
+  - admin tasks
+      
+  - data fixes
+      
+
+  ---
+
+  # Endpoint
+
+  ``` http
+  GET /services/data/v64.0/tooling/executeAnonymous/
+
+   ```
+
+  ---
+
+  # Postman Implementation
+
+  ## Method
+
+  ``` http
+  GET
+
+   ```
+
+  ---
+
+  # Endpoint Example
+
+  ``` http
+  {{RootUrl}}/services/data/v64.0/tooling/executeAnonymous/?anonymousBody=System.debug('Hello Tooling API');
+
+   ```
+
+  ---
+
+  # Headers
+
+  ``` http
+  Authorization: Bearer ACCESS_TOKEN
+
+   ```
+
+  ---
+
+  # What It Does
+
+  Runs Apex immediately:
+
+  ``` apex
+  System.debug('Hello Tooling API');
+
+   ```
+
+  without saving anything in org.
+
+  ---
+
+  # Example — Insert Record
+
+  ``` http
+  {{RootUrl}}/services/data/v64.0/tooling/executeAnonymous/?anonymousBody=Account a = new Account(Name='Test Account'); insert a;
+
+   ```
+
+  Executes:
+
+  - Apex
+      
+  - DML
+      
+  - SOQL
+      
+  - logic
+      
+
+  directly.
+
+  ---
+
+  # Example Response
+
+  ``` json
+  {
+    "compiled": true,
+    "success": true,
+    "line": -1,
+    "column": -1
+  }
+
+   ```
+
+  ---
+
+  # Important Fields
+
+  | Field | Meaning |
+  | --- | --- |
+  | compiled | Apex compiled successfully |
+  | success | execution successful |
+  | line | error line |
+  | column | error column |
+
+  ---
+
+  # Important Concept
+
+  Execute Anonymous:
+
+  ``` text
+  executes Apex instantly
+
+   ```
+
+  but:
+
+  ``` text
+  does NOT save code
+
+   ```
+
+  ---
+
+  # Real-Life Uses
+
+  | Use Case | Example |
+  | --- | --- |
+  | Quick testing | test Apex logic |
+  | Data fixes | update records |
+  | Admin scripts | cleanup data |
+  | Debugging | test SOQL/DML |
+  | Batch testing | invoke async jobs |
+  | Production fixes | temporary operations |
+
+  ---
+
+  # Important Limitation
+
+  Code is:
+
+  ``` text
+  temporary
+
+   ```
+
+  After execution:
+
+  - code disappears
+      
+  - only execution remains
+      
+
+  ---
+
+  # Important Relationship
+
+  Debug output appears in:
+
+  ``` text
+  ApexLog
+
+   ```
+
+  if:
+
+  ``` text
+  TraceFlag is enabled
+
+   ```
+
+  Very important real-world debugging flow.
+
+  **Also, executeanonymous is not supported in tooling composite!**
+order: 4214417916202930

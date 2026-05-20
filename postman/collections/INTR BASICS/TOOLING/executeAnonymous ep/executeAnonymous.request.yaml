@@ -1,0 +1,7 @@
+$kind: http-request
+url: "{{RootUrl}}/services/data/v64.0/tooling/executeAnonymous/?anonymousBody=Account a = new Account(Name='Test Account'); insert a;"
+method: GET
+queryParams:
+  anonymousBody: Account a = new Account(Name='Test Account'); insert a;
+examples: .resources/executeAnonymous.resources/examples
+order: 1779291749671
