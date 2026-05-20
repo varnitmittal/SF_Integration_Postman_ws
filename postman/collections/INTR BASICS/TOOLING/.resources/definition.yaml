@@ -1,0 +1,290 @@
+$kind: collection
+name: TOOLING
+description: |-
+  # Salesforce Tooling API
+
+  Tooling API is Salesforce’s:
+
+  ``` text
+  developer/platform engineering API
+
+   ```
+
+  Used to work with:
+
+  - Apex
+      
+  - metadata
+      
+  - logs
+      
+  - flows
+      
+  - layouts
+      
+  - developer tooling
+      
+  - platform internals
+      
+
+  ---
+
+  # Base Endpoint
+
+  ``` http
+  /services/data/v64.0/tooling/
+
+   ```
+
+  ---
+
+  # Purpose
+
+  Tooling API is used for:
+
+  - code inspection
+      
+  - debugging
+      
+  - metadata querying
+      
+  - developer tooling
+      
+  - org analysis
+      
+  - lightweight metadata operations
+      
+
+  ---
+
+  # Important Difference from REST API
+
+  ## REST API
+
+  Works with:
+
+  ``` text
+  business data
+
+   ```
+
+  Examples:
+
+  - Account
+      
+  - Contact
+      
+  - Student__c
+      
+
+  ---
+
+  ## Tooling API
+
+  Works with:
+
+  ``` text
+  Salesforce platform metadata + developer environment
+
+   ```
+
+  Examples:
+
+  - ApexClass
+      
+  - ApexTrigger
+      
+  - Flow
+      
+  - ApexLog
+      
+  - TraceFlag
+      
+
+  ---
+
+  # Common Base Endpoints
+
+  | Endpoint | Purpose |
+  | --- | --- |
+  | `/tooling/query/` | query metadata |
+  | `/tooling/sobjects/` | metadata entities |
+  | `/tooling/executeAnonymous/` | run Apex dynamically |
+
+  ---
+
+  # Most Important Objects
+
+  | Object | Purpose |
+  | --- | --- |
+  | ApexClass | Apex classes |
+  | ApexTrigger | triggers |
+  | ApexLog | debug logs |
+  | TraceFlag | enable logging |
+  | Flow | flow metadata |
+  | CustomObject | object metadata |
+  | CustomField | field metadata |
+  | Layout | layouts |
+  | RecordType | record types |
+  | PermissionSet | permissions |
+  | AsyncApexJob | async job monitoring |
+
+  ---
+
+  # Common Real-Life Uses
+
+  | Use Case | Tooling API Usage |
+  | --- | --- |
+  | Debug Apex | ApexLog + TraceFlag |
+  | Read org code | ApexClass |
+  | Inspect flows | Flow |
+  | Build schema explorer | EntityDefinition |
+  | Monitor batch jobs | AsyncApexJob |
+  | Build IDE tools | Tooling Query |
+  | Run quick Apex | Execute Anonymous |
+
+  ---
+
+  # Example — Query Apex Classes
+
+  Endpoint:
+
+  ``` http
+  GET /services/data/v64.0/tooling/query?q=SELECT+Name+FROM+ApexClass
+
+   ```
+
+  Purpose:  
+  Retrieve Apex classes from org.
+
+  ---
+
+  # Example — Execute Anonymous
+
+  Endpoint:
+
+  ``` http
+  GET /services/data/v64.0/tooling/executeAnonymous/?anonymousBody=System.debug('Hello');
+
+   ```
+
+  Purpose:  
+  Run Apex dynamically without saving class.
+
+  ---
+
+  # Example — Retrieve Debug Logs
+
+  Endpoint:
+
+  ``` http
+  GET /services/data/v64.0/tooling/query?q=SELECT+Id,Operation,Status+FROM+ApexLog
+
+   ```
+
+  Purpose:  
+  Read execution logs.
+
+  ---
+
+  # Important Architectural Concept
+
+  REST API:
+
+  ``` text
+  application/business layer
+
+   ```
+
+  Tooling API:
+
+  ``` text
+  developer/platform engineering layer
+
+   ```
+
+  ---
+
+  # Important Difference from Metadata API
+
+  ## Tooling API
+
+  Used for:
+
+  ``` text
+  developer tooling + lightweight metadata operations
+
+   ```
+
+  ---
+
+  ## Metadata API
+
+  Used for:
+
+  ``` text
+  full deployments/configuration management
+
+   ```
+
+  Examples:
+
+  - deploy objects
+      
+  - deploy flows
+      
+  - CI/CD
+      
+  - org migrations
+      
+
+  ---
+
+  # Enterprise Importance
+
+  Tooling API powers:
+
+  - VS Code Salesforce extensions
+      
+  - Salesforce IDEs
+      
+  - debug tools
+      
+  - DevOps utilities
+      
+  - schema explorers
+      
+  - deployment analyzers
+      
+  - code analysis platforms
+      
+
+  ---
+
+  # Real Importance
+
+  Tooling API is effectively:
+
+  ``` text
+  Salesforce internal developer-engineering API
+
+   ```
+
+  Very important for:
+
+  - advanced developers
+      
+  - integration engineers
+      
+  - DevOps engineers
+      
+  - architects
+      
+  - platform engineers
+auth:
+  - id: a392d75b-5668-470f-8cb1-c7dae8fd659a
+    type: bearer
+    name: Bearer Token
+    credentials:
+      token: "{{MyBearerToken}}"
+order: 1805500461088767

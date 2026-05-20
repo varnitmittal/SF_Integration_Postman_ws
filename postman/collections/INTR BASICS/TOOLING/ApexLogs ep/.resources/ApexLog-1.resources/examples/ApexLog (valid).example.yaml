@@ -1,0 +1,373 @@
+$kind: http-example
+description: |-
+  # Salesforce Tooling API — ApexLog
+
+  ApexLog stores:
+
+  ``` text
+  Salesforce debug logs
+
+   ```
+
+  Used for:
+
+  - Apex debugging
+      
+  - trigger debugging
+      
+  - flow debugging
+      
+  - error analysis
+      
+  - governor limit analysis
+      
+
+  ---
+
+  # Query Apex Logs
+
+  Endpoint:
+
+  ``` http
+  GET /services/data/v64.0/tooling/query?q=SELECT+Id,Operation,Status,StartTime+FROM+ApexLog
+
+   ```
+
+  ---
+
+  # Postman
+
+  Method:
+
+  ``` http
+  GET
+
+   ```
+
+  URL:
+
+  ``` http
+  {{RootUrl}}/services/data/v64.0/tooling/query?q=SELECT+Id,Operation,Status,StartTime+FROM+ApexLog
+
+   ```
+
+  Headers:
+
+  ``` http
+  Authorization: Bearer ACCESS_TOKEN
+
+   ```
+
+  ---
+
+  # Important Fields
+
+  | Field | Meaning |
+  | --- | --- |
+  | Id | log Id |
+  | Operation | executed operation |
+  | Status | Success/Error |
+  | StartTime | execution time |
+
+  ---
+
+  # Retrieve Full Log Body
+
+  ``` http
+  GET /services/data/v64.0/tooling/sobjects/ApexLog/{LogId}/Body
+
+   ```
+
+  Returns:
+
+  - USER_DEBUG
+      
+  - SOQL
+      
+  - DML
+      
+  - exceptions
+      
+  - governor limits
+      
+
+  ---
+
+  # Important Dependency
+
+  Logs are generated only when:
+
+  ``` text
+  TraceFlag
+
+   ```
+
+  is enabled.
+
+  ---
+
+  # Real Debug Flow
+
+  ``` text
+  Enable TraceFlag
+  ↓
+  Run transaction
+  ↓
+  ApexLog generated
+  ↓
+  Retrieve log
+  ↓
+  Analyze issue
+
+   ```
+
+  ---
+
+  # Real Importance
+
+  ApexLog is one of the most used Tooling API objects for:
+
+  - debugging
+      
+  - issue investigation
+      
+  - performance analysis
+      
+  - production support
+request:
+  url: "{{RootUrl}}/services/data/v64.0/tooling/query?q=SELECT+Id,Operation,Status,StartTime+FROM+ApexLog"
+  method: GET
+  queryParams:
+    q: SELECT+Id,Operation,Status,StartTime+FROM+ApexLog
+response:
+  statusCode: 200
+  statusText: OK
+  headers:
+    date: Wed, 20 May 2026 15:35:46 GMT
+    content-type: application/json;charset=UTF-8
+    transfer-encoding: chunked
+    connection: keep-alive
+    x-content-type-options: nosniff
+    strict-transport-security: max-age=63072000; includeSubDomains
+    sforce-limit-info: api-usage=750/15000
+    content-encoding: gzip
+    vary: Accept-Encoding
+    cache-control: no-cache,must-revalidate,max-age=0,no-store,private
+    x-robots-tag: none
+    server: sfdcedge
+    x-sfdc-request-id: 0ef1040a0c4ffd2aaec564a0a353a2cc
+    x-request-id: 0ef1040a0c4ffd2aaec564a0a353a2cc
+    x-sfdc-edge-cache: none
+  body:
+    type: json
+    content: |-
+      {
+        "size": 20,
+        "totalSize": 20,
+        "done": true,
+        "queryLocator": null,
+        "entityTypeName": "ApexLog",
+        "records": [
+          {
+            "attributes": {
+              "type": "ApexLog",
+              "url": "/services/data/v64.0/tooling/sobjects/ApexLog/07LgK00000LchcbUAB"
+            },
+            "Id": "07LgK00000LchcbUAB",
+            "Operation": "/FSL/PermissionSetsDefaults",
+            "Status": "Success",
+            "StartTime": "2026-05-20T10:00:12.000+0000"
+          },
+          {
+            "attributes": {
+              "type": "ApexLog",
+              "url": "/services/data/v64.0/tooling/sobjects/ApexLog/07LgK00000LcylWUAR"
+            },
+            "Id": "07LgK00000LcylWUAR",
+            "Operation": "/aura",
+            "Status": "Success",
+            "StartTime": "2026-05-20T10:04:43.000+0000"
+          },
+          {
+            "attributes": {
+              "type": "ApexLog",
+              "url": "/services/data/v64.0/tooling/sobjects/ApexLog/07LgK00000Ld4B3UAJ"
+            },
+            "Id": "07LgK00000Ld4B3UAJ",
+            "Operation": "/aura",
+            "Status": "Success",
+            "StartTime": "2026-05-20T10:11:43.000+0000"
+          },
+          {
+            "attributes": {
+              "type": "ApexLog",
+              "url": "/services/data/v64.0/tooling/sobjects/ApexLog/07LgK00000Ld5ocUAB"
+            },
+            "Id": "07LgK00000Ld5ocUAB",
+            "Operation": "/services/data/v64.0/actions/custom/flow/StudentWelcomeService",
+            "Status": "Success",
+            "StartTime": "2026-05-20T10:08:08.000+0000"
+          },
+          {
+            "attributes": {
+              "type": "ApexLog",
+              "url": "/services/data/v64.0/tooling/sobjects/ApexLog/07LgK00000LdAgEUAV"
+            },
+            "Id": "07LgK00000LdAgEUAV",
+            "Operation": "/services/data/v64.0/actions/custom/flow/StudentWelcomeService",
+            "Status": "Success",
+            "StartTime": "2026-05-20T10:11:56.000+0000"
+          },
+          {
+            "attributes": {
+              "type": "ApexLog",
+              "url": "/services/data/v64.0/tooling/sobjects/ApexLog/07LgK00000LdAgFUAV"
+            },
+            "Id": "07LgK00000LdAgFUAV",
+            "Operation": "/services/data/v64.0/actions/custom/flow/StudentWelcomeService",
+            "Status": "Success",
+            "StartTime": "2026-05-20T10:11:57.000+0000"
+          },
+          {
+            "attributes": {
+              "type": "ApexLog",
+              "url": "/services/data/v64.0/tooling/sobjects/ApexLog/07LgK00000LdC8aUAF"
+            },
+            "Id": "07LgK00000LdC8aUAF",
+            "Operation": "/services/data/v64.0/actions/custom/flow/StudentWelcomeService",
+            "Status": "Success",
+            "StartTime": "2026-05-20T10:05:38.000+0000"
+          },
+          {
+            "attributes": {
+              "type": "ApexLog",
+              "url": "/services/data/v64.0/tooling/sobjects/ApexLog/07LgK00000LdIp3UAF"
+            },
+            "Id": "07LgK00000LdIp3UAF",
+            "Operation": "/services/data/v64.0/actions/custom/flow/StudentWelcomeService",
+            "Status": "Success",
+            "StartTime": "2026-05-20T10:10:33.000+0000"
+          },
+          {
+            "attributes": {
+              "type": "ApexLog",
+              "url": "/services/data/v64.0/tooling/sobjects/ApexLog/07LgK00000LdIp4UAF"
+            },
+            "Id": "07LgK00000LdIp4UAF",
+            "Operation": "/services/data/v64.0/actions/custom/flow/StudentWelcomeService",
+            "Status": "Success",
+            "StartTime": "2026-05-20T10:10:33.000+0000"
+          },
+          {
+            "attributes": {
+              "type": "ApexLog",
+              "url": "/services/data/v64.0/tooling/sobjects/ApexLog/07LgK00000LdLACUA3"
+            },
+            "Id": "07LgK00000LdLACUA3",
+            "Operation": "/services/data/v64.0/actions/custom/flow/StudentWelcomeService",
+            "Status": "Success",
+            "StartTime": "2026-05-20T10:05:50.000+0000"
+          },
+          {
+            "attributes": {
+              "type": "ApexLog",
+              "url": "/services/data/v64.0/tooling/sobjects/ApexLog/07LgK00000LdLOjUAN"
+            },
+            "Id": "07LgK00000LdLOjUAN",
+            "Operation": "/aura",
+            "Status": "Success",
+            "StartTime": "2026-05-20T10:08:03.000+0000"
+          },
+          {
+            "attributes": {
+              "type": "ApexLog",
+              "url": "/services/data/v64.0/tooling/sobjects/ApexLog/07LgK00000LdMatUAF"
+            },
+            "Id": "07LgK00000LdMatUAF",
+            "Operation": "/services/data/v64.0/actions/custom/flow/StudentWelcomeService",
+            "Status": "Success",
+            "StartTime": "2026-05-20T10:05:51.000+0000"
+          },
+          {
+            "attributes": {
+              "type": "ApexLog",
+              "url": "/services/data/v64.0/tooling/sobjects/ApexLog/07LgK00000LdPIeUAN"
+            },
+            "Id": "07LgK00000LdPIeUAN",
+            "Operation": "/aura",
+            "Status": "Success",
+            "StartTime": "2026-05-20T10:03:17.000+0000"
+          },
+          {
+            "attributes": {
+              "type": "ApexLog",
+              "url": "/services/data/v64.0/tooling/sobjects/ApexLog/07LgK00000LdS5FUAV"
+            },
+            "Id": "07LgK00000LdS5FUAV",
+            "Operation": "/aura",
+            "Status": "Success",
+            "StartTime": "2026-05-20T10:02:09.000+0000"
+          },
+          {
+            "attributes": {
+              "type": "ApexLog",
+              "url": "/services/data/v64.0/tooling/sobjects/ApexLog/07LgK00000LdUQLUA3"
+            },
+            "Id": "07LgK00000LdUQLUA3",
+            "Operation": "ActiveACCSubsCleanup",
+            "Status": "Success",
+            "StartTime": "2026-05-20T10:00:02.000+0000"
+          },
+          {
+            "attributes": {
+              "type": "ApexLog",
+              "url": "/services/data/v64.0/tooling/sobjects/ApexLog/07LgK00000LdUuzUAF"
+            },
+            "Id": "07LgK00000LdUuzUAF",
+            "Operation": "/aura",
+            "Status": "Success",
+            "StartTime": "2026-05-20T10:03:18.000+0000"
+          },
+          {
+            "attributes": {
+              "type": "ApexLog",
+              "url": "/services/data/v64.0/tooling/sobjects/ApexLog/07LgK00000LdV9VUAV"
+            },
+            "Id": "07LgK00000LdV9VUAV",
+            "Operation": "/aura",
+            "Status": "Success",
+            "StartTime": "2026-05-20T10:04:47.000+0000"
+          },
+          {
+            "attributes": {
+              "type": "ApexLog",
+              "url": "/services/data/v64.0/tooling/sobjects/ApexLog/07LgK00000LdVawUAF"
+            },
+            "Id": "07LgK00000LdVawUAF",
+            "Operation": "/aura",
+            "Status": "Success",
+            "StartTime": "2026-05-20T10:11:38.000+0000"
+          },
+          {
+            "attributes": {
+              "type": "ApexLog",
+              "url": "/services/data/v64.0/tooling/sobjects/ApexLog/07LgK00000LdW3xUAF"
+            },
+            "Id": "07LgK00000LdW3xUAF",
+            "Operation": "/aura",
+            "Status": "Success",
+            "StartTime": "2026-05-20T10:07:59.000+0000"
+          },
+          {
+            "attributes": {
+              "type": "ApexLog",
+              "url": "/services/data/v64.0/tooling/sobjects/ApexLog/07LgK00000LdX85UAF"
+            },
+            "Id": "07LgK00000LdX85UAF",
+            "Operation": "/aura",
+            "Status": "Success",
+            "StartTime": "2026-05-20T10:11:39.000+0000"
+          }
+        ]
+      }
+order: 1779291347704

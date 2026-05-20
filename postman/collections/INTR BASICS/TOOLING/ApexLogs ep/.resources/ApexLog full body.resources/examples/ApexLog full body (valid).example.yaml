@@ -1,0 +1,163 @@
+$kind: http-example
+description: |-
+  # Salesforce Tooling API — ApexLog
+
+  ApexLog stores:
+
+  ``` text
+  Salesforce debug logs
+
+   ```
+
+  Used for:
+
+  - Apex debugging
+      
+  - trigger debugging
+      
+  - flow debugging
+      
+  - error analysis
+      
+  - governor limit analysis
+      
+
+  ---
+
+  # Query Apex Logs
+
+  Endpoint:
+
+  ``` http
+  GET /services/data/v64.0/tooling/query?q=SELECT+Id,Operation,Status,StartTime+FROM+ApexLog
+
+   ```
+
+  ---
+
+  # Postman
+
+  Method:
+
+  ``` http
+  GET
+
+   ```
+
+  URL:
+
+  ``` http
+  {{RootUrl}}/services/data/v64.0/tooling/query?q=SELECT+Id,Operation,Status,StartTime+FROM+ApexLog
+
+   ```
+
+  Headers:
+
+  ``` http
+  Authorization: Bearer ACCESS_TOKEN
+
+   ```
+
+  ---
+
+  # Important Fields
+
+  | Field | Meaning |
+  | --- | --- |
+  | Id | log Id |
+  | Operation | executed operation |
+  | Status | Success/Error |
+  | StartTime | execution time |
+
+  ---
+
+  # Retrieve Full Log Body
+
+  ``` http
+  GET /services/data/v64.0/tooling/sobjects/ApexLog/{LogId}/Body
+
+   ```
+
+  Returns:
+
+  - USER_DEBUG
+      
+  - SOQL
+      
+  - DML
+      
+  - exceptions
+      
+  - governor limits
+      
+
+  ---
+
+  # Important Dependency
+
+  Logs are generated only when:
+
+  ``` text
+  TraceFlag
+
+   ```
+
+  is enabled.
+
+  ---
+
+  # Real Debug Flow
+
+  ``` text
+  Enable TraceFlag
+  ↓
+  Run transaction
+  ↓
+  ApexLog generated
+  ↓
+  Retrieve log
+  ↓
+  Analyze issue
+
+   ```
+
+  ---
+
+  # Real Importance
+
+  ApexLog is one of the most used Tooling API objects for:
+
+  - debugging
+      
+  - issue investigation
+      
+  - performance analysis
+      
+  - production support
+request:
+  url: "{{RootUrl}}/services/data/v64.0/tooling/sobjects/ApexLog/07LgK00000LcylWUAR/Body"
+  method: GET
+response:
+  statusCode: 200
+  statusText: OK
+  headers:
+    date: Wed, 20 May 2026 15:38:08 GMT
+    content-type: text/plain
+    transfer-encoding: chunked
+    connection: keep-alive
+    cache-control: no-cache,must-revalidate,max-age=0,no-store,private
+    x-robots-tag: none
+    x-content-type-options: nosniff
+    sforce-limit-info: api-usage=765/15000
+    vary: Accept-Encoding
+    strict-transport-security: max-age=63072000; includeSubDomains
+    server: sfdcedge
+    x-sfdc-request-id: 73ed76d1582e62bda671d12614d0324e
+    x-request-id: 73ed76d1582e62bda671d12614d0324e
+    x-sfdc-edge-cache: none
+  body:
+    type: text
+    content: |
+      66.0 APEX_CODE,FINEST;APEX_PROFILING,INFO;CALLOUT,INFO;DATA_ACCESS,INFO;DB,INFO;NBA,INFO;SYSTEM,DEBUG;VALIDATION,INFO;VISUALFORCE,INFO;WAVE,INFO;WORKFLOW,INFO
+      03:04:43.1 (1960253)|USER_INFO|[EXTERNAL]|005gK000000P8s3|vmxagforce@agentforce.com|(GMT-07:00) Pacific Daylight Time (America/Los_Angeles)|GMT-07:00
+order: 1779291508307

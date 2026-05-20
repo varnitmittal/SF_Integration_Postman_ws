@@ -1,0 +1,42 @@
+$kind: http-request
+description: |-
+  StartFragment
+
+  # Salesforce Tooling API – ApexClass Query Use
+
+  The Tooling API allows querying Apex metadata and source code using SOQL.
+
+  Example:
+
+  ``` http
+  SELECT Name, Body FROM ApexClass
+
+   ```
+
+  ## Main Uses
+
+  - Generate AI-based documentation from Apex code
+      
+  - Perform security/code audits (`without sharing`, dynamic SOQL, etc.)
+      
+  - Build metadata/code search tools
+      
+  - Analyze dependencies between Apex, Flows, and Objects
+      
+  - Support DevOps and CI/CD automation
+      
+  - Create admin/developer productivity dashboards
+      
+
+  ## Key Benefit
+
+  It makes Salesforce source code and metadata queryable and automatable through APIs.
+
+  EndFragment
+url: "{{RootUrl}}/services/data/v64.0/tooling/query?q=SELECT+Name,body+FROM+Ape\
+  xClass+WHERE+Name='StudentWelcomeService'"
+method: GET
+queryParams:
+  q: SELECT+Name,body+FROM+ApexClass+WHERE+Name='StudentWelcomeService'
+examples: .resources/ApexClass.resources/examples
+order: 1779291308261

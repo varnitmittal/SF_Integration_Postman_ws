@@ -1,0 +1,6 @@
+$kind: http-request
+name: ApexLog
+url: ""
+method: GET
+examples: .resources/ApexLog-1.resources/examples
+order: 1945

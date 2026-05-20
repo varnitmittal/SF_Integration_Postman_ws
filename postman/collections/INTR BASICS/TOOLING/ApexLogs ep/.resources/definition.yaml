@@ -1,0 +1,138 @@
+$kind: collection
+name: ApexLogs ep
+description: |-
+  # Salesforce Tooling API — ApexLog
+
+  ApexLog stores:
+
+  ``` text
+  Salesforce debug logs
+
+   ```
+
+  Used for:
+
+  - Apex debugging
+      
+  - trigger debugging
+      
+  - flow debugging
+      
+  - error analysis
+      
+  - governor limit analysis
+      
+
+  ---
+
+  # Query Apex Logs
+
+  Endpoint:
+
+  ``` http
+  GET /services/data/v64.0/tooling/query?q=SELECT+Id,Operation,Status,StartTime+FROM+ApexLog
+
+   ```
+
+  ---
+
+  # Postman
+
+  Method:
+
+  ``` http
+  GET
+
+   ```
+
+  URL:
+
+  ``` http
+  {{RootUrl}}/services/data/v64.0/tooling/query?q=SELECT+Id,Operation,Status,StartTime+FROM+ApexLog
+
+   ```
+
+  Headers:
+
+  ``` http
+  Authorization: Bearer ACCESS_TOKEN
+
+   ```
+
+  ---
+
+  # Important Fields
+
+  | Field | Meaning |
+  | --- | --- |
+  | Id | log Id |
+  | Operation | executed operation |
+  | Status | Success/Error |
+  | StartTime | execution time |
+
+  ---
+
+  # Retrieve Full Log Body
+
+  ``` http
+  GET /services/data/v64.0/tooling/sobjects/ApexLog/{LogId}/Body
+
+   ```
+
+  Returns:
+
+  - USER_DEBUG
+      
+  - SOQL
+      
+  - DML
+      
+  - exceptions
+      
+  - governor limits
+      
+
+  ---
+
+  # Important Dependency
+
+  Logs are generated only when:
+
+  ``` text
+  TraceFlag
+
+   ```
+
+  is enabled.
+
+  ---
+
+  # Real Debug Flow
+
+  ``` text
+  Enable TraceFlag
+  ↓
+  Run transaction
+  ↓
+  ApexLog generated
+  ↓
+  Retrieve log
+  ↓
+  Analyze issue
+
+   ```
+
+  ---
+
+  # Real Importance
+
+  ApexLog is one of the most used Tooling API objects for:
+
+  - debugging
+      
+  - issue investigation
+      
+  - performance analysis
+      
+  - production support
+order: 2625103348105215

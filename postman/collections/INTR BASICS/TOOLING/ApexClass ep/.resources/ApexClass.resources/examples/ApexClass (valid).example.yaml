@@ -1,0 +1,80 @@
+$kind: http-example
+description: |-
+  StartFragment
+
+  # Salesforce Tooling API – ApexClass Query Use
+
+  The Tooling API allows querying Apex metadata and source code using SOQL.
+
+  Example:
+
+  ``` http
+  SELECT Name, Body FROM ApexClass
+
+   ```
+
+  ## Main Uses
+
+  - Generate AI-based documentation from Apex code
+      
+  - Perform security/code audits (`without sharing`, dynamic SOQL, etc.)
+      
+  - Build metadata/code search tools
+      
+  - Analyze dependencies between Apex, Flows, and Objects
+      
+  - Support DevOps and CI/CD automation
+      
+  - Create admin/developer productivity dashboards
+      
+
+  ## Key Benefit
+
+  It makes Salesforce source code and metadata queryable and automatable through APIs.
+
+  EndFragment
+request:
+  url: "{{RootUrl}}/services/data/v64.0/tooling/query?q=SELECT+Name,body+FROM+ApexClass+WHERE+Name='StudentWelcomeService'"
+  method: GET
+  queryParams:
+    q: SELECT+Name,body+FROM+ApexClass+WHERE+Name='StudentWelcomeService'
+response:
+  statusCode: 200
+  statusText: OK
+  headers:
+    date: Wed, 20 May 2026 15:28:47 GMT
+    content-type: application/json;charset=UTF-8
+    transfer-encoding: chunked
+    connection: keep-alive
+    strict-transport-security: max-age=63072000; includeSubDomains
+    vary: Accept-Encoding
+    content-encoding: gzip
+    x-content-type-options: nosniff
+    sforce-limit-info: api-usage=741/15000
+    cache-control: no-cache,must-revalidate,max-age=0,no-store,private
+    x-robots-tag: none
+    server: sfdcedge
+    x-sfdc-request-id: 57ced912dd96f4a3819f8f48bde1b140
+    x-request-id: 57ced912dd96f4a3819f8f48bde1b140
+    x-sfdc-edge-cache: none
+  body:
+    type: json
+    content: |-
+      {
+        "size": 1,
+        "totalSize": 1,
+        "done": true,
+        "queryLocator": null,
+        "entityTypeName": "ApexClass",
+        "records": [
+          {
+            "attributes": {
+              "type": "ApexClass",
+              "url": "/services/data/v64.0/tooling/sobjects/ApexClass/01pgK00000BMnzpQAD"
+            },
+            "Name": "StudentWelcomeService",
+            "Body": "public with sharing class StudentWelcomeService {\n\n    public class Request {\n        @InvocableVariable(required=true) //exposed to flow, and can be assigned from flow\n        public String studentName;\n    }\n\n    @InvocableMethod(label='Generate Welcome Message')\n    public static List<String> generateMessage(List<Request> requests) {\n\n        List<String> responses =\n            new List<String>();\n\n        for(Request req : requests) {\n\n            responses.add('Welcome ' + req.studentName + ' to Salesforce REST APIs!');\n        }\n\n        return responses;\n    }\n}"
+          }
+        ]
+      }
+order: 1779291073257
