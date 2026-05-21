@@ -1,0 +1,102 @@
+$kind: http-example
+request:
+  url: "{{RootUrl}}/services/data/v64.0/composite"
+  method: POST
+  body:
+    type: json
+    content: "{\r
+
+      \  \"allOrNone\": true,\r
+
+      \  \"compositeRequest\": [\r
+
+      \    {\r
+
+      \      \"method\": \"GET\",\r
+
+      \      \"url\": \"/services/data/v64.0/query?q=SELECT+Id+FROM+Student__c+ORDER+BY+CreatedDate+DESC+LIMIT+1+offset+5\",\r
+
+      \      \"referenceId\": \"latestStudent\"\r
+
+      \    },\r
+
+      \    {\r
+
+      \      \"method\": \"POST\",\r
+
+      \      \"url\": \"/services/data/v64.0/sobjects/ContentDocumentLink\",\r
+
+      \      \"referenceId\": \"createStudentLink\",\r
+
+      \      \"body\": {\r
+
+      \        \"ContentDocumentId\": \"069gK000009LqhZQAS\",\r
+
+      \        \"LinkedEntityId\": \"@{latestStudent.records[0].Id}\",\r
+
+      \        \"ShareType\": \"V\"\r
+
+      \      }\r
+
+      \    }\r
+
+      \  ]\r
+
+      }"
+response:
+  statusCode: 200
+  statusText: OK
+  headers:
+    date: Thu, 21 May 2026 11:53:58 GMT
+    content-type: application/json;charset=UTF-8
+    transfer-encoding: chunked
+    connection: keep-alive
+    x-robots-tag: none
+    content-encoding: gzip
+    x-content-type-options: nosniff
+    vary: Accept-Encoding
+    cache-control: no-cache,must-revalidate,max-age=0,no-store,private
+    sforce-limit-info: api-usage=407/15000
+    strict-transport-security: max-age=63072000; includeSubDomains
+    server: sfdcedge
+    x-sfdc-request-id: 7a98d6df4c721d3c919fe5100bca9485
+    x-request-id: 7a98d6df4c721d3c919fe5100bca9485
+    x-sfdc-edge-cache: none
+  body:
+    type: json
+    content: |-
+      {
+        "compositeResponse": [
+          {
+            "body": {
+              "totalSize": 1,
+              "done": true,
+              "records": [
+                {
+                  "attributes": {
+                    "type": "Student__c",
+                    "url": "/services/data/v64.0/sobjects/Student__c/a1hgK000002N9PdQAK"
+                  },
+                  "Id": "a1hgK000002N9PdQAK"
+                }
+              ]
+            },
+            "httpHeaders": {},
+            "httpStatusCode": 200,
+            "referenceId": "latestStudent"
+          },
+          {
+            "body": {
+              "id": "06AgK0000064XMvUAM",
+              "success": true,
+              "errors": []
+            },
+            "httpHeaders": {
+              "Location": "/services/data/v64.0/sobjects/ContentDocumentLink/06AgK0000064XMvUAM"
+            },
+            "httpStatusCode": 201,
+            "referenceId": "createStudentLink"
+          }
+        ]
+      }
+order: 1779364441798

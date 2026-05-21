@@ -1,0 +1,44 @@
+$kind: http-example
+name: valid
+request:
+  url: "{{RootUrl}}/services/data/v64.0/query?q=SELECT+DistributionPublicUrl,ContentDownloadUrl+FROM+ContentDistribution"
+  method: GET
+  queryParams:
+    q: SELECT+DistributionPublicUrl,ContentDownloadUrl+FROM+ContentDistribution
+response:
+  statusCode: 200
+  statusText: OK
+  headers:
+    date: Thu, 21 May 2026 12:02:16 GMT
+    content-type: application/json;charset=UTF-8
+    transfer-encoding: chunked
+    connection: keep-alive
+    vary: Accept-Encoding
+    content-encoding: gzip
+    sforce-limit-info: api-usage=417/15000
+    x-content-type-options: nosniff
+    cache-control: no-cache,must-revalidate,max-age=0,no-store,private
+    strict-transport-security: max-age=63072000; includeSubDomains
+    x-robots-tag: none
+    server: sfdcedge
+    x-sfdc-request-id: 71747b5ca10936ca2c85df248f48abce
+    x-request-id: 71747b5ca10936ca2c85df248f48abce
+    x-sfdc-edge-cache: none
+  body:
+    type: json
+    content: |-
+      {
+        "totalSize": 1,
+        "done": true,
+        "records": [
+          {
+            "attributes": {
+              "type": "ContentDistribution",
+              "url": "/services/data/v64.0/sobjects/ContentDistribution/05DgK0000007Yg5UAE"
+            },
+            "DistributionPublicUrl": "https://vm-ai-dev-ed.develop.my.salesforce.com/sfc/p/gK0000008JE6/a/gK0000007Yg5/d0sP.Vo1TAnG8vdaS6pHRwm_MKicWK8XJrUunDuqJ50",
+            "ContentDownloadUrl": "https://vm-ai-dev-ed.develop.file.force.com/sfc/dist/version/download/?oid=00DgK0000008JE6&ids=068gK000007Py1l&d=%2Fa%2FgK0000007Yg5%2Fd0sP.Vo1TAnG8vdaS6pHRwm_MKicWK8XJrUunDuqJ50&asPdf=false"
+          }
+        ]
+      }
+order: 2546127653502219

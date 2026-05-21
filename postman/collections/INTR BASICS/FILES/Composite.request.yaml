@@ -1,0 +1,49 @@
+$kind: http-request
+name: Composite
+url: "{{RootUrl}}/services/data/v64.0/composite"
+method: POST
+body:
+  type: json
+  content: "{\r
+
+    \  \"allOrNone\": true,\r
+
+    \  \"compositeRequest\": [\r
+
+    \    {\r
+
+    \      \"method\": \"GET\",\r
+
+    \      \"url\":
+    \"/services/data/v64.0/query?q=SELECT+Id+FROM+Student__c+ORDER+BY+CreatedDa\
+    te+DESC+LIMIT+1+offset+5\",\r
+
+    \      \"referenceId\": \"latestStudent\"\r
+
+    \    },\r
+
+    \    {\r
+
+    \      \"method\": \"POST\",\r
+
+    \      \"url\": \"/services/data/v64.0/sobjects/ContentDocumentLink\",\r
+
+    \      \"referenceId\": \"createStudentLink\",\r
+
+    \      \"body\": {\r
+
+    \        \"ContentDocumentId\": \"069gK000009LqhZQAS\",\r
+
+    \        \"LinkedEntityId\": \"@{latestStudent.records[0].Id}\",\r
+
+    \        \"ShareType\": \"V\"\r
+
+    \      }\r
+
+    \    }\r
+
+    \  ]\r
+
+    }"
+examples: .resources/Composite.resources/examples
+order: 6000

@@ -1,0 +1,9 @@
+$kind: http-request
+url: "{{RootUrl}}/sfc/dist/version/download/?oid=00DgK0000008JE6&ids=068gK000007Py1l&d=%2Fa%2FgK0000007Yg5%2Fd0sP.Vo1TAnG8vdaS6pHRwm_MKicWK8XJrUunDuqJ50&asPdf=false"
+method: GET
+queryParams:
+  oid: 00DgK0000008JE6
+  ids: 068gK000007Py1l
+  d: "%2Fa%2FgK0000007Yg5%2Fd0sP.Vo1TAnG8vdaS6pHRwm_MKicWK8XJrUunDuqJ50"
+  asPdf: "false"
+order: 1214080678368979

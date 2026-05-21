@@ -1,0 +1,105 @@
+$kind: http-example
+request:
+  url: "{{RootUrl}}/services/data/v64.0/query?q=SELECT+Id,Title,ContentDocumentId,FileType+FROM+ContentVersion"
+  method: GET
+  queryParams:
+    q: SELECT+Id,Title,ContentDocumentId,FileType+FROM+ContentVersion
+response:
+  statusCode: 200
+  statusText: OK
+  headers:
+    date: Thu, 21 May 2026 11:39:51 GMT
+    content-type: application/json;charset=UTF-8
+    transfer-encoding: chunked
+    connection: keep-alive
+    x-content-type-options: nosniff
+    content-encoding: gzip
+    cache-control: no-cache,must-revalidate,max-age=0,no-store,private
+    strict-transport-security: max-age=63072000; includeSubDomains
+    sforce-limit-info: api-usage=368/15000
+    vary: Accept-Encoding
+    x-robots-tag: none
+    server: sfdcedge
+    x-sfdc-request-id: 5a5c311387c64ed4b23df60f88d47e02
+    x-request-id: 5a5c311387c64ed4b23df60f88d47e02
+    x-sfdc-edge-cache: none
+  body:
+    type: json
+    content: |-
+      {
+        "totalSize": 7,
+        "done": true,
+        "records": [
+          {
+            "attributes": {
+              "type": "ContentVersion",
+              "url": "/services/data/v64.0/sobjects/ContentVersion/068gK000000mxnNQAQ"
+            },
+            "Id": "068gK000000mxnNQAQ",
+            "Title": "drop1",
+            "ContentDocumentId": "069gK000000msm5QAA",
+            "FileType": "JPG"
+          },
+          {
+            "attributes": {
+              "type": "ContentVersion",
+              "url": "/services/data/v64.0/sobjects/ContentVersion/068gK000005RO6bQAG"
+            },
+            "Id": "068gK000005RO6bQAG",
+            "Title": "Image_2025-12-24_12-18-41",
+            "ContentDocumentId": "069gK000006y7UbQAI",
+            "FileType": "PNG"
+          },
+          {
+            "attributes": {
+              "type": "ContentVersion",
+              "url": "/services/data/v64.0/sobjects/ContentVersion/068gK000005RO8DQAW"
+            },
+            "Id": "068gK000005RO8DQAW",
+            "Title": "images",
+            "ContentDocumentId": "069gK000006y7WDQAY",
+            "FileType": "PNG"
+          },
+          {
+            "attributes": {
+              "type": "ContentVersion",
+              "url": "/services/data/v64.0/sobjects/ContentVersion/068gK000007NVofQAG"
+            },
+            "Id": "068gK000007NVofQAG",
+            "Title": "Codex Files Test",
+            "ContentDocumentId": "069gK000009ITCrQAO",
+            "FileType": "TEXT"
+          },
+          {
+            "attributes": {
+              "type": "ContentVersion",
+              "url": "/services/data/v64.0/sobjects/ContentVersion/068gK000007NVtVQAW"
+            },
+            "Id": "068gK000007NVtVQAW",
+            "Title": "New image",
+            "ContentDocumentId": "069gK000009ITMXQA4",
+            "FileType": "PNG"
+          },
+          {
+            "attributes": {
+              "type": "ContentVersion",
+              "url": "/services/data/v64.0/sobjects/ContentVersion/068gK000007Py1lQAC"
+            },
+            "Id": "068gK000007Py1lQAC",
+            "Title": "cat0",
+            "ContentDocumentId": "069gK000009LqhZQAS",
+            "FileType": "JPG"
+          },
+          {
+            "attributes": {
+              "type": "ContentVersion",
+              "url": "/services/data/v64.0/sobjects/ContentVersion/068gK00000045HRQAY"
+            },
+            "Id": "068gK00000045HRQAY",
+            "Title": "Platform Design",
+            "ContentDocumentId": "069gK00000045HRQAY",
+            "FileType": "PNG"
+          }
+        ]
+      }
+order: 1779363592608

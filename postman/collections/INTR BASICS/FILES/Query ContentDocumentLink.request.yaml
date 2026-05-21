@@ -1,0 +1,8 @@
+$kind: http-request
+name: Query ContentDocumentLink
+url: "{{RootUrl}}/services/data/v64.0/query?q=SELECT+Id,LinkedEntityId+FROM+Con\
+  tentDocumentLink+WHERE+ContentDocumentId='069gK000009LqhZQAS'"
+method: GET
+queryParams:
+  q: SELECT+Id,LinkedEntityId+FROM+ContentDocumentLink+WHERE+ContentDocumentId='069gK000009LqhZQAS'
+order: 5000

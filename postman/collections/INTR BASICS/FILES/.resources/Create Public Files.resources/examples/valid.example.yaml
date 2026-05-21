@@ -1,0 +1,48 @@
+$kind: http-example
+request:
+  url: "{{RootUrl}}/services/data/v64.0/sobjects/ContentDistribution"
+  method: POST
+  body:
+    type: json
+    content: "{\r
+
+      \  \"Name\": \"Public Cat Image\",\r
+
+      \  \"ContentVersionId\": \"068gK000007Py1lQAC\",\r
+
+      \  \"PreferencesAllowViewInBrowser\": true,\r
+
+      \  \"PreferencesLinkLatestVersion\": true,\r
+
+      \  \"PreferencesAllowOriginalDownload\": true\r
+
+      }"
+response:
+  statusCode: 201
+  statusText: Created
+  headers:
+    date: Thu, 21 May 2026 11:57:16 GMT
+    content-type: application/json;charset=UTF-8
+    transfer-encoding: chunked
+    connection: keep-alive
+    vary: Accept-Encoding
+    x-robots-tag: none
+    content-encoding: gzip
+    sforce-limit-info: api-usage=411/15000
+    x-content-type-options: nosniff
+    strict-transport-security: max-age=63072000; includeSubDomains
+    location: /services/data/v64.0/sobjects/ContentDistribution/05DgK0000007Yg5UAE
+    cache-control: no-cache,must-revalidate,max-age=0,no-store,private
+    server: sfdcedge
+    x-sfdc-request-id: 14a61c831a2929aa67182110b0b41509
+    x-request-id: 14a61c831a2929aa67182110b0b41509
+    x-sfdc-edge-cache: none
+  body:
+    type: json
+    content: |-
+      {
+        "id": "05DgK0000007Yg5UAE",
+        "success": true,
+        "errors": []
+      }
+order: 1779364644239

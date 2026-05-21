@@ -1,0 +1,8 @@
+$kind: http-request
+url: "{{RootUrl}}/services/data/v64.0/query?q=SELECT+Id,Title,ContentDocumentId\
+  ,FileType+FROM+ContentVersion"
+method: GET
+queryParams:
+  q: SELECT+Id,Title,ContentDocumentId,FileType+FROM+ContentVersion
+examples: .resources/Query ContentVersions.resources/examples
+order: 2000

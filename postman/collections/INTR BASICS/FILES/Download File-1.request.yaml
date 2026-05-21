@@ -1,0 +1,7 @@
+$kind: http-request
+name: Download File
+url: "{{RootUrl}}/services/data/v64.0/sobjects/ContentVersion/068gK000007Py1lQA\
+  C/VersionData"
+method: GET
+examples: .resources/Download File-1.resources/examples
+order: 3608

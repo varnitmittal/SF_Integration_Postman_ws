@@ -1,0 +1,7 @@
+$kind: http-request
+url: "{{RootUrl}}/services/data/v64.0/query?q=SELECT+DistributionPublicUrl,ContentDownloadUrl+FROM+ContentDistribution"
+method: GET
+queryParams:
+  q: SELECT+DistributionPublicUrl,ContentDownloadUrl+FROM+ContentDistribution
+examples: .resources/Query Public Files.resources/examples
+order: 8000

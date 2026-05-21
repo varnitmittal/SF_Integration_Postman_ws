@@ -1,0 +1,296 @@
+$kind: collection
+name: FILES
+description: |-
+  # Salesforce Files API
+
+  Files API manages:
+
+  ``` text
+  documents/files/content in Salesforce
+
+   ```
+
+  Uses normal:
+
+  ``` text
+  REST API
+
+   ```
+
+  architecture.
+
+  ---
+
+  # Important File Objects
+
+  | Object | Purpose |
+  | --- | --- |
+  | ContentVersion | actual uploaded file |
+  | ContentDocument | logical file container |
+  | ContentDocumentLink | file-record sharing/link |
+
+  ---
+
+  # Core File Architecture
+
+  ``` text
+  ContentVersion
+  ↓
+  creates
+  ↓
+  ContentDocument
+  ↓
+  linked using
+  ↓
+  ContentDocumentLink
+
+   ```
+
+  Very important concept.
+
+  ---
+
+  # Important Concepts
+
+  ## ContentVersion
+
+  Stores:
+
+  ``` text
+  actual binary file/version
+
+   ```
+
+  Examples:
+
+  - PDF
+      
+  - image
+      
+  - Excel
+      
+  - DOCX
+      
+
+  ---
+
+  ## ContentDocument
+
+  Represents:
+
+  ``` text
+  logical Salesforce file
+
+   ```
+
+  A file can have:
+
+  ``` text
+  multiple versions
+
+   ```
+
+  through multiple:
+
+  ``` text
+  ContentVersion
+
+   ```
+
+  records.
+
+  ---
+
+  ## ContentDocumentLink
+
+  Links file to:
+
+  ``` text
+  Salesforce records
+
+   ```
+
+  Examples:
+
+  - Account
+      
+  - Case
+      
+  - Student__c
+      
+
+  ---
+
+  # Main Endpoints
+
+  | Purpose | Endpoint |
+  | --- | --- |
+  | Upload file | `/sobjects/ContentVersion` |
+  | Query files | `/query` |
+  | Link file | `/sobjects/ContentDocumentLink` |
+  | Download file | `/sfc/servlet.shepherd/version/download/{VersionId}` |
+
+  ---
+
+  # Most Important Implementations
+
+  | Priority | Implementation |
+  | --- | --- |
+  | High | Upload File |
+  | High | Query ContentVersion |
+  | High | Query ContentDocument |
+  | High | Create ContentDocumentLink |
+  | High | Download File |
+  | Medium | Retrieve Linked Files |
+  | Medium | Delete File |
+
+  ---
+
+  # Upload File
+
+  Endpoint:
+
+  ``` http
+  POST /services/data/v64.0/sobjects/ContentVersion
+
+   ```
+
+  Creates:
+
+  - ContentVersion
+      
+  - ContentDocument
+      
+
+  automatically.
+
+  ---
+
+  # Important Upload Fields
+
+  | Field | Purpose |
+  | --- | --- |
+  | Title | file name |
+  | PathOnClient | original filename |
+  | VersionData | base64 file content |
+
+  ---
+
+  # Query Files
+
+  Example:
+
+  ``` http
+  GET /query?q=SELECT+Id,Title+FROM+ContentDocument
+
+   ```
+
+  ---
+
+  # Link File To Record
+
+  Endpoint:
+
+  ``` http
+  POST /sobjects/ContentDocumentLink
+
+   ```
+
+  Important fields:
+
+  | Field | Meaning |
+  | --- | --- |
+  | ContentDocumentId | file Id |
+  | LinkedEntityId | record Id |
+  | ShareType | access type |
+
+  ---
+
+  # Download File
+
+  Endpoint:
+
+  ``` http
+  GET /sfc/servlet.shepherd/version/download/{ContentVersionId}
+
+   ```
+
+  Downloads:
+
+  ``` text
+  actual binary file
+
+   ```
+
+  ---
+
+  # Important Architecture Concept
+
+  Files architecture is:
+
+  ``` text
+  document-management oriented
+
+   ```
+
+  NOT:
+
+  ``` text
+  simple attachment architecture
+
+   ```
+
+  ---
+
+  # Important Difference From Old Attachments
+
+  Old Salesforce:
+
+  ``` text
+  Attachment object
+
+   ```
+
+  Modern Salesforce:
+
+  ``` text
+  Files architecture
+
+   ```
+
+  using:
+
+  - ContentVersion
+      
+  - ContentDocument
+      
+  - ContentDocumentLink
+      
+
+  ---
+
+  # Real Enterprise Uses
+
+  | Use Case | Example |
+  | --- | --- |
+  | CRM documents | contracts |
+  | Support attachments | screenshots |
+  | ERP integrations | invoice PDFs |
+  | Content portals | downloadable files |
+  | Automation | generated reports |
+  | Middleware | file synchronization |
+
+  ---
+
+  # Most Important Concept Overall
+
+  Salesforce Files are: multi-version shared content entities
+
+  NOT: simple row attachments
+auth:
+  - id: d1b115c0-e20d-4655-97f5-7e99464769de
+    type: bearer
+    name: Bearer Token
+    credentials:
+      token: "{{MyBearerToken}}"
+order: 3514283980530235
