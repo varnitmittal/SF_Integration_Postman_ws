@@ -1,0 +1,32 @@
+$kind: http-request
+url: "{{RootUrl}}/cometd/64.0"
+method: POST
+body:
+  type: json
+  content: "[\r
+
+    \  {\r
+
+    \    \"channel\": \"/meta/handshake\",\r
+
+    \    \"version\": \"1.0\",\r
+
+    \    \"minimumVersion\": \"1.0\",\r
+
+    \    \"supportedConnectionTypes\": [\"long-polling\"],\r
+
+    \    \"advice\": {\r
+
+    \      \"timeout\": 60000,\r
+
+    \      \"interval\": 0\r
+
+    \    },\r
+
+    \    \"id\": \"1\"\r
+
+    \  }\r
+
+    ]"
+examples: .resources/CometD Handshake.resources/examples
+order: 1779355169939

@@ -1,0 +1,160 @@
+$kind: collection
+name: STREAMING
+description: |-
+  # Salesforce Streaming API
+
+  Streaming API provides:
+
+  ``` text
+  real-time event notifications
+
+   ```
+
+  instead of:
+
+  ``` text
+  polling Salesforce repeatedly
+
+   ```
+
+  ---
+
+  # Purpose
+
+  Used for:
+
+  - real-time updates
+      
+  - event-driven systems
+      
+  - live notifications
+      
+  - integration triggers
+      
+  - reactive architectures
+      
+
+  ---
+
+  # Important Concept
+
+  Normal REST API:
+
+  ``` text
+  client asks Salesforce repeatedly
+
+   ```
+
+  Example:
+
+  ``` text
+  Any new Student records?
+
+   ```
+
+  again and again.
+
+  ---
+
+  Streaming API:
+
+  ``` text
+  Salesforce pushes events automatically
+
+   ```
+
+  when changes happen.
+
+  ---
+
+  # Major Streaming Types
+
+  | Type | Purpose |
+  | --- | --- |
+  | PushTopic Events | SOQL-based record changes |
+  | Platform Events | custom event bus |
+  | Change Data Capture (CDC) | database change events |
+  | Generic Events | custom lightweight events |
+
+  ---
+
+  # Most Important Modern Ones
+
+  | Priority | Type |
+  | --- | --- |
+  | High | Platform Events |
+  | High | Change Data Capture |
+  | Medium | PushTopic |
+  | Low | Generic Events |
+
+  ---
+
+  # Real-Life Uses
+
+  | Use Case | Example |
+  | --- | --- |
+  | ERP sync | Account updated |
+  | Notifications | new Case created |
+  | Microservices | publish business events |
+  | Real-time UI | live dashboards |
+  | Middleware | async integration |
+  | Event-driven architecture | reactive systems |
+
+  ---
+
+  # Important Architecture Concept
+
+  REST API:
+
+  ``` text
+  request-response model
+
+   ```
+
+  Streaming API:
+
+  ``` text
+  publish-subscribe model
+
+   ```
+
+  Very important architecture shift.
+
+  ---
+
+  # Important Transport Concept
+
+  Streaming API commonly uses:
+
+  ``` text
+  CometD/Bayeux protocol
+
+   ```
+
+  for:
+
+  - subscriptions
+      
+  - long polling
+      
+  - event streaming
+      
+
+  ---
+
+  # Most Practical Learning Order
+
+  ``` text
+  1. Platform Events
+  2. Change Data Capture
+
+   ```
+
+  That covers most real enterprise usage.
+auth:
+  - id: 67a37ee3-429f-46a3-9c10-4d60781ceffd
+    type: bearer
+    name: Bearer Token
+    credentials:
+      token: "{{MyBearerToken}}"
+order: 2289888701448191

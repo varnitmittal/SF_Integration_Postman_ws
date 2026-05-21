@@ -1,0 +1,70 @@
+$kind: http-example
+request:
+  url: "{{RootUrl}}/cometd/64.0"
+  method: POST
+  body:
+    type: json
+    content: "[\r
+
+      \  {\r
+
+      \    \"channel\": \"/meta/handshake\",\r
+
+      \    \"version\": \"1.0\",\r
+
+      \    \"minimumVersion\": \"1.0\",\r
+
+      \    \"supportedConnectionTypes\": [\"long-polling\"],\r
+
+      \    \"advice\": {\r
+
+      \      \"timeout\": 60000,\r
+
+      \      \"interval\": 0\r
+
+      \    },\r
+
+      \    \"id\": \"1\"\r
+
+      \  }\r
+
+      ]"
+response:
+  statusCode: 200
+  statusText: OK
+  headers:
+    date: Thu, 21 May 2026 08:57:18 GMT
+    content-type: application/json;charset=UTF-8
+    content-length: "226"
+    connection: keep-alive
+    strict-transport-security: max-age=63072000; includeSubDomains
+    vary: Accept-Encoding
+    x-content-type-options: nosniff
+    x-robots-tag: none
+    x-salesforce-no-proxy: "true"
+    cache-control: no-cache,must-revalidate,max-age=0,no-store,private
+    server: sfdcedge
+    x-sfdc-request-id: 637a42c2184b190a15d45bb8e8f7fec8
+    x-request-id: 637a42c2184b190a15d45bb8e8f7fec8
+    x-sfdc-edge-cache: none
+  body:
+    type: json
+    content: |-
+      [
+        {
+          "ext": {
+            "replay": true,
+            "payload.format": true
+          },
+          "minimumVersion": "1.0",
+          "clientId": "21s532lriv1zn5uyg66gefe8ika",
+          "supportedConnectionTypes": [
+            "long-polling"
+          ],
+          "channel": "/meta/handshake",
+          "id": "1",
+          "version": "1.0",
+          "successful": true
+        }
+      ]
+order: 1779353840096

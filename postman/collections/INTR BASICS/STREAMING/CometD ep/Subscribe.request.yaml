@@ -1,0 +1,23 @@
+$kind: http-request
+name: Subscribe
+url: "{{RootUrl}}/cometd/64.0"
+method: POST
+body:
+  type: json
+  content: "[\r
+
+    \  {\r
+
+    \    \"channel\": \"/meta/subscribe\",\r
+
+    \    \"clientId\": \"21s532lriv1zn5uyg66gefe8ika\",\r
+
+    \    \"subscription\": \"/event/Student_Notif__e\",\r
+
+    \    \"id\": \"2\"\r
+
+    \  }\r
+
+    ]"
+examples: .resources/Subscribe-1.resources/examples
+order: 419464637246099

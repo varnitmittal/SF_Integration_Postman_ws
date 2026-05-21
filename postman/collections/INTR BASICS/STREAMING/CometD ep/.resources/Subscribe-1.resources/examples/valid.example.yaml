@@ -1,0 +1,52 @@
+$kind: http-example
+request:
+  url: "{{RootUrl}}/cometd/64.0"
+  method: POST
+  body:
+    type: json
+    content: "[\r
+
+      \  {\r
+
+      \    \"channel\": \"/meta/subscribe\",\r
+
+      \    \"clientId\": \"21s532lriv1zn5uyg66gefe8ika\",\r
+
+      \    \"subscription\": \"/event/Student_Notif__e\",\r
+
+      \    \"id\": \"2\"\r
+
+      \  }\r
+
+      ]"
+response:
+  statusCode: 200
+  statusText: OK
+  headers:
+    date: Thu, 21 May 2026 08:57:36 GMT
+    content-type: application/json;charset=UTF-8
+    content-length: "140"
+    connection: keep-alive
+    x-content-type-options: nosniff
+    strict-transport-security: max-age=63072000; includeSubDomains
+    cache-control: no-cache,must-revalidate,max-age=0,no-store,private
+    x-robots-tag: none
+    x-salesforce-no-proxy: "true"
+    vary: Accept-Encoding
+    server: sfdcedge
+    x-sfdc-request-id: 0da9febbc555ee76a675ad18ee376727
+    x-request-id: 0da9febbc555ee76a675ad18ee376727
+    x-sfdc-edge-cache: none
+  body:
+    type: json
+    content: |-
+      [
+        {
+          "clientId": "21s532lriv1zn5uyg66gefe8ika",
+          "channel": "/meta/subscribe",
+          "id": "2",
+          "subscription": "/event/Student_Notif__e",
+          "successful": true
+        }
+      ]
+order: 1779353857006

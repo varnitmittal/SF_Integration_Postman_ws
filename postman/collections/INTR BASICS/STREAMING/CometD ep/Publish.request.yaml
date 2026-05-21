@@ -1,0 +1,15 @@
+$kind: http-request
+name: Publish
+url: "{{RootUrl}}/services/data/v64.0/sobjects/Student_Notif__e"
+method: POST
+body:
+  type: json
+  content: "{\r
+
+    \  \"Student_Name__c\": \"Alex Smith New\",\r
+
+    \  \"Message__c\": \"Realtime Event Test\"\r
+
+    }"
+examples: .resources/Publish.resources/examples
+order: 2536522058343454

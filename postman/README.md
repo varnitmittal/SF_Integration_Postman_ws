@@ -1,4 +1,4 @@
-# INTR BASICS Postman Collection
+﻿# INTR BASICS Postman Collection
 
 ## Overview
 

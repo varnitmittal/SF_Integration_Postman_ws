@@ -1,0 +1,48 @@
+$kind: http-example
+request:
+  url: "{{RootUrl}}/services/data/v64.0/sobjects/Student_Notif__e"
+  method: POST
+  body:
+    type: json
+    content: "{\r
+
+      \  \"Student_Name__c\": \"Alex Smith New\",\r
+
+      \  \"Message__c\": \"Realtime Event Test\"\r
+
+      }"
+response:
+  statusCode: 201
+  statusText: Created
+  headers:
+    date: Thu, 21 May 2026 08:57:59 GMT
+    content-type: application/json;charset=UTF-8
+    transfer-encoding: chunked
+    connection: keep-alive
+    content-encoding: gzip
+    x-robots-tag: none
+    location: /services/data/v64.0/sobjects/Student_Notif__e/e0Bxx0000000001EAA
+    vary: Accept-Encoding
+    sforce-limit-info: api-usage=161/15000
+    x-content-type-options: nosniff
+    strict-transport-security: max-age=63072000; includeSubDomains
+    cache-control: no-cache,must-revalidate,max-age=0,no-store,private
+    server: sfdcedge
+    x-sfdc-request-id: 2f395aafe66b18e2fe94ab9ed6278dff
+    x-request-id: 2f395aafe66b18e2fe94ab9ed6278dff
+    x-sfdc-edge-cache: none
+  body:
+    type: json
+    content: |-
+      {
+        "id": "e0Bxx0000000001EAA",
+        "success": true,
+        "errors": [
+          {
+            "statusCode": "OPERATION_ENQUEUED",
+            "message": "5c9ff952-1062-4a80-9fbb-94ae2056134d",
+            "fields": []
+          }
+        ]
+      }
+order: 1779353882215
