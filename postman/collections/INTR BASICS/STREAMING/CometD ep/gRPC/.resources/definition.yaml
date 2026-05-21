@@ -1,0 +1,669 @@
+$kind: collection
+name: gRPC
+description: |-
+  # gRPC Pub/Sub API in Salesforce
+
+  ## What it is
+
+  Salesforce Pub/Sub API is a modern real-time event streaming API built on:
+
+  - gRPC
+      
+  - HTTP/2
+      
+  - Protocol Buffers (protobuf)
+      
+
+  It is used for:
+
+  - Platform Events
+      
+  - Change Data Capture (CDC)
+      
+  - high-scale event streaming
+      
+
+  ---
+
+  # Basic Flow
+
+  ``` text
+  Subscribe Request
+      ↓
+  Live gRPC Stream
+      ↓
+  Receive Events
+      ↓
+  Decode Avro Payload using Schema
+
+   ```
+
+  ---
+
+  # Main Components
+
+  | Component | Purpose |
+  | --- | --- |
+  | Subscribe | Listen to events |
+  | Publish | Send Platform Events |
+  | GetSchema | Fetch Avro schema |
+  | Replay ID | Resume missed events |
+  | Payload | Binary Avro event data |
+
+  ---
+
+  # Topic Formats
+
+  ## Platform Events
+
+  ``` text
+  /event/EventName__e
+
+   ```
+
+  ## CDC
+
+  ``` text
+  /data/ObjectChangeEvent
+
+   ```
+
+  Example:
+
+  ``` text
+  /data/AccountChangeEvent
+
+   ```
+
+  ---
+
+  # Why gRPC instead of CometD?
+
+  ## CometD (Older Streaming API)
+
+  Uses:
+
+  - Bayeux protocol
+      
+  - long polling / HTTP
+      
+  - JSON messages
+      
+
+  Good for:
+
+  - simple browser streaming
+      
+  - lightweight integrations
+      
+
+  ---
+
+  ## gRPC Pub/Sub API (Modern)
+
+  Uses:
+
+  - HTTP/2 streaming
+      
+  - protobuf
+      
+  - binary Avro payloads
+      
+
+  Designed for:
+
+  - enterprise-scale streaming
+      
+  - high throughput
+      
+  - low latency
+      
+  - backend systems
+      
+
+  ---
+
+  # Key Advantages over CometD
+
+  | Feature | CometD | Pub/Sub API |
+  | --- | --- | --- |
+  | Protocol | Bayeux | gRPC |
+  | Transport | Long polling | HTTP/2 streams |
+  | Payload | JSON | Binary Avro |
+  | Performance | Moderate | High |
+  | Scalability | Lower | Higher |
+  | Replay handling | Basic | Better |
+  | Efficiency | Lower | Higher |
+  | Enterprise streaming | Limited | Strong |
+
+  ---
+
+  # Why payloads are binary
+
+  Salesforce uses:
+
+  ``` text
+  Avro serialization
+
+   ```
+
+  because:
+
+  - smaller payload size
+      
+  - faster transport
+      
+  - schema-based contracts
+      
+  - better streaming efficiency
+      
+
+  ---
+
+  # Real Enterprise Use Cases
+
+  - Kafka pipelines
+      
+  - Data lake ingestion
+      
+  - ERP synchronization
+      
+  - Real-time analytics
+      
+  - Event-driven microservices
+      
+  - High-volume integrations
+      
+
+  ---
+
+  # Core Difference
+
+  ## CometD
+
+  ``` text
+  human-friendly streaming
+
+   ```
+
+  ## Pub/Sub API
+
+  ``` text
+  machine-optimized enterprise streaming
+
+   ```
+
+  That is the architectural shift.
+
+  ---
+
+  ---
+
+  ---
+
+  ---
+
+  ---
+
+  ---
+
+  ---
+
+  ---
+
+  ---
+
+  ---
+
+  ---
+
+  ---
+
+  ---
+
+  ---
+
+  ---
+
+  StartFragment
+
+  # Salesforce Pub/Sub API (gRPC) vs CometD
+
+  ## Why CometD existed first
+
+  CometD was created when browsers and web infrastructure did not support modern streaming well.
+
+  It uses:
+
+  - HTTP long polling
+      
+  - Bayeux protocol
+      
+  - JSON payloads
+      
+
+  This worked well for:
+
+  - browser apps
+      
+  - lightweight real-time updates
+      
+  - simpler integrations
+      
+
+  ---
+
+  # Problems with CometD
+
+  ## 1\. Long Polling Overhead
+
+  CometD repeatedly opens/reopens HTTP connections.
+
+  Problems:
+
+  - extra network chatter
+      
+  - higher latency
+      
+  - inefficient at large scale
+      
+
+  ---
+
+  ## 2\. JSON Payload Size
+
+  JSON is verbose.
+
+  Problems:
+
+  - larger payloads
+      
+  - slower parsing
+      
+  - more bandwidth usage
+      
+
+  At enterprise event volumes, this becomes expensive.
+
+  ---
+
+  ## 3\. Scalability Limits
+
+  CometD struggles more with:
+
+  - massive event throughput
+      
+  - many concurrent consumers
+      
+  - backend streaming systems
+      
+
+  because it was originally web/browser-oriented.
+
+  ---
+
+  ## 4\. Weaker Streaming Model
+
+  CometD simulates streaming over HTTP.
+
+  gRPC uses true:
+
+  ``` text
+  HTTP/2 persistent bidirectional streams
+
+   ```
+
+  which is far more efficient.
+
+  ---
+
+  # Why Pub/Sub API (gRPC) is better
+
+  Pub/Sub API solves those problems using:
+
+  - HTTP/2
+      
+  - protobuf
+      
+  - Avro
+      
+  - binary streaming
+      
+
+  Benefits:
+
+  - lower latency
+      
+  - fewer network roundtrips
+      
+  - smaller payloads
+      
+  - better throughput
+      
+  - better enterprise scalability
+      
+
+  ---
+
+  # Why binary Avro exists
+
+  Salesforce optimized for:
+
+  ``` text
+  machine-to-machine streaming
+
+   ```
+
+  not human readability.
+
+  Binary payloads:
+
+  - transfer faster
+      
+  - consume less bandwidth
+      
+  - process faster at scale
+      
+
+  ---
+
+  # Drawbacks of gRPC Pub/Sub API
+
+  ## 1\. Much More Complex
+
+  You need:
+
+  - protobuf files
+      
+  - Avro decoding
+      
+  - schema management
+      
+  - gRPC tooling
+      
+
+  CometD is much easier to start with.
+
+  ---
+
+  ## 2\. Payloads Are Not Human Readable
+
+  You receive:
+
+  ``` text
+  binary Avro payload
+
+   ```
+
+  instead of friendly JSON.
+
+  Requires decoding logic.
+
+  ---
+
+  ## 3\. Harder Browser Support
+
+  gRPC is backend-oriented.
+
+  CometD works naturally in browsers.
+
+  ---
+
+  ## 4\. Tougher Debugging
+
+  Debugging:
+
+  - protobuf
+      
+  - binary payloads
+      
+  - streaming states
+      
+
+  is harder than plain JSON HTTP traffic.
+
+  ---
+
+  ## 5\. More Infrastructure Knowledge Needed
+
+  Developers need understanding of:
+
+  - HTTP/2
+      
+  - protobuf
+      
+  - streaming systems
+      
+  - serialization
+      
+
+  CometD hides most of this complexity.
+
+  ---
+
+  # Core Tradeoff
+
+  | CometD | Pub/Sub API |
+  | --- | --- |
+  | Simpler | More powerful |
+  | Human-readable | Machine-optimized |
+  | Browser-friendly | Backend-friendly |
+  | Easier debugging | Higher performance |
+  | Lower scale | Enterprise scale |
+
+  ---
+
+  # Final Mental Model
+
+  ## CometD
+
+  ``` text
+  real-time web messaging
+
+   ```
+
+  ## Pub/Sub API
+
+  ``` text
+  enterprise event streaming infrastructure
+
+   ```
+
+  That is the actual architectural evolution.
+
+  ---
+
+  ---
+
+  ---
+
+  ---
+
+  ---
+
+  ---
+
+  ---
+
+  ---
+
+  ---
+
+  ---
+
+  ---
+
+  ---
+
+  ---
+
+  ---
+
+  ---
+
+  StartFragment
+
+  No — your imported `.proto` file in Postman is NOT live-linked to GitHub.
+
+  When you imported:
+
+  ``` text
+  pubsub_api.proto
+
+   ```
+
+  you imported a local snapshot copy.
+
+  Postman does NOT:
+
+  - auto-sync with GitHub
+      
+  - auto-update proto definitions
+      
+  - watch remote repositories
+      
+
+  ---
+
+  # What happens if Salesforce changes the proto?
+
+  ## Best case
+
+  Backward-compatible changes:
+
+  - new optional fields
+      
+  - new methods
+      
+
+  Your old proto usually still works.
+
+  This is the common enterprise strategy.
+
+  ---
+
+  ## Worst case
+
+  Breaking changes:
+
+  - renamed fields
+      
+  - removed methods
+      
+  - changed message contracts
+      
+
+  Then:
+
+  - requests fail
+      
+  - parsing breaks
+      
+  - clients must update proto files
+      
+
+  ---
+
+  # Why protobuf exists in first place
+
+  Protobuf provides:
+
+  ``` text
+  strict schema contracts
+
+   ```
+
+  between:
+
+  - client
+      
+  - server
+      
+
+  Both sides must agree on message structure.
+
+  That is why `.proto` files matter.
+
+  ---
+
+  # Enterprise Reality
+
+  Most companies:
+
+  - version-control proto files
+      
+  - pin API versions
+      
+  - upgrade intentionally
+      
+
+  They do NOT rely on “live GitHub proto.”
+
+  ---
+
+  # Why Salesforce usually avoids breaking changes
+
+  Because breaking protobuf contracts is dangerous.
+
+  So Salesforce mostly:
+
+  - adds optional fields
+      
+  - extends APIs safely
+      
+
+  instead of changing existing message formats aggressively.
+
+  ---
+
+  # Why this is different from REST
+
+  REST JSON is:
+
+  ``` text
+  loosely structured
+
+   ```
+
+  gRPC/protobuf is:
+
+  ``` text
+  strongly typed contract-driven communication
+
+   ```
+
+  That gives:
+
+  - performance
+      
+  - reliability
+      
+  - compile-time validation
+      
+
+  but reduces flexibility.
+
+  ---
+
+  # Important practical insight
+
+  When using gRPC professionally:
+
+  ``` text
+  .proto files become part of your codebase
+
+   ```
+
+  They are treated like:
+
+  - SDK contracts
+      
+  - interface definitions
+      
+  - API schemas
+      
+
+  not temporary downloadable files.
+
+  EndFragment
+order: 4492948529557802

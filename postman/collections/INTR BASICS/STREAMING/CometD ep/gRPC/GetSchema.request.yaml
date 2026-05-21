@@ -1,0 +1,20 @@
+$kind: grpc-request
+name: GetSchema
+url: api.pubsub.salesforce.com:7443
+methodPath: eventbus.v1.PubSub.GetSchema
+methodDescriptor: CskCChFldmVudGJ1c192MS5wcm90bxILZXZlbnRidXMudjEiJgoNU2NoZW1hUmVxdWVzdBIVCglzY2hlbWFfaWQYASABKAlCAhABIlAKClNjaGVtYUluZm8SFwoLc2NoZW1hX2pzb24YASABKAlCAhABEhUKCXNjaGVtYV9pZBgCIAEoCUICEAESEgoGcnBjX2lkGAMgASgJQgIQATJKCgZQdWJTdWISQAoJR2V0U2NoZW1hEhouZXZlbnRidXMudjEuU2NoZW1hUmVxdWVzdBoXLmV2ZW50YnVzLnYxLlNjaGVtYUluZm9CYQogY29tLnNhbGVzZm9yY2UuZXZlbnRidXMucHJvdG9idWZCC1B1YlN1YlByb3RvUAFaLmdpdGh1Yi5jb20vZGV2ZWxvcGVyZm9yY2UvcHViLXN1Yi1hcGkvZ28vcHJvdG8=
+message:
+  content: "{\r
+
+    \  \"schema_id\": \"hH6JRwWrR3nblbBJP_E0Ig\"\r
+
+    }"
+metadata:
+  accesstoken: "{{MyBearerToken}}"
+  instanceurl: "{{RootUrl}}"
+  tenantid: 00DgK0000008JE6
+settings:
+  secureConnection: true
+schema:
+  source: auto
+order: 2993431147184798

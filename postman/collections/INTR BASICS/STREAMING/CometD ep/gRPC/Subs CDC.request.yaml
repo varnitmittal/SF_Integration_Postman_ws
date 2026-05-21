@@ -1,0 +1,22 @@
+$kind: grpc-request
+name: Subs CDC
+url: api.pubsub.salesforce.com:7443
+methodPath: eventbus.v1.PubSub.Subscribe
+methodDescriptor: Cp8GChFldmVudGJ1c192MS5wcm90bxILZXZlbnRidXMudjEiMQoLRXZlbnRIZWFkZXISDwoDa2V5GAEgASgJQgIQARIRCgV2YWx1ZRgCIAEoDEICEAEibQoNUHJvZHVjZXJFdmVudBIOCgJpZBgBIAEoCUICEAESFQoJc2NoZW1hX2lkGAIgASgJQgIQARITCgdwYXlsb2FkGAMgASgMQgIQARIgCgdoZWFkZXJzGAQgAygLMgtFdmVudEhlYWRlckICEAEiSAoNQ29uc3VtZXJFdmVudBIgCgVldmVudBgBIAEoCzINUHJvZHVjZXJFdmVudEICEAESFQoJcmVwbGF5X2lkGAIgASgMQgIQASKbAQoMRmV0Y2hSZXF1ZXN0EhYKCnRvcGljX25hbWUYASABKAlCAhABEicKDXJlcGxheV9wcmVzZXQYAiABKA4yDFJlcGxheVByZXNldEICEAESFQoJcmVwbGF5X2lkGAMgASgMQgIQARIZCg1udW1fcmVxdWVzdGVkGAQgASgFQgIQARIYCgxhdXRoX3JlZnJlc2gYBSABKAlCAhABIocBCg1GZXRjaFJlc3BvbnNlEiEKBmV2ZW50cxgBIAMoCzINQ29uc3VtZXJFdmVudEICEAESHAoQbGF0ZXN0X3JlcGxheV9pZBgCIAEoDEICEAESEgoGcnBjX2lkGAMgASgJQgIQARIhChVwZW5kaW5nX251bV9yZXF1ZXN0ZWQYBCABKAVCAhABKjQKDFJlcGxheVByZXNldBIKCgZMQVRFU1QQABIMCghFQVJMSUVTVBABEgoKBkNVU1RPTRACMlAKBlB1YlN1YhJGCglTdWJzY3JpYmUSGS5ldmVudGJ1cy52MS5GZXRjaFJlcXVlc3QaGi5ldmVudGJ1cy52MS5GZXRjaFJlc3BvbnNlKAEwAUJhCiBjb20uc2FsZXNmb3JjZS5ldmVudGJ1cy5wcm90b2J1ZkILUHViU3ViUHJvdG9QAVouZ2l0aHViLmNvbS9kZXZlbG9wZXJmb3JjZS9wdWItc3ViLWFwaS9nby9wcm90bw==
+message:
+  content: |-
+    {
+      "topic_name": "/data/Student__ChangeEvent",
+      "replay_preset": "LATEST",
+      "num_requested": 10
+    }
+metadata:
+  accesstoken: "{{MyBearerToken}}"
+  instanceurl: "{{RootUrl}}"
+  tenantid: 00DgK0000008JE6
+settings:
+  secureConnection: true
+schema:
+  source: file
+  location: /C:/Users/vmittal/Downloads/pubsub_api.proto
+order: 2000
