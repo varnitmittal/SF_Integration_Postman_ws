@@ -1,3 +1,607 @@
 $kind: collection
 name: CometD ep
+description: |-
+  StartFragment
+
+  # Salesforce Streaming API — Complete Notes
+
+  Streaming API provides:
+
+  ``` text
+  real-time event-driven communication
+
+   ```
+
+  instead of:
+
+  ``` text
+  repeated polling
+
+   ```
+
+  Salesforce pushes events automatically to subscribers.
+
+  ---
+
+  # Main Purpose
+
+  Used for:
+
+  - realtime integrations
+      
+  - middleware communication
+      
+  - event-driven systems
+      
+  - ERP sync
+      
+  - notifications
+      
+  - reactive architectures
+      
+
+  ---
+
+  # Core Architecture
+
+  ``` text
+  Publisher
+  ↓
+  Salesforce Event Bus
+  ↓
+  Subscribers
+
+   ```
+
+  ---
+
+  # Important Difference From REST API
+
+  ## REST API
+
+  ``` text
+  request-response architecture
+
+   ```
+
+  Client repeatedly asks:
+
+  ``` text
+  Any updates?
+
+   ```
+
+  ---
+
+  ## Streaming API
+
+  ``` text
+  publish-subscribe architecture
+
+   ```
+
+  Salesforce pushes updates automatically.
+
+  ---
+
+  # Main Streaming Types
+
+  | Type | Purpose |
+  | --- | --- |
+  | Platform Events | custom business events |
+  | Change Data Capture (CDC) | automatic DB change events |
+  | PushTopic | legacy SOQL change events |
+  | Generic Events | lightweight events |
+
+  ---
+
+  # Most Important Modern Types
+
+  | Priority | Type |
+  | --- | --- |
+  | High | Platform Events |
+  | High | CDC |
+
+  ---
+
+  # Platform Events
+
+  Platform Events are:
+
+  ``` text
+  custom event messages
+
+   ```
+
+  Examples:
+
+  - StudentRegistered
+      
+  - PaymentCompleted
+      
+  - ERPRequestCreated
+      
+
+  ---
+
+  # Platform Event Naming
+
+  Platform Events end with:
+
+  ``` text
+  __e
+
+   ```
+
+  Example:
+
+  ``` text
+  Student_Notif__e
+
+   ```
+
+  ---
+
+  # Platform Event Publishing
+
+  Published using:
+
+  ``` http
+  POST /services/data/v64.0/sobjects/EventName__e
+
+   ```
+
+  Example:
+
+  ``` http
+  POST /services/data/v64.0/sobjects/Student_Notif__e
+
+   ```
+
+  Body:
+
+  ``` json
+  {
+    "Message__c": "Realtime Event"
+  }
+
+   ```
+
+  ---
+
+  # Important Platform Event Concept
+
+  Platform Events:
+
+  ``` text
+  do NOT create persistent records
+
+   ```
+
+  They create:
+
+  ``` text
+  temporary event messages
+
+   ```
+
+  on Salesforce Event Bus.
+
+  ---
+
+  # Change Data Capture (CDC)
+
+  CDC automatically publishes:
+
+  ``` text
+  database change events
+
+   ```
+
+  for:
+
+  - CREATE
+      
+  - UPDATE
+      
+  - DELETE
+      
+  - UNDELETE
+      
+
+  No manual publishing required.
+
+  ---
+
+  # CDC Channel Naming
+
+  Format:
+
+  ``` text
+  /data/ObjectName__ChangeEvent
+
+   ```
+
+  Example:
+
+  ``` text
+  /data/Student__ChangeEvent
+
+   ```
+
+  ---
+
+  # Important CDC Concept
+
+  Salesforce automatically converts:
+
+  ``` text
+  database transactions into realtime events
+
+   ```
+
+  Very important enterprise integration concept.
+
+  ---
+
+  # Real Enterprise CDC Flow
+
+  ``` text
+  Salesforce record changes
+  ↓
+  CDC event generated
+  ↓
+  Middleware receives event
+  ↓
+  ERP/DataLake updated
+
+   ```
+
+  ---
+
+  # CometD
+
+  Streaming API uses:
+
+  ``` text
+  CometD/Bayeux protocol
+
+   ```
+
+  NOT normal REST architecture.
+
+  CometD handles:
+
+  - subscriptions
+      
+  - long polling
+      
+  - realtime streaming
+      
+  - event delivery
+      
+
+  ---
+
+  # Important CometD Concept
+
+  Streaming APIs are:
+
+  ``` text
+  connection-oriented
+
+   ```
+
+  NOT:
+
+  ``` text
+  stateless request-response APIs
+
+   ```
+
+  Very important architecture shift.
+
+  ---
+
+  # Main CometD Endpoint
+
+  ``` http
+  /cometd/64.0
+
+   ```
+
+  All streaming operations happen through:
+
+  ``` text
+  /cometd/
+
+   ```
+
+  NOT direct channel URLs.
+
+  ---
+
+  # Core Streaming Lifecycle
+
+  ``` text
+  1. Handshake
+  2. Subscribe
+  3. Connect
+  4. Receive Events
+
+   ```
+
+  ---
+
+  # 1\. Handshake
+
+  Purpose:
+
+  ``` text
+  establish streaming session
+
+   ```
+
+  Request:
+
+  ``` json
+  [
+    {
+      "channel": "/meta/handshake",
+      "version": "1.0",
+      "supportedConnectionTypes": ["long-polling"],
+      "id": "1"
+    }
+  ]
+
+   ```
+
+  ---
+
+  # Handshake Response
+
+  Returns:
+
+  ``` json
+  clientId
+
+   ```
+
+  Example:
+
+  ``` json
+  "clientId": "abc123"
+
+   ```
+
+  Important:
+
+  ``` text
+  clientId represents active streaming session
+
+   ```
+
+  ---
+
+  # 2\. Subscribe
+
+  Purpose:
+
+  ``` text
+  subscribe to event channel
+
+   ```
+
+  Example:
+
+  ``` json
+  [
+    {
+      "channel": "/meta/subscribe",
+      "clientId": "YOUR_CLIENT_ID",
+      "subscription": "/event/Student_Notif__e",
+      "id": "2"
+    }
+  ]
+
+   ```
+
+  ---
+
+  # Important Subscription Concept
+
+  Subscription channel is:
+
+  ``` text
+  NOT URL endpoint
+
+   ```
+
+  It is:
+
+  ``` text
+  logical event stream name
+
+   ```
+
+  All communication still goes through:
+
+  ``` text
+  /cometd/64.0
+
+   ```
+
+  ---
+
+  # 3\. Connect
+
+  Purpose:
+
+  ``` text
+  open realtime listener connection
+
+   ```
+
+  Example:
+
+  ``` json
+  [
+    {
+      "channel": "/meta/connect",
+      "clientId": "YOUR_CLIENT_ID",
+      "connectionType": "long-polling",
+      "id": "3"
+    }
+  ]
+
+   ```
+
+  ---
+
+  # Important Connect Concept
+
+  ``` text
+  /meta/connect
+
+   ```
+
+  creates:
+
+  ``` text
+  long-lived listening connection
+
+   ```
+
+  Events arrive through this connection.
+
+  ---
+
+  # Long Polling
+
+  Streaming API commonly uses:
+
+  ``` text
+  long polling
+
+   ```
+
+  Meaning:
+
+  - request remains open
+      
+  - server waits for events
+      
+  - response returns when event arrives
+      
+
+  ---
+
+  # ReplayId
+
+  Each event contains:
+
+  ``` json
+  "replayId"
+
+   ```
+
+  Purpose:
+
+  ``` text
+  resume missed events
+
+   ```
+
+  Very important enterprise reliability concept.
+
+  ---
+
+  # CDC Event Example
+
+  ``` json
+  "changeType": "CREATE"
+
+   ```
+
+  Possible values:
+
+  - CREATE
+      
+  - UPDATE
+      
+  - DELETE
+      
+  - UNDELETE
+      
+
+  ---
+
+  # Important CDC Fields
+
+  | Field | Meaning |
+  | --- | --- |
+  | changeType | operation type |
+  | recordIds | affected records |
+  | changedFields | updated fields |
+  | commitUser | user performing transaction |
+  | replayId | stream position |
+  | transactionKey | transaction identifier |
+
+  ---
+
+  # Important Architectural Difference
+
+  ## Platform Events
+
+  ``` text
+  custom business events
+
+   ```
+
+  Manually published.
+
+  ---
+
+  ## CDC
+
+  ``` text
+  automatic database change events
+
+   ```
+
+  Automatically generated by Salesforce.
+
+  ---
+
+  # Real Enterprise Uses
+
+  | Use Case | Technology |
+  | --- | --- |
+  | ERP sync | CDC |
+  | Middleware orchestration | Platform Events |
+  | Microservices | Platform Events |
+  | Data lake sync | CDC |
+  | Realtime notifications | Platform Events |
+  | Event-driven systems | both |
+
+  ---
+
+  # Real Enterprise Importance
+
+  Streaming API is foundational for:
+
+  - async integrations
+      
+  - realtime systems
+      
+  - event-driven architecture
+      
+  - enterprise middleware
+      
+  - distributed systems
+      
+
+  One of the most architecturally important Salesforce API areas.
+
+  EndFragment
 order: 3280757831237631
