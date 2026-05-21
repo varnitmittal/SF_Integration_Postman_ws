@@ -1,0 +1,48 @@
+$kind: http-example
+request:
+  url: "{{RootUrl}}/services/data/v64.0/jobs/ingest/750gK00000Ufv7VQAR"
+  method: GET
+response:
+  statusCode: 200
+  statusText: OK
+  headers:
+    date: Thu, 21 May 2026 14:13:56 GMT
+    content-type: application/json;charset=UTF-8
+    transfer-encoding: chunked
+    connection: keep-alive
+    vary: Accept-Encoding
+    cache-control: no-cache,must-revalidate,max-age=0,no-store,private
+    content-encoding: gzip
+    x-robots-tag: none
+    sforce-limit-info: api-usage=489/15000
+    strict-transport-security: max-age=63072000; includeSubDomains
+    x-content-type-options: nosniff
+    server: sfdcedge
+    x-sfdc-request-id: 446f60df046081889ec46cebcb1dc81d
+    x-request-id: 446f60df046081889ec46cebcb1dc81d
+    x-sfdc-edge-cache: none
+  body:
+    type: json
+    content: |-
+      {
+        "id": "750gK00000Ufv7VQAR",
+        "operation": "insert",
+        "object": "Student__c",
+        "createdById": "005gK000000P8s3QAC",
+        "createdDate": "2026-05-21T13:48:16.000+0000",
+        "systemModstamp": "2026-05-21T13:48:16.000+0000",
+        "state": "Open",
+        "concurrencyMode": "Parallel",
+        "contentType": "CSV",
+        "apiVersion": 64,
+        "jobType": "V2Ingest",
+        "contentUrl": "services/data/v64.0/jobs/ingest/750gK00000Ufv7VQAR/batches",
+        "lineEnding": "LF",
+        "columnDelimiter": "COMMA",
+        "retries": 0,
+        "totalProcessingTime": 0,
+        "apiActiveProcessingTime": 0,
+        "apexProcessingTime": 0,
+        "isPkChunkingSupported": false
+      }
+order: 1779372839307

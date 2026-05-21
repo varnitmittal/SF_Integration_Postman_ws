@@ -1,0 +1,53 @@
+$kind: http-example
+request:
+  url: "{{RootUrl}}/services/data/v64.0/jobs/ingest"
+  method: POST
+  body:
+    type: json
+    content: "{\r
+
+      \  \"object\": \"Student__c\",\r
+
+      \  \"operation\": \"insert\",\r
+
+      \  \"contentType\": \"CSV\"\r
+
+      }"
+response:
+  statusCode: 200
+  statusText: OK
+  headers:
+    date: Thu, 21 May 2026 13:37:34 GMT
+    content-type: application/json;charset=UTF-8
+    transfer-encoding: chunked
+    connection: keep-alive
+    vary: Accept-Encoding
+    x-content-type-options: nosniff
+    strict-transport-security: max-age=63072000; includeSubDomains
+    cache-control: no-cache,must-revalidate,max-age=0,no-store,private
+    content-encoding: gzip
+    x-robots-tag: none
+    sforce-limit-info: api-usage=484/15000
+    server: sfdcedge
+    x-sfdc-request-id: d703eaad4be1ae24cabab3e98a54e6f6
+    x-request-id: d703eaad4be1ae24cabab3e98a54e6f6
+    x-sfdc-edge-cache: none
+  body:
+    type: json
+    content: |-
+      {
+        "id": "750gK00000UfV9uQAF",
+        "operation": "insert",
+        "object": "Student__c",
+        "createdById": "005gK000000P8s3QAC",
+        "createdDate": "2026-05-21T13:37:34.000+0000",
+        "systemModstamp": "2026-05-21T13:37:34.000+0000",
+        "state": "Open",
+        "concurrencyMode": "Parallel",
+        "contentType": "CSV",
+        "apiVersion": 64,
+        "contentUrl": "services/data/v64.0/jobs/ingest/750gK00000UfV9uQAF/batches",
+        "lineEnding": "LF",
+        "columnDelimiter": "COMMA"
+      }
+order: 1779370658503

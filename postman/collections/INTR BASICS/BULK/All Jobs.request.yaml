@@ -1,0 +1,5 @@
+$kind: http-request
+url: "{{RootUrl}}/services/data/v64.0/jobs/ingest"
+method: GET
+examples: .resources/All Jobs.resources/examples
+order: 129

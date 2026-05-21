@@ -1,0 +1,5 @@
+$kind: http-request
+name: Success
+url: "{{RootUrl}}/services/data/v64.0/jobs/ingest/750gK00000Ufv7V/successfulResults"
+method: GET
+order: 4000

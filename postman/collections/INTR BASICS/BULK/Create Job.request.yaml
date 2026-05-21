@@ -1,0 +1,20 @@
+$kind: http-request
+url: "{{RootUrl}}/services/data/v64.0/jobs/ingest"
+method: POST
+body:
+  type: json
+  content: "{\r
+
+    \  \"object\": \"Student__c\",\r
+
+    \  \"operation\": \"insert\",\r
+
+    \  \"contentType\": \"CSV\"\r
+
+    }"
+auth:
+  type: inherit
+  credentials:
+    id: ed470d65-fa0f-4567-ae4a-41ba9d509970
+examples: .resources/Create Job.resources/examples
+order: 1000

@@ -1,0 +1,302 @@
+$kind: collection
+name: BULK
+description: |-
+  # Salesforce Bulk API 2.0 — Quick Notes
+
+  Bulk API is used for:
+
+  ``` text
+  large-scale asynchronous data processing
+
+   ```
+
+  Examples:
+
+  - migrations
+      
+  - ETL
+      
+  - ERP sync
+      
+  - nightly jobs
+      
+  - millions of records
+      
+
+  ---
+
+  # Important Difference From REST API
+
+  ## REST API
+
+  ``` text
+  small realtime transactions
+
+   ```
+
+  ---
+
+  ## Bulk API
+
+  ``` text
+  mass async processing
+
+   ```
+
+  Optimized for:
+
+  - huge datasets
+      
+  - background execution
+      
+  - CSV streaming
+      
+
+  ---
+
+  # Core Architecture
+
+  ``` text
+  Create Job
+  ↓
+  Upload CSV
+  ↓
+  Close Job
+  ↓
+  Async Processing
+  ↓
+  Retrieve Results
+
+   ```
+
+  ---
+
+  # Important Concepts
+
+  | Concept | Meaning |
+  | --- | --- |
+  | Job | bulk processing container |
+  | CSV Upload | mass data payload |
+  | Async Processing | background execution |
+  | Result Retrieval | success/failure rows |
+
+  ---
+
+  # Important Bulk API Types
+
+  | Type | Purpose |
+  | --- | --- |
+  | Bulk API 2.0 | modern/simple |
+  | Bulk API 1.0 | older batch model |
+
+  Focus on:
+
+  ``` text
+  Bulk API 2.0
+
+   ```
+
+  ---
+
+  # Supported Operations
+
+  | Operation | Purpose |
+  | --- | --- |
+  | insert | create records |
+  | update | modify records |
+  | upsert | insert/update |
+  | delete | remove records |
+  | query | large-scale export |
+
+  ---
+
+  # Important Data Format
+
+  Bulk API 2.0 primarily uses:
+
+  ``` text
+  CSV
+
+   ```
+
+  NOT:
+
+  ``` text
+  JSON
+
+   ```
+
+  Why:
+
+  - memory efficient
+      
+  - streamable
+      
+  - optimized for millions of rows
+      
+
+  ---
+
+  # Main Workflow
+
+  ## 1\. Create Job
+
+  Endpoint:
+
+  ``` http
+  POST /services/data/v64.0/jobs/ingest
+
+   ```
+
+  Body:
+
+  ``` json
+  {
+    "object": "Student__c",
+    "operation": "insert",
+    "contentType": "CSV"
+  }
+
+   ```
+
+  ---
+
+  # 2\. Upload CSV
+
+  Endpoint:
+
+  ``` http
+  PUT /services/data/v64.0/jobs/ingest/{jobId}/batches
+
+   ```
+
+  Body:
+
+  ``` text
+  raw CSV
+
+   ```
+
+  Example:
+
+  ``` csv
+  Student_Name__c,Status__c
+  Alex,Enrolled
+  John,Pending
+
+   ```
+
+  ---
+
+  # 3\. Close Job
+
+  Endpoint:
+
+  ``` http
+  PATCH /services/data/v64.0/jobs/ingest/{jobId}
+
+   ```
+
+  Body:
+
+  ``` json
+  {
+    "state": "UploadComplete"
+  }
+
+   ```
+
+  ---
+
+  # 4\. Check Job Status
+
+  Endpoint:
+
+  ``` http
+  GET /services/data/v64.0/jobs/ingest/{jobId}
+
+   ```
+
+  Important states:
+
+  | State | Meaning |
+  | --- | --- |
+  | Open | accepting CSV |
+  | UploadComplete | processing started |
+  | JobComplete | finished |
+  | Failed | failed |
+
+  ---
+
+  # 5\. Retrieve Results
+
+  ## Successful Rows
+
+  ``` http
+  GET /services/data/v64.0/jobs/ingest/{jobId}/successfulResults
+
+   ```
+
+  ---
+
+  ## Failed Rows
+
+  ``` http
+  GET /services/data/v64.0/jobs/ingest/{jobId}/failedResults
+
+   ```
+
+  ---
+
+  # Bulk Query
+
+  Used for:
+
+  ``` text
+  large exports
+
+   ```
+
+  Example:
+
+  - millions of Accounts
+      
+  - warehouse sync
+      
+
+  ---
+
+  # Real Enterprise Uses
+
+  | Use Case | Example |
+  | --- | --- |
+  | ERP sync | nightly imports |
+  | ETL | data pipelines |
+  | Migration | legacy imports |
+  | Data lake sync | exports |
+  | Middleware | mass updates |
+
+  ---
+
+  # Important Architecture Concept
+
+  Bulk API is:
+
+  ``` text
+  throughput-optimized async architecture
+
+   ```
+
+  NOT:
+
+  ``` text
+  realtime transactional architecture
+
+   ```
+auth:
+  - id: ed470d65-fa0f-4567-ae4a-41ba9d509970
+    type: bearer
+    name: Bearer Token
+    credentials:
+      token: "{{MyBearerToken}}"
+order: 1491953062510591

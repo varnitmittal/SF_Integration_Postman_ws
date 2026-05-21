@@ -1,0 +1,6 @@
+$kind: http-request
+name: Fetch Job
+url: "{{RootUrl}}/services/data/v64.0/jobs/ingest/750gK00000Ufv7V"
+method: GET
+examples: .resources/Fetch Job.resources/examples
+order: 3000
