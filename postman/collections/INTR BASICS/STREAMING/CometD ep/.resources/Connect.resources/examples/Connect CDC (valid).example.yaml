@@ -1,0 +1,86 @@
+$kind: http-example
+request:
+  url: "{{RootUrl}}/cometd/64.0"
+  method: POST
+  body:
+    type: json
+    content: "[\r
+
+      \  {\r
+
+      \    \"channel\": \"/meta/connect\",\r
+
+      \    \"clientId\": \"26f1dy4exorjccqp1cobs1771462q\",\r
+
+      \    \"connectionType\": \"long-polling\",\r
+
+      \    \"id\": \"3\"\r
+
+      \  }\r
+
+      ]"
+response:
+  statusCode: 200
+  statusText: OK
+  headers:
+    date: Thu, 21 May 2026 09:25:54 GMT
+    content-type: application/json;charset=UTF-8
+    content-length: "515"
+    connection: keep-alive
+    content-encoding: gzip
+    x-robots-tag: none
+    vary: Accept-Encoding
+    x-content-type-options: nosniff
+    x-salesforce-no-proxy: "true"
+    strict-transport-security: max-age=63072000; includeSubDomains
+    cache-control: no-cache,must-revalidate,max-age=0,no-store,private
+    server: sfdcedge
+    x-sfdc-request-id: 8450202fe71f3d5c684a774eac677c91
+    x-request-id: 8450202fe71f3d5c684a774eac677c91
+    x-sfdc-edge-cache: none
+  body:
+    type: json
+    content: |-
+      [
+        {
+          "data": {
+            "schema": "hH6JRwWrR3nblbBJP_E0Ig",
+            "payload": {
+              "LastModifiedDate": "2026-05-21T09:25:49.000Z",
+              "Student_Name__c": "CDC Test",
+              "Name": "St-0086",
+              "OwnerId": "005gK000000P8s3QAC",
+              "CreatedById": "005gK000000P8s3QAC",
+              "ChangeEventHeader": {
+                "commitNumber": 1779355549401686000,
+                "commitUser": "005gK000000P8s3QAC",
+                "sequenceNumber": 1,
+                "entityName": "Student__c",
+                "changeType": "CREATE",
+                "changedFields": [],
+                "changeOrigin": "com/salesforce/api/rest/64.0",
+                "transactionKey": "000096c9-6caf-c694-c7cb-eca7e2a6ce11",
+                "commitTimestamp": 1779355549000,
+                "recordIds": [
+                  "a1hgK000002NJf7QAG"
+                ]
+              },
+              "RecordTypeId": "012gK000004at6vQAA",
+              "CreatedDate": "2026-05-21T09:25:49.000Z",
+              "Status__c": "Enrolled",
+              "LastModifiedById": "005gK000000P8s3QAC"
+            },
+            "event": {
+              "replayId": 1309497
+            }
+          },
+          "channel": "/data/Student__ChangeEvent"
+        },
+        {
+          "clientId": "26f1dy4exorjccqp1cobs1771462q",
+          "channel": "/meta/connect",
+          "id": "3",
+          "successful": true
+        }
+      ]
+order: 1779355577131

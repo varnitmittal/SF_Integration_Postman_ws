@@ -1,0 +1,11 @@
+$kind: http-request
+url: "{{RootUrl}}/services/data/v64.0/sobjects/Student__c"
+method: POST
+body:
+  type: json
+  content: "{\r
+
+    \  \"Student_Name__c\": \"CDC Test\"\r
+
+    }"
+order: 4474471607625812

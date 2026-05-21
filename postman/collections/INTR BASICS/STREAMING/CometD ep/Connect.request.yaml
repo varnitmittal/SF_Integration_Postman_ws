@@ -1,5 +1,4 @@
 $kind: http-request
-name: Subscribe
 url: "{{RootUrl}}/cometd/64.0"
 method: POST
 body:
@@ -8,16 +7,16 @@ body:
 
     \  {\r
 
-    \    \"channel\": \"/meta/subscribe\",\r
+    \    \"channel\": \"/meta/connect\",\r
 
     \    \"clientId\": \"29611vj92tje9at2z5y4kix4c1b1\",\r
 
-    \    \"subscription\": \"/event/Student_Notif__e\",\r
+    \    \"connectionType\": \"long-polling\",\r
 
     \    \"id\": \"5\"\r
 
     \  }\r
 
     ]"
-examples: .resources/Subscribe.resources/examples
-order: 419464637246099
+examples: .resources/Connect.resources/examples
+order: 2781510361160922
