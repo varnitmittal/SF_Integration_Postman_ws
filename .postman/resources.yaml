@@ -3,6 +3,9 @@ workspace:
 
 localResources:
   collections: []
+  docs:
+    - ..\postman\readme2.md
+    - ..\postman\README.md
 
 # Each entry here maps a local resource to one or more corresponding objects in Postman Cloud
 

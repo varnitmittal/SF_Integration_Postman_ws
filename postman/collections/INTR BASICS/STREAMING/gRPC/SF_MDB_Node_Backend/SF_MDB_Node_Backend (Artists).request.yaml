@@ -1,0 +1,12 @@
+$kind: http-request
+name: SF_MDB_Node_Backend (Artists)
+url: http://localhost:3000/artists?page=1
+method: GET
+queryParams:
+  page: "1"
+auth:
+  type: apikey
+  credentials:
+    key: x-api-key
+    value: sfdc_mongo_7Kx9PqL2vN8rT4yWmQ1ZaBcD6EfH3Js
+order: 1779874922052

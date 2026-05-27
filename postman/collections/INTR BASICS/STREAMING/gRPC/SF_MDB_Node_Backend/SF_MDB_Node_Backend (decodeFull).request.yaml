@@ -1,0 +1,9 @@
+$kind: http-request
+url: http://localhost:3000/decodeFull/6a16a35fcf009610597d0a4e
+method: GET
+auth:
+  type: apikey
+  credentials:
+    key: x-api-key
+    value: sfdc_mongo_7Kx9PqL2vN8rT4yWmQ1ZaBcD6EfH3Js
+order: 990711018522388
