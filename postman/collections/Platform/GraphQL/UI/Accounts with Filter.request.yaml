@@ -1,0 +1,31 @@
+$kind: graphql-request
+url: "{{_endpoint}}/services/data/v{{version}}/graphql"
+query: |-
+  query accountsWithFilter($where: Account_Filter = {Name: {like: "s%"}}) {
+    uiapi {
+      query {
+        Account(where: $where) {
+          edges {
+            node {
+              Id
+              Name {
+                value
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+variables: |-
+  {
+      "where": {
+          "Name": {
+              "like": "%united%"
+          }
+      }
+  }
+headers:
+  X-Chatter-Entity-Encoding: "false"
+examples: ./.resources/Accounts with Filter.resources/examples
+order: 3000

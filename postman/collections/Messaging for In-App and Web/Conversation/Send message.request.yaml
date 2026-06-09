@@ -1,0 +1,25 @@
+$kind: http-request
+description: Sends a message from the end user to the agent or bot. The message is sent one at a time and each message can be in a different form, depending on the message type and its payload.
+url: https://{{scrt-url}}/iamessage/api/v2/conversation/:conversationId/message
+method: POST
+headers:
+  x-conversation-id: "{{converation-id}}"
+pathVariables:
+  conversationId: "{{_conversation-id}}"
+body:
+  type: json
+  content: |-
+    {
+      "message": {
+        "id": "{{$randomUUID}}",
+        "messageType": "StaticContentMessage",
+        "staticContent": {
+          "formatType": "Text",
+          "text": "Hi, can you help me?"
+        }
+      },
+      "esDeveloperName": "{{developer-name}}",
+      "isNewMessagingSession": false,
+      "language": ""
+    }
+order: 6000

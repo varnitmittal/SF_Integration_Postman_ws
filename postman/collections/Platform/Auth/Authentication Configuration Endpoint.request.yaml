@@ -1,0 +1,7 @@
+$kind: http-request
+url: "{{url}}{{site}}/.well-known/auth-configuration"
+method: GET
+auth:
+  type: noauth
+examples: ./.resources/Authentication Configuration Endpoint.resources/examples
+order: 17000

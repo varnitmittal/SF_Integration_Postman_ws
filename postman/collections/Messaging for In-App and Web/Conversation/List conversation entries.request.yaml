@@ -1,0 +1,10 @@
+$kind: http-request
+description: Lists conversation entries for the specified conversation.
+url: https://{{scrt-url}}/iamessage/api/v2/conversation/:conversationId/entries
+method: GET
+pathVariables:
+  conversationId: "{{_conversation-id}}"
+body:
+  type: json
+  content: ""
+order: 5000

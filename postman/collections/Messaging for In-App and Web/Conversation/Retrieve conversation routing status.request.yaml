@@ -1,0 +1,10 @@
+$kind: http-request
+description: Retrieves the routing status of the specified conversation.
+url: https://{{scrt-url}}/iamessage/api/v2/conversation/:conversationId
+method: GET
+pathVariables:
+  conversationId: "{{_conversation-id}}"
+body:
+  type: json
+  content: ""
+order: 4000

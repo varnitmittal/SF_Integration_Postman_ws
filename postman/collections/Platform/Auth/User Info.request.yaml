@@ -1,0 +1,7 @@
+$kind: http-request
+url: "{{url}}{{site}}/services/oauth2/userinfo"
+method: GET
+headers:
+  Content-Type: application/json
+examples: ./.resources/User Info.resources/examples
+order: 15000

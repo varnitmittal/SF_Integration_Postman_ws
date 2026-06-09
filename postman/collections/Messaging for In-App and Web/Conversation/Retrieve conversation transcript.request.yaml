@@ -1,0 +1,12 @@
+$kind: http-request
+description: |-
+  Generates a transcript of the last 200 conversation entries. The transcript is generated into binary format and saved as a PDF file.  
+
+  Before you continue, verify that the administrator has turned on the ability to download transcripts for end users. See [Allow End Users to Download a Transcript of a Messaging Session](https://help.salesforce.com/s/articleView?id=sf.miaw_download_transcript.htm) for more information.
+url: https://{{scrt-url}}/iamessage/api/v2/conversation/:conversationId/transcript?esDeveloperName={{developer-name}}
+method: GET
+queryParams:
+  esDeveloperName: "{{developer-name}}"
+pathVariables:
+  conversationId: "{{_conversation-id}}"
+order: 10000

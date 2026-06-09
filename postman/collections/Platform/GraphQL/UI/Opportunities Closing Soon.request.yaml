@@ -1,0 +1,42 @@
+$kind: graphql-request
+url: "{{_endpoint}}/services/data/v{{version}}/graphql"
+query: |-
+  query opportunitiesClosingSoon($month: Long) {
+    uiapi {
+      query {
+        Opportunity(
+          where: {
+            StageName: { eq: "Negotiation/Review" }
+            CloseDate: { CALENDAR_MONTH: { value: { eq: $month } } }
+          }
+        ) {
+          edges {
+            node {
+              Id
+              Name {
+                value
+              }
+              StageName {
+                value
+              }
+              CloseDate {
+                value
+                displayValue
+              }
+              Description {
+                value
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+variables: |-
+  {
+      "month": 10
+  }
+headers:
+  X-Chatter-Entity-Encoding: "false"
+examples: ./.resources/Opportunities Closing Soon.resources/examples
+order: 8000

@@ -1,0 +1,48 @@
+$kind: grpc-example
+auth:
+  type: noauth
+request:
+  url: "{{pubSubApiEndpoint}}"
+  methodPath: eventbus.v1.PubSub.Subscribe
+  methodDescriptor: Cp8GChFldmVudGJ1c192MS5wcm90bxILZXZlbnRidXMudjEiMQoLRXZlbnRIZWFkZXISDwoDa2V5GAEgASgJQgIQARIRCgV2YWx1ZRgCIAEoDEICEAEibQoNUHJvZHVjZXJFdmVudBIOCgJpZBgBIAEoCUICEAESFQoJc2NoZW1hX2lkGAIgASgJQgIQARITCgdwYXlsb2FkGAMgASgMQgIQARIgCgdoZWFkZXJzGAQgAygLMgtFdmVudEhlYWRlckICEAEiSAoNQ29uc3VtZXJFdmVudBIgCgVldmVudBgB
+  metadata:
+    accesstoken: "{{accessToken}}"
+    instanceurl: "{{instanceUrl}}"
+    tenantid: "{{orgId}}"
+response:
+  code: 0
+  metadata:
+    content-type: application/grpc
+    date: Tue, 04 Jul 2023 08:05:17 GMT
+  messages:
+    - id: 6a276df3c81b013cea53c01b
+      type: incoming
+      content: |-
+        {
+            "events": [
+                {
+                    "event": {
+                        "headers": [],
+                        "id": "54d06942-6ef1-437e-a599-3518142c2b3b",
+                        "schema_id": "8wTY29tSYBEZbJKv-xgyag",
+                        "payload": "DkFjY291bnQCJDAwMTRIMDAwMDJMYlI3UVFBVgACaGNvbS9zYWxlc2ZvcmNlL2FwaS9zb2FwLzU4LjA7Y2xpZW50PVNmZGNJbnRlcm5hbEFQSS9IMDAwNjk0NjctYjRjYi0zMDhhLWUyZjctNGQ0NWUwNjAzZTU0AsC5+f6jYvC62LXhogUkMDA1NTgwMDAwMDB5RnlEQUFVAAACEDB4NDIwMDAwAAAAAAAAAAAAAAAAAAAAAAACCFdhcm0AAAAAAsC5+f6jYgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                    },
+                    "replay_id": "AAAAAAEE4HQAAA=="
+                }
+            ],
+            "latest_replay_id": "AAAAAAEE4HQAAA==",
+            "rpc_id": "4af7713f-881c-4dcd-8d60-43749f20fc70",
+            "pending_num_requested": 0
+        }
+    - id: 6a276df3c81b013cea53c01c
+      type: outgoing
+      content: |-
+        {
+            "num_requested": 1,
+            "topic_name": "/data/AccountChangeEvent"
+        }
+schema:
+  source: api
+  apiId: 13095926-87da-4278-b8fd-eb7f9a1466b2
+  versionId: f7e2312a-abe9-4bca-a776-ca6469ff9fef
+order: 1000

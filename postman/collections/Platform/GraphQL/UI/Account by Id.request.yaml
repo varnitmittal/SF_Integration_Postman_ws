@@ -1,0 +1,27 @@
+$kind: graphql-request
+url: "{{_endpoint}}/services/data/v{{version}}/graphql"
+query: |
+  query accountById($id: ID) {
+    uiapi {
+      query {
+        Account(where: { Id: { eq: $id } }) {
+          edges {
+            node {
+              Id
+              Name {
+                value
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+variables: |-
+  {
+      "id": "0014H00002LbR7QQAV"
+  }
+headers:
+  X-Chatter-Entity-Encoding: "false"
+examples: ./.resources/Account by Id.resources/examples
+order: 2000

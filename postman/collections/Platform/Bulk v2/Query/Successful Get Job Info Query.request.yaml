@@ -1,0 +1,9 @@
+$kind: http-request
+url: "{{_endpoint}}/services/data/v{{version}}/jobs/query/{{_jobId}}"
+method: GET
+headers:
+  - key: Content-Type
+    value: application/json
+    disabled: true
+examples: ./.resources/Successful Get Job Info Query.resources/examples
+order: 3000

@@ -1,0 +1,21 @@
+$kind: http-request
+url: "{{_endpoint}}/services/data/v{{version}}/sobjects/:SOBJECT_API_NAME"
+method: POST
+headers:
+  - key: Content-Type
+    value: application/json
+  - key: Authorization
+    value: "{{_accessToken}}"
+    description: Only used for Postman Notebooks. Auth is defined at collection-level and inherited down.
+pathVariables:
+  - key: SOBJECT_API_NAME
+    value: ""
+    description: SObject API name
+body:
+  type: text
+  content: |-
+    {
+        "Name": "Some value"
+    }
+examples: ./.resources/SObject Create.resources/examples
+order: 4000

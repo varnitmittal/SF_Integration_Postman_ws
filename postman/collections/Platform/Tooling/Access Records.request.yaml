@@ -1,0 +1,8 @@
+$kind: http-request
+url: "{{_endpoint}}/services/data/v{{version}}/tooling/sobjects/:SOBJECT_API_NAME/:RECORD_ID"
+method: GET
+pathVariables:
+  SOBJECT_API_NAME: ""
+  RECORD_ID: ""
+examples: ./.resources/Access Records.resources/examples
+order: 12000

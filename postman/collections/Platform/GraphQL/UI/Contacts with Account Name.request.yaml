@@ -1,0 +1,28 @@
+$kind: graphql-request
+url: "{{_endpoint}}/services/data/v{{version}}/graphql"
+query: |-
+  query contactsByTheirAccountName {
+    uiapi {
+      query {
+        Contact(orderBy: { Account: { Name: { order: DESC } } }) {
+          edges {
+            node {
+              Id
+              Name {
+                value
+              }
+              Account {
+                Name {
+                  value
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+headers:
+  X-Chatter-Entity-Encoding: "false"
+examples: ./.resources/Contacts with Account Name.resources/examples
+order: 7000

@@ -1,0 +1,20 @@
+$kind: graphql-request
+url: "{{_endpoint}}/services/data/v{{version}}/graphql"
+query: |-
+  mutation AccountUpdateExample{
+    uiapi {
+      AccountUpdate(input: {
+        Account: {
+          Name: "Smith"
+        }
+        Id: "<Id>"
+      })
+        {
+          success
+        }
+    }
+  }
+headers:
+  X-Chatter-Entity-Encoding: "false"
+examples: ./.resources/Update Account.resources/examples
+order: 3000

@@ -1,0 +1,9 @@
+$kind: http-request
+url: "{{_endpoint}}/services/data/v{{version}}/jobs/ingest/{{_jobId}}/successfulResults"
+method: GET
+headers:
+  - key: Content-Type
+    value: application/json
+    disabled: true
+examples: ./.resources/Get Job Successful Record Results.resources/examples
+order: 8000

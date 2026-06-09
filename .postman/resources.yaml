@@ -2,7 +2,10 @@ workspace:
   id: 3e92c0f0-d7f9-4989-bc69-465937b6e8fc
 
 localResources:
-  collections: []
+  collections:
+    - ..\postman\collections\Pub-Sub API
+    - ..\postman\collections\Messaging for In-App and Web
+    - ..\postman\collections\Platform
   docs:
     - ..\postman\readme2.md
     - ..\postman\README.md
@@ -10,4 +13,7 @@ localResources:
 # Each entry here maps a local resource to one or more corresponding objects in Postman Cloud
 
 cloudResources:
-  collections: {}
+  collections:
+    ..\postman\collections\Platform: 41677856-bb6c31dc-80a1-40d3-a2d6-9d0790ef7867
+    ..\postman\collections\Messaging for In-App and Web: 41677856-2fdad500-2cf1-4930-abae-4fb0197fc846
+    ..\postman\collections\Pub-Sub API: 6a276df3c81b013cea53c010

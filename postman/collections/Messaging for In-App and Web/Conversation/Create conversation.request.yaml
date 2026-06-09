@@ -1,0 +1,23 @@
+$kind: http-request
+description: Creates a conversation if it doesn't exist. This API can also pass pre-chat data in the form of routing attributes.
+url: https://{{scrt-url}}/iamessage/api/v2/conversation
+method: POST
+body:
+  type: json
+  content: |-
+    {
+        "conversationId": "{{_conversation-id}}",
+        "routingAttributes": {
+            "X_Conversation_ID": "{{_conversation-id}}"
+        },
+        "esDeveloperName": "{{developer-name}}"
+    }
+scripts:
+  - type: beforeRequest
+    code: |-
+      const context = pm.environment.name ? pm.environment : pm.collectionVariables;
+
+      const uuid = require('uuid'); 
+      context.set("_conversation-id", uuid.v4().toLowerCase());
+    language: text/javascript
+order: 1000

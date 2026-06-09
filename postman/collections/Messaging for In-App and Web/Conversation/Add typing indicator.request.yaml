@@ -1,0 +1,14 @@
+$kind: http-request
+description: Adds a typing indicator to notify participants when typing starts or stops. Add a “typing started” indicator to notify the agents or bots when the end user starts typing a message. Add a “typing stopped” indicator to notify the agents or bots when the end user stops typing.
+url: https://{{scrt-url}}/iamessage/api/v2/conversation/:conversationId/entry
+method: POST
+pathVariables:
+  conversationId: "{{_conversation-id}}"
+body:
+  type: json
+  content: |-
+    {
+      "entryType": "TypingStartedIndicator",
+      "id": "{{$randomUUID}}"
+    }
+order: 8000

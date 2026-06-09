@@ -1,0 +1,21 @@
+$kind: http-request
+description: Returns a list of all conversations for a specific end user. This API is useful to determine if an end user is part of a specific conversation. The list is always returned in chronological ascending order.
+url: https://{{scrt-url}}/iamessage/api/v2/conversation/list
+method: GET
+queryParams:
+  - key: inclClosedConvs
+    value: "true"
+    disabled: true
+  - key: limit
+    value: "10"
+    disabled: true
+  - key: conversationId
+    value: ""
+    disabled: true
+  - key: startTimestamp
+    value: ""
+    disabled: true
+  - key: endTimestamp
+    value: ""
+    disabled: true
+order: 3000

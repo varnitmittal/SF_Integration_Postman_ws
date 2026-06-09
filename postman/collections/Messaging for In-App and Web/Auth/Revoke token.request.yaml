@@ -1,0 +1,11 @@
+$kind: http-request
+description: Revokes an access token that was generated for an authenticated user.
+url: https://{{scrt-url}}/iamessage/api/v2/authorization/authenticated/access-token
+method: DELETE
+scripts:
+  - type: afterResponse
+    code: |
+      const context = pm.environment.name ? pm.environment : pm.collectionVariables;
+      context.set('_access-token', '');
+    language: text/javascript
+order: 3000

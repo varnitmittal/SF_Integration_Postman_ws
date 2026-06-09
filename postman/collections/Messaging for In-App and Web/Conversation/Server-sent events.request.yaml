@@ -1,0 +1,33 @@
+$kind: http-request
+description: |-
+  The Server-Sent Events endpoint is the interface through which clients establish connections to server-sent events to receive messages and events from the server.
+
+  These messages encompass a variety of content, such as messages sent by agents or bots, system events, echoes of end-user messages, participant modifications, and similar events. Once a call is made to the endpoint, the browser keeps the connection open and receives the events from the server.
+url: https://{{scrt-url}}/eventrouter/v1/sse
+method: GET
+headers:
+  X-Org-Id: "{{org-id}}"
+body:
+  type: json
+  content: |-
+    {
+        "conversationId": "{{$randomUUID}}",
+        "esDeveloperName": "{{developer-name}}"
+    }
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.response.stream.on("CONVERSATION_MESSAGE", (event) => {
+          try {
+              const data = JSON.parse(event.data); 
+              const sender = data.conversationEntry.sender.role.toLowerCase();
+              if (sender === "chatbot") {
+                  const payload = JSON.parse(data.conversationEntry.entryPayload); 
+                  console.log(payload.abstractMessage.staticContent.text);
+              }
+          } catch (err) {
+              console.error("Message parse error: ", err); 
+          }
+      })
+    language: text/javascript
+order: 7000

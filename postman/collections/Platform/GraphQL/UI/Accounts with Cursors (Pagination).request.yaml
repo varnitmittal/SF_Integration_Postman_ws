@@ -1,0 +1,35 @@
+$kind: graphql-request
+url: "{{_endpoint}}/services/data/v{{version}}/graphql"
+query: |-
+  query accountsWithCursors($first: Int, $after: String) {
+    uiapi {
+      query {
+        Account(first: $first, after: $after) {
+          edges {
+            node {
+              Id
+              Name {
+                value
+              }
+            }
+          }
+          totalCount
+          pageInfo {
+            hasNextPage
+            hasPreviousPage
+            startCursor
+            endCursor
+          }
+        }
+      }
+    }
+  }
+variables: |-
+  {
+      "first": 3,
+      "after": null
+  }
+headers:
+  X-Chatter-Entity-Encoding: "false"
+examples: ./.resources/Accounts with Cursors (Pagination).resources/examples
+order: 4000

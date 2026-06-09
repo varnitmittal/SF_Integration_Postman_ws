@@ -1,0 +1,65 @@
+$kind: collection
+name: Messaging for In-App and Web
+description: |-
+  The [Messaging for In-App and Web REST API](https://developer.salesforce.com/docs/service/messaging-api/overview) allows you to programmatically manage customer conversations made through mobile apps or websites through a custom client deployment. It allows you to:
+
+  - create a highly customized mobile app or web messaging experiences
+      
+  - interact with Agentforce agents and support representatives
+      
+  - send messages
+      
+  - list messages
+      
+  - stream messages and events from the other participant using the [server-sent events](https://developer.salesforce.com/docs/service/messaging-api/references/about/server-sent-events.html) endpoint
+      
+
+  📚 [Messaging for In-App and Web REST API Reference](https://developer.salesforce.com/docs/service/messaging-api/references/miaw-api-reference?meta=Summary)
+
+  **⚠️ Disclaimers:**
+
+  - this collection does not include all endpoints
+      
+  - this collection is not covered by Salesforce support and SLAs.
+      
+  - [rate limits](https://help.salesforce.com/s/articleView?id=service.miaw_rate_limits.htm&type=5) apply when using the API.
+      
+
+  ## Setup
+
+  The Messaging for In-App and Web API requires a support agent or Agentforce Agent. You can an [Agentforce and Data Cloud Developer Edition account](https://trailhead.salesforce.com/content/learn/projects/quick-start-prompt-builder/get-started-with-prompt-builder) to experiment.
+
+  1. [Fork](https://app.getpostman.com/run-collection/12721794-b0864759-9662-4b53-abe1-86ad40fef542?action=collection%2Ffork&source=rip_markdown&collection-url=entityId%3D12721794-b0864759-9662-4b53-abe1-86ad40fef542%26entityType%3Dcollection%26workspaceId%3D34382471-0c97-40e5-a206-f947271665c4) this collection.
+      
+  2. Create and deploy an Agentforce Service Agent.
+      
+  3. Configure and [deploy Omni-Channel Routing](https://help.salesforce.com/s/articleView?id=service.messaging_routing_flows.htm&type=5).
+      
+  4. [Configure and deploy a Custom Client Deployment](https://help.salesforce.com/s/articleView?id=service.miaw_deployment_custom.htm&type=5) for Messaging for In-App and Web.
+      
+
+  When you complete Step 3, you'll get access to your Custom Client credentials: your SCRT URL, Org ID, and Developer Name. Note these values as you'll need to include as collection variables.
+
+  ## Variables Reference
+
+  The collection relies on the following required variables:
+
+  | Variable | Description |
+  | --- | --- |
+  | `scrt-url` | Salesforce SCRT URL from Custom Client Deployment. |
+  | `org-id` | Salesforce Org ID from Custom Client Deployment. |
+  | `developer-name` | Salesforce Developer Name. |
+  | `_access-token` | Access token that's generated when using either of the Auth requests.  <br>Do not edit this value manually. |
+  | `_conversation-id` | A converation session UUID that is automatically generated when using the **Create conversation** request**.**  <br>Do not edit this value manually. |
+variables:
+  scrt-url: ""
+  org-id: ""
+  developer-name: ""
+  _access-token: ""
+  _conversation-id: ""
+auth:
+  - id: 50c92b9c-0a3e-41f7-8701-4b3f31e02b17
+    type: bearer
+    name: bearer auth
+    credentials:
+      token: "{{_access-token}}"

@@ -1,0 +1,69 @@
+$kind: collection
+name: Pub/Sub API
+description: |-
+  # Salesforce Pub/Sub API
+
+  A collection for interacting with the Salesforce gRPC-based [Pub/Sub API](https://developer.salesforce.com/docs/platform/pub-sub-api/overview).
+
+  These requests demonstrate how to subscribe to a channel in order to receive events (Platform Event and Change Data Capture) and how to publish events.
+
+  **⚠️ Disclaimer:** this collection is not covered by Salesforce support and SLAs.
+
+  **⚠️ Warning:**
+
+  - this collection requires the Postman Desktop app to run due to its use of gRPC.
+      
+  - as of June 2025, Postman does not yet support Pull/Merge operations on gRPC collections so you may have to delete previous forks to retrieve the latest version of this collection.
+      
+
+  ## Get Started
+
+  These instructions will guide you through how to subscribe and publish events with the collection.
+
+  ### Prequisite
+
+  1. [Define](https://help.salesforce.com/s/articleView?id=platform.platform_events.htm&type=5) a `Sample__e` custom Platform Event in your org with a `Message__c` text field.
+      
+  2. Fork and configure the [Salesforce Platform APIs collection](https://www.postman.com/salesforce-developers/salesforce-developers/collection/b32utmu/salesforce-platform-apis?action=share&source=copy-link&creator=12721794). This is required to obtain an access token that we will use to work with the Pub/Sub API.
+      
+
+  ### Instructions
+
+  These instructions are also available as a video:
+
+  <video src="https://youtube.com/embed/37fLqYquVOo" alt="Pub/Sub API setup video" width="340"></video>
+
+  1. Click the **Fork** button in the upper right side of the screen and fork the Pub/Sub API collection to your private workspace.
+      
+  2. Obtain the Id of your Salesforce user and save it for later use. You can grab it from the URL of your user page (click on your avatar in your org to get there).
+      
+  3. Authenticate with your fork of the Salesforce Platform APIs collection and obtain an access token.
+      
+  4. Fill the collection variables thanks to the [Variables Reference](#variables-reference) table. For the need of this exercise set the following variable values:
+      
+      1. Set `topicName` to `/event/Sample__e`
+          
+      2. Set `sentPayloadJson` to `{ "CreatedById":"YOUR_SALESFORCE_USER_ID", "Message__c": { "string": "Hi"}}` (make sure to replace `YOUR_SALESFORCE_USER_ID` with your Salesforce user id)
+          
+  5. Click **Save**.
+      
+  6. Open the **Get topic** request and click **Invoke**.
+      
+  7. Open the **Get schema** request and click **Invoke**.
+      
+  8. Open the **Subscribe** request and click **Invoke**.
+      
+  9. Open the **Console** from the bottom application bar. Keep it open as this is where you will see the Pub/Sub decoded payloads.
+      
+  10. While still on the **Subscribe** request, click **Send** to request one event from the Pub/Sub API.
+      
+  11. Open the **Publish event** request and click Invoke. This serializes the payload from your collection variable using Avro, publish the event to the topic, and trigger the active Subscribe listener to receive it.
+      
+  12. Check the Postman console to verify the published and received messages. The console shows the uncompressed outgoing payload (including the auto-added `CreatedDate` field), the replay ID and correlation key, and the decoded incoming event payload.
+variables:
+  pubSubApiEndpoint: api.pubsub.salesforce.com:7443
+  instanceUrl: ""
+  accessToken: ""
+  orgId: ""
+  topicName: ""
+  sentPayloadJson: ""

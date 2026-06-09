@@ -1,0 +1,53 @@
+$kind: grpc-example
+auth:
+  type: noauth
+request:
+  url: "{{pubSubApiEndpoint}}"
+  methodPath: eventbus.v1.PubSub.Publish
+  methodDescriptor: CocGChFldmVudGJ1c192MS5wcm90bxILZXZlbnRidXMudjEiMQoLRXZlbnRIZWFkZXISDwoDa2V5GAEgASgJQgIQARIRCgV2YWx1ZRgCIAEoDEICEAEibQoNUHJvZHVjZXJFdmVudBIOCgJpZBgBIAEoCUICEAESFQoJc2NoZW1hX2lkGAIgASgJQgIQARITCgdwYXlsb2FkGAMgASgMQgIQARIgCgdoZWFkZXJzGAQgAygLMgtFdmVudEhlYWRlckICEAEiXQoNUHVibGlzaFJlc3VsdBIVCglyZXBsYXlf
+  message:
+    content: |-
+      {
+          "topic_name": "{{topicName}}",
+          "events": [
+              {
+                  "schema_id": "{{_schemaId}}",
+                  "payload": "{{_serializedSentPayload}}"
+              }
+          ]
+      }
+  metadata:
+    - key: accesstoken
+      value: "{{accessToken}}"
+      description: Access token for the Salesforce Org
+    - key: instanceurl
+      value: "{{instanceUrl}}"
+      description: Salesforce Org instance URL
+    - key: tenantid
+      value: "{{orgId}}"
+      description: Salesforce Org ID
+response:
+  code: 0
+  metadata:
+    content-type: application/grpc
+    date: Thu, 26 Jun 2025 08:39:09 GMT
+    x-envoy-upstream-service-time: "266"
+  messages:
+    - id: 6a276df3c81b013cea53c01d
+      type: incoming
+      content: |-
+        {
+            "results": [
+                {
+                    "replay_id": "AAAAAAA47f8AAA==",
+                    "error": null,
+                    "correlation_key": "403f1cef-1372-4eb7-8770-669cf2dba746"
+                }
+            ],
+            "schema_id": "l2FajcERlSKIdAfICjQwzw",
+            "rpc_id": "24bd9a38-ff4e-43d1-972d-2910ce9d7057"
+        }
+schema:
+  source: file
+  location: https://raw.githubusercontent.com/forcedotcom/pub-sub-api/refs/heads/main/pubsub_api.proto
+order: 1000

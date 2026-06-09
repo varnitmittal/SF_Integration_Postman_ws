@@ -1,0 +1,27 @@
+$kind: http-request
+description: Generates an access token. Use the access token as a bearer token to make requests to the Messaging for In-App and Web APIs.
+url: https://{{scrt-url}}/iamessage/api/v2/authorization/authenticated/access-token
+method: POST
+body:
+  type: json
+  content: |-
+    
+    {
+        "orgId": "{{org-id}}",
+        "esDeveloperName": "{{developer-name}}",
+        "capabilitiesVersion": "1",
+        "platform": "Web",
+        "context": {
+            "appName": "customClientDemo",
+            "clientVersion": "1.0.0"
+        }
+    }
+scripts:
+  - type: afterResponse
+    code: |-
+      const context = pm.environment.name ? pm.environment : pm.collectionVariables;
+
+      const body = pm.response.json();
+      context.set('_access-token', body.accessToken); 
+    language: text/javascript
+order: 2000

@@ -1,0 +1,104 @@
+$kind: grpc-request
+url: "{{pubSubApiEndpoint}}"
+methodPath: eventbus.v1.PubSub.Publish
+methodDescriptor: CocGChFldmVudGJ1c192MS5wcm90bxILZXZlbnRidXMudjEiMQoLRXZlbnRIZWFkZXISDwoDa2V5GAEgASgJQgIQARIRCgV2YWx1ZRgCIAEoDEICEAEibQoNUHJvZHVjZXJFdmVudBIOCgJpZBgBIAEoCUICEAESFQoJc2NoZW1hX2lkGAIgASgJQgIQARITCgdwYXlsb2FkGAMgASgMQgIQARIgCgdoZWFkZXJzGAQgAygLMgtFdmVudEhlYWRlckICEAEiXQoNUHVibGlzaFJlc3VsdBIVCglyZXBsYXlf
+message:
+  content: |-
+    {
+        "topic_name": "{{topicName}}",
+        "events": [
+            {
+                "schema_id": "{{_schemaId}}",
+                "payload": "{{_serializedSentPayload}}"
+            }
+        ]
+    }
+metadata:
+  - key: accesstoken
+    value: "{{accessToken}}"
+    description: Access token for the Salesforce Org
+  - key: instanceurl
+    value: "{{instanceUrl}}"
+    description: Salesforce Org instance URL
+  - key: tenantid
+    value: "{{orgId}}"
+    description: Salesforce Org ID
+settings:
+  secureConnection: true
+auth:
+  type: noauth
+schema:
+  source: file
+  location: https://raw.githubusercontent.com/forcedotcom/pub-sub-api/refs/heads/main/pubsub_api.proto
+scripts:
+  - type: beforeInvoke
+    code: |
+      // Load avro from NPM
+      const avroJs = pm.require('npm:avro-js@1.12.0');
+
+      const context = pm.environment.name ? pm.environment : pm.collectionVariables;
+
+      // Fetch the schema from the global var and parse it with avro
+      const schemaJsonStr = pm.globals.get("_schemaJson");
+      if (!schemaJsonStr) {
+          throw new Error('Failed to load schema. Call the Get Schema operation before running this operation.');
+      }
+      const schemaJson = JSON.parse(schemaJsonStr);
+      const avroSchema = avroJs.parse(schemaJson);
+
+      // Load and parse the payload (as json) to be published
+      const payloadJsonString = context.get("sentPayloadJson");
+      const payloadJson = JSON.parse(payloadJsonString);
+      // Check mandatory CreatedById field
+      if (!payloadJson.hasOwnProperty('CreatedById')) {
+          throw new Error('CreatedById field is required in sent payload');
+      }
+      // Set default created date to now
+      if (!payloadJson.hasOwnProperty('CreatedDate')) {
+          payloadJson.CreatedDate = new Date().getTime()
+      }
+      console.info('Publishing event: ', payloadJson);
+
+      // Serialize the payload into a byte buffer using the avro schema
+      const serializedPayload = avroSchema.toBuffer(payloadJson);
+
+      // Convert the serialized payload to base64 encoding
+      const base64Payload = Buffer.from(serializedPayload).toString('base64');
+      // Set the payload as a global variable
+      pm.globals.set("_serializedSentPayload", base64Payload);
+    language: text/javascript
+    packages:
+      npm:avro-js@1~DOT~12~DOT~0:
+        id: npm:avro-js@1.12.0
+  - type: onIncomingMessage
+    code: |-
+      // Fetch the message data
+      const jsonResponse = pm.message.data;
+
+      // Validate the schema ID matches
+      pm.test('schemaId should match on publish response', () => {
+          pm.expect(pm.globals.get('_schemaId')).to.equal(jsonResponse.schema_id);
+      });
+
+      // Fetch/Log the replay ID and CorrelationKey
+      const results = jsonResponse.results;
+      for (let i = 0; i < results.length; i++) {
+          if (results[i]["error"] === null) {
+
+              var replay_payload = results[i]["replay_id"];
+              const replay_binary_string = atob(replay_payload);
+              const replay_uint8Array = new Uint8Array(replay_binary_string.length);
+              for (let i = 0; i < replay_binary_string.length; i++) {
+                  replay_uint8Array[i] = replay_binary_string.charCodeAt(i);
+              }
+              var replay_dataView = new DataView(replay_uint8Array.buffer, replay_uint8Array.byteOffset + 0, 8);
+              var parsedReplay = replay_dataView.getBigUint64(0, false);
+
+              console.info(`==>> Publish Successful at replay ${parsedReplay} with correlation_key ${results[i].correlation_key}`);
+          } else {
+              console.error(`==>> Publish failed with error: ${results[i].error}`);
+          }
+      }
+    language: text/javascript
+examples: ./.resources/Publish.resources/examples
+order: 4000

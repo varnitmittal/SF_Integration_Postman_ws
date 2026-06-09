@@ -1,0 +1,19 @@
+$kind: http-request
+description: Sends a list of conversation entries with “delivery” acknowledgements and “read” receipts. Each conversation entry in the list indicates whether the entry from the agent or bot has been delivered to or read by the end user.
+url: https://{{scrt-url}}/iamessage/api/v2/conversation/:conversationId/acknowledge-entries
+method: POST
+pathVariables:
+  conversationId: "{{_conversation-id}}"
+body:
+  type: json
+  content: |-
+    {
+      "acks": [
+        {
+          "id": "{{$randomUUID}}",
+          "entryType": "Delivery",
+          "conversationEntryId": "{{_conversation-id}}"
+        }
+      ]
+    }
+order: 9000

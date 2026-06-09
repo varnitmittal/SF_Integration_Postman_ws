@@ -1,0 +1,63 @@
+$kind: graphql-example
+request:
+  url: "{{_endpoint}}/services/data/v{{version}}/graphql"
+  query: |
+    query accountById($id: ID) {
+      uiapi {
+        query {
+          Account(where: { Id: { eq: $id } }) {
+            edges {
+              node {
+                Id
+                Name {
+                  value
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  variables: |-
+    {
+        "id": "0014H00002LbR7QQAV"
+    }
+  headers:
+    X-Chatter-Entity-Encoding: "false"
+response:
+  events: []
+  http:
+    status: 200 OK
+    headers:
+      Date: Fri, 06 Oct 2023 09:04:46 GMT
+      Strict-Transport-Security: max-age=63072000; includeSubDomains
+      X-Content-Type-Options: nosniff
+      X-Robots-Tag: none
+      Cache-Control: no-cache,must-revalidate,max-age=0,no-store,private
+      Content-Type: application/json;charset=UTF-8
+      Vary: Accept-Encoding
+      Content-Encoding: gzip
+      Transfer-Encoding: chunked
+    body: |-
+      {
+          "data": {
+              "uiapi": {
+                  "query": {
+                      "Account": {
+                          "edges": [
+                              {
+                                  "node": {
+                                      "Id": "0014H00002LbR7QQAV",
+                                      "Name": {
+                                          "value": "ABC Computing"
+                                      }
+                                  }
+                              }
+                          ]
+                      }
+                  }
+              }
+          },
+          "errors": []
+      }
+order: 1000

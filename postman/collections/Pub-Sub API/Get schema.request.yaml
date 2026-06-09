@@ -1,0 +1,45 @@
+$kind: grpc-request
+url: "{{pubSubApiEndpoint}}"
+methodPath: eventbus.v1.PubSub.GetSchema
+methodDescriptor: CskCChFldmVudGJ1c192MS5wcm90bxILZXZlbnRidXMudjEiJgoNU2NoZW1hUmVxdWVzdBIVCglzY2hlbWFfaWQYASABKAlCAhABIlAKClNjaGVtYUluZm8SFwoLc2NoZW1hX2pzb24YASABKAlCAhABEhUKCXNjaGVtYV9pZBgCIAEoCUICEAESEgoGcnBjX2lkGAMgASgJQgIQATJKCgZQdWJTdWISQAoJR2V0U2NoZW1hEhouZXZlbnRidXMudjEuU2NoZW1hUmVxdWVzdBoXLmV2ZW50YnVzLnYxLlNj
+message:
+  content: |-
+    {
+        "schema_id": "{{_schemaId}}"
+    }
+metadata:
+  - key: accesstoken
+    value: "{{accessToken}}"
+    description: Access token for the Salesforce Org
+  - key: instanceurl
+    value: "{{instanceUrl}}"
+    description: Salesforce Org instance URL
+  - key: tenantid
+    value: "{{orgId}}"
+    description: Salesforce Org ID
+settings:
+  secureConnection: true
+auth:
+  type: noauth
+schema:
+  source: api
+  apiId: 13095926-87da-4278-b8fd-eb7f9a1466b2
+  versionId: f7e2312a-abe9-4bca-a776-ca6469ff9fef
+scripts:
+  - type: afterResponse
+    code: |-
+      // Validate that correct global vars are set
+      pm.test('_schemaJson global var should exist', function () {
+          pm.expect(pm.globals.has('_schemaJson')).to.equal(true);
+      });
+    language: text/javascript
+  - type: onIncomingMessage
+    code: |-
+      // Fetch the message data
+      var jsonResponse = pm.message.data;
+
+      // Set the schema json in env variables for other grpc calls
+      pm.globals.set("_schemaJson", jsonResponse["schema_json"]);
+    language: text/javascript
+examples: ./.resources/Get schema.resources/examples
+order: 2000

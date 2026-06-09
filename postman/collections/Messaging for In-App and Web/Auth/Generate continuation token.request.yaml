@@ -1,0 +1,9 @@
+$kind: http-request
+description: Generates a JSON Web Token (JWT). This endpoint supports web users using multiple tabs, and it doesn't extend the JWT expiration time.
+url: https://{{scrt-url}}/iamessage/api/v2/authorization/continuation-access-token
+method: GET
+auth:
+  type: bearer
+  credentials:
+    token: "{{_access-token}}"
+order: 4000

@@ -1,0 +1,23 @@
+$kind: graphql-request
+url: "{{_endpoint}}/services/data/v{{version}}/graphql"
+query: |-
+  query contacts {
+    uiapi {
+      query {
+        Contact {
+          edges {
+            node {
+              Id
+              Name {
+                value
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+headers:
+  X-Chatter-Entity-Encoding: "false"
+examples: ./.resources/Contacts.resources/examples
+order: 5000

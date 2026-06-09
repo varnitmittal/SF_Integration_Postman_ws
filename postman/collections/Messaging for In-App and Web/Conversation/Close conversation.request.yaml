@@ -1,0 +1,12 @@
+$kind: http-request
+description: Closes a conversation between an end user and agent. After a conversation is closed, end users and agents can no longer send messages in this conversation. Instead, they must start a new conversation.
+url: https://{{scrt-url}}/iamessage/api/v2/conversation/:conversationId?esDeveloperName={{developer-name}}
+method: DELETE
+queryParams:
+  esDeveloperName: "{{developer-name}}"
+pathVariables:
+  conversationId: "{{_conversation-id}}"
+body:
+  type: json
+  content: ""
+order: 2000
